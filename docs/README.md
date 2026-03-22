@@ -11,7 +11,7 @@ Pre-runtime security covers every decision made before an AI system reaches prod
 </div>
 
 <div class="pull-quote" markdown>
-> A compromised model defeats all runtime controls. A poisoned dataset corrupts every output. An insecure pipeline makes every deployment suspect. Security starts before deployment.
+> A compromised model makes AI even less predictable. A poisoned dataset corrupts outputs in ways that may be subtle and slow to surface. An insecure pipeline makes every deployment suspect. Security starts before deployment, because the harder you make it for problems to reach production, the less runtime security has to catch.
 </div>
 
 ## The problem
@@ -20,7 +20,7 @@ Most AI security guidance focuses on what happens after deployment: guardrails, 
 
 Which model did you choose, and can you verify its integrity? Where is it hosted, and who controls the infrastructure? How does your pipeline move a model from experiment to production? What data trained it, and who had access?
 
-These are pre-runtime questions. Get them wrong, and no amount of runtime controls will save you.
+These are pre-runtime questions. Get them wrong, and runtime security has to work much harder to prevent issues that could have been avoided entirely.
 
 ## What this site covers
 
