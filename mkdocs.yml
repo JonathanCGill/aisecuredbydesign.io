@@ -1,0 +1,110 @@
+site_name: AI Secured by Design
+site_url: https://aisecuredbydesign.io/
+site_description: >-
+  AI Secured by Design, securing AI before it runs. Model selection,
+  platform decisions, DevOps pipelines, MLOps, data security, and governance
+  for trustworthy AI deployments.
+site_author: Jonathan Gill
+
+edit_uri: ""
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  custom_dir: overrides
+  font:
+    text: Inter
+    code: Roboto Mono
+  palette:
+    - scheme: default
+      primary: custom
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - navigation.path
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.action.edit
+    - content.action.view
+    - toc.follow
+  favicon: images/favicon.svg
+
+plugins:
+  - search
+  - meta
+
+markdown_extensions:
+  - tables
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+  - attr_list
+  - md_in_html
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/JonathanCGill
+      name: Jonathan Gill on GitHub
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/jonathancgill/
+      name: Jonathan Gill on LinkedIn
+
+copyright: >-
+  Copyright &copy; 2026 Jonathan Gill | MIT License<br>
+  Feedback welcome — <a href="mailto:feedback@aisecuredbydesign.io">feedback@aisecuredbydesign.io</a>
+
+nav:
+  - Home: README.md
+  - What is AI Pre-Runtime Security?: what-is-ai-pre-runtime-security.md
+
+  - Building Securely:
+    - building/README.md
+    - Model Selection:
+      - building/model-selection/README.md
+      - Provenance and Integrity: building/model-selection/provenance-and-integrity.md
+      - Risk Assessment: building/model-selection/risk-assessment.md
+      - Vulnerability Scanning: building/model-selection/vulnerability-scanning.md
+    - Platform Selection:
+      - building/platform-selection/README.md
+      - Cloud AI Services: building/platform-selection/cloud-ai-services.md
+      - Self-Hosted Infrastructure: building/platform-selection/self-hosted-infrastructure.md
+      - Hybrid Patterns: building/platform-selection/hybrid-patterns.md
+    - AI DevOps:
+      - building/devops/README.md
+      - CI/CD for AI: building/devops/ci-cd-for-ai.md
+      - Infrastructure as Code: building/devops/infrastructure-as-code.md
+      - Secrets Management: building/devops/secrets-management.md
+    - MLOps Security:
+      - building/mlops/README.md
+      - Secure ML Pipelines: building/mlops/secure-ml-pipelines.md
+      - Model Lifecycle: building/mlops/model-lifecycle.md
+      - Experiment Tracking: building/mlops/experiment-tracking.md
+
+  - Insights:
+    - insights/README.md
