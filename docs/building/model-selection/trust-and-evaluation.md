@@ -22,12 +22,14 @@ Benchmarks tell you what a model can do. They do not tell you what it will do in
 |-----------|------------|-----------------|
 | **MLCommons AILuminate** (v1.0, Dec 2024) | MLCommons with Stanford, Google, Meta, Microsoft, NVIDIA | Safety grades across 13 hazard categories for LLMs. First collaborative, standardised safety benchmark. |
 | **Stanford HELM Safety** | Stanford CRFM | Holistic evaluation of language models across accuracy, calibration, robustness, fairness, bias, toxicity, and efficiency. |
-| **AIR-Bench** | Stanford HAI / community | Responsible AI evaluation filling gaps in existing benchmarks. |
+| **AIR-Bench** | Stanford HAI / community | 5,694 tests across 314 granular risk categories spanning system risks, content safety, societal risks, and legal risks. |
+| **Humanity's Last Exam** (HLE) | Center for AI Safety / Scale AI | 2,500 expert-crafted questions across 100+ subjects, designed as a ceiling benchmark as standard tests saturate. |
+| **HarmBench** | Academic community | Harmful prompt dataset for safety testing. Notable: DeepSeek R1 failed to block a single harmful prompt out of 50 tested. |
 | **CyberSecEvals** | Meta AI Red Team | Security-specific evaluation for LLMs, including code generation safety and vulnerability awareness. |
 | **Garak** | Open source (NVIDIA origin) | Adversarial probe framework covering prompt injection, jailbreaks, data leakage, and hallucination. |
 
-!!! warning "Leaderboard scores are not security assessments"
-    Models can score well on benchmarks while failing catastrophically on adversarial inputs, edge cases, or tasks outside their training distribution. A model that tops a leaderboard may still produce harmful outputs, leak training data, or be trivially jailbroken. Always supplement benchmark scores with your own red-teaming and domain-specific evaluation.
+!!! warning "Benchmarks have known validity problems"
+    Models can score well on benchmarks while failing catastrophically on adversarial inputs, edge cases, or tasks outside their training distribution. METR found that roughly half of test-passing SWE-bench pull requests written by AI agents would not be merged by repository maintainers, suggesting benchmark scores systematically overestimate real-world usefulness. Recent research also argues that benchmarks often fail to connect what they claim to measure ("safety", "diversity") with what their metrics actually capture. Always supplement benchmark scores with your own red-teaming and domain-specific evaluation.
 
 ### Evaluation beyond benchmarks
 
@@ -50,11 +52,13 @@ At DEF CON 2024, Meta's AI Red Team presented on red-teaming Llama 3, using mult
 
 ### The transparency gap
 
-Stanford HAI's Foundation Model Transparency Index found that average transparency scores increased from 37% (October 2023) to 58% (May 2024). This is progress, but it means the average foundation model still conceals nearly half of the information that evaluators need.
+Stanford's Foundation Model Transparency Index initially showed progress: scores rose from 37% (October 2023) to 58% (May 2024). Then the trend reversed. By December 2025, the average score dropped to 40.69%, worse than the initial improvement suggested.
 
-The AI Transparency Atlas (December 2025) analysed 100 Hugging Face model cards and found 947 unique section names with extreme naming variation. Usage information alone appeared under 97 different labels. Model cards exist, but they are inconsistent and often incomplete.
+The spread is stark. IBM scored 95/100. Writer and AI21 Labs averaged around 78. But Anthropic, Google, Amazon, OpenAI, DeepSeek, and Meta clustered around 36. Mistral, Midjourney, and xAI averaged roughly 15. Companies are most opaque about training data, training compute, and post-deployment impact. Meta did not release a technical report for Llama 4. Google was significantly delayed on Gemini 2.5 documentation.
 
-**What this means for you:** Do not assume that a published model card gives you adequate information. Verify the card's claims through your own testing. If a model card is absent or incomplete, that is not a minor documentation gap; it is a risk signal.
+The AI Transparency Atlas (December 2025) analysed 100 Hugging Face model cards and found 947 unique section names with extreme naming variation. Usage information alone appeared under 97 different labels. Model cards exist, but they are inconsistent, incomplete, and declining in quality as the number of models grows.
+
+**What this means for you:** Transparency is getting worse, not better, even as the industry talks more about it. Do not assume that a published model card gives you adequate information. Verify the card's claims through your own testing. If a model card is absent or incomplete, that is not a minor documentation gap; it is a risk signal.
 
 ## Who can we trust?
 
@@ -113,9 +117,11 @@ No provider should be trusted on claims alone. Use this framework:
 
 Regulatory requirements are making model evaluation less optional:
 
-- **EU AI Act**: Entered force August 2024. GPAI obligations effective August 2025. High-risk enforcement from August 2026. Requires documentation, risk assessment, and transparency for AI systems.
-- **NIST AI RMF + AI 600-1**: The GenAI profile (July 2024) covers 12 risk categories including CBRN, hallucinations, data leakage, and harmful bias. Voluntary but increasingly referenced in procurement.
+- **EU AI Act**: Entered force August 2024. GPAI obligations effective August 2025. High-risk enforcement from August 2026. Models trained with more than 10^23 FLOPs trigger GPAI provider obligations. Models with "systemic risk" face additional requirements. Penalties reach up to 35 million EUR or 7% of global annual turnover.
+- **NIST AI RMF + AI 600-1**: The GenAI profile (July 2024) covers 12 risk categories including CBRN, hallucinations, data leakage, and harmful bias. **NIST SP 800-218A** (July 2024) supplements the Secure Software Development Framework specifically for generative AI and dual-use foundation models. Voluntary but increasingly referenced in procurement.
 - **ISO 42001**: AI management system standard providing governance alignment for model selection and deployment.
+- **International AI Safety Reports**: The 2026 report (100+ experts from 30+ nations) endorses defence-in-depth and notes that "policymakers face an evidence dilemma: waiting for clear evidence of risk could leave society unprepared."
+- **US Executive Orders**: EO 14110 (Biden, October 2023) established comprehensive AI governance directives. It was revoked in January 2025, but the NIST guidance it produced (AI RMF profiles, SP 800-218A) remains influential and widely referenced.
 
 ## Right model for right task
 
@@ -139,6 +145,19 @@ This matters for model selection because:
 - Models trained partly on synthetic data may have degraded performance on edge cases
 - The provenance of training data is increasingly difficult to verify as synthetic data proliferates
 - Preserving original human-generated training data is the primary mitigation
+
+### Security advantages of smaller models
+
+Right-sized models are not just cheaper. They are more defensible:
+
+- **Auditable training data**: Smaller, domain-specific training datasets are easier to audit and filter for toxic or malicious content
+- **Greater interpretability**: Data scientists can trace, debug, and explain decision-making pathways more effectively
+- **Reduced attack surface**: Fewer parameters trained on narrower data means fewer opportunities for adversarial exploitation
+- **Guardian architectures**: Small language models can serve as real-time computational guardrails, security shields, or trusted intermediaries for larger models (SLM-as-guardian pattern)
+
+Purpose-built safety models like IBM Granite Guardian (protective filter scanning for harmful prompts) and Allen Institute WildGuard (lightweight moderation based on Mistral-7B) demonstrate that small, focused models can provide security capabilities that general-purpose models cannot.
+
+When a 7B model achieves 92% accuracy on a task while a frontier model achieves 95%, the marginal improvement rarely justifies the exponential increase in cost, attack surface, and operational complexity.
 
 ### Capability matching framework
 
@@ -181,11 +200,16 @@ Model trust and evaluation is not a one-time gate. It is a continuous process:
 !!! info "References"
     - [MLCommons AILuminate Safety Benchmark](https://mlcommons.org/ailuminate/)
     - [Stanford HAI 2025 AI Index Report](https://hai.stanford.edu/ai-index/2025-ai-index-report)
+    - [Stanford Foundation Model Transparency Index, December 2025](https://crfm.stanford.edu/fmti/December-2025/paper.pdf)
     - [OpenSSF Model Signing v1.0](https://github.com/sigstore/model-transparency)
     - [Google Security Blog: Taming the Wild West of ML](https://security.googleblog.com/2025/04/taming-wild-west-of-ml-practical-model.html)
     - [AI Seoul Summit Frontier AI Safety Commitments](https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024/)
     - [NIST AI 600-1: GenAI Risk Management Profile](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence)
+    - [NIST SP 800-218A: Secure Software Development for GenAI](https://csrc.nist.gov/pubs/sp/800/218/a/final)
+    - [International AI Safety Report 2026](https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026)
     - [Shumailov et al., AI Models Collapse When Trained on Recursively Generated Data, Nature 2024](https://www.nature.com/articles/s41586-024-07566-y)
     - [METR: Common Elements of Frontier AI Safety Policies](https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/)
     - [Frontier Model Forum Progress Update](https://www.frontiermodelforum.org/updates/progress-update-advancing-frontier-ai-safety-in-2024-and-beyond/)
     - [DEF CON 31 AI Village Red Team Challenge Findings](https://oodaloop.com/analysis/archive/findings-from-the-defcon31-ai-village-inaugural-generative-ai-red-team-challenge/)
+    - [Future of Life Institute AI Safety Index](https://futureoflife.org/ai-safety-index-summer-2025/)
+    - [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)

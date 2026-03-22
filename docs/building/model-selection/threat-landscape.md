@@ -8,6 +8,8 @@ This page documents real-world attacks, incidents, and emerging threats targetin
 
 Understanding the threat landscape is a prerequisite for meaningful [risk assessment](risk-assessment.md). You cannot assess risk for threats you do not know exist.
 
+The MITRE ATLAS framework (as of October 2025) catalogues 15 tactics, 66 techniques, 46 sub-techniques, 26 mitigations, and 33 real-world case studies for adversarial threats to AI systems. In October 2024 MITRE launched the AI Incident Sharing initiative, a "neighbourhood watch" for AI allowing anonymised data sharing about real-world attacks. ATLAS data is available in STIX 2.1 format for integration with SIEM systems and threat intelligence platforms.
+
 ## Supply chain attacks on model repositories
 
 Model repositories are the npm and PyPI of machine learning. They host community-uploaded artefacts that millions of users download and execute. The security model is similar: open contribution, limited vetting, trust based on reputation.
@@ -27,7 +29,7 @@ Hugging Face hosts over 1.4 million models as of early 2025 (up from roughly 500
 | **2025** | Attackers uploaded 6,000+ malicious Android files to Hugging Face datasets in under a month, generating new payloads approximately every 15 minutes. | Platform used as malware hosting and distribution infrastructure. | [BankInfoSecurity](https://www.bankinfosecurity.com/breach-roundup-android-rat-hides-behind-hugging-face-a-30628) |
 | **2025** | ReversingLabs identified additional malicious repositories including glockr1/ballr7. | Ongoing malicious model uploads despite platform countermeasures. | [ReversingLabs](https://www.reversinglabs.com/blog/rl-identifies-malware-ml-model-hosted-on-hugging-face) |
 
-**Scale of the problem:** Between October 2024 and April 2025, Protect AI scanned 4.47 million unique model versions across 1.41 million repositories on Hugging Face. They found 352,000 unsafe or suspicious issues across 51,700 models.
+**Scale of the problem:** JFrog's 2025 report found over 1 million new models hit Hugging Face in 2024 alone, with a 6.5x increase in malicious models year-over-year. Between October 2024 and April 2025, Protect AI scanned 4.47 million unique model versions across 1.41 million repositories. They found 352,000 unsafe or suspicious issues across 51,700 models. 21% of models on Hugging Face remain exclusively in pickle format, and pickle-only models are downloaded over 400 million times per month.
 
 !!! warning "Model repositories are not curated"
     Downloading a model from Hugging Face carries the same risk as running code from an unknown GitHub repository. The platform provides hosting, not vetting. Your pipeline must treat every downloaded model as untrusted until verified.
@@ -37,6 +39,8 @@ Hugging Face hosts over 1.4 million models as of early 2025 (up from roughly 500
 The threat extends beyond model files to the frameworks and libraries used to build, train, and run models.
 
 **Ultralytics PyPI compromise (December 2024):** The Ultralytics package (a widely-used computer vision library) was compromised on PyPI. Malicious versions contained a cryptominer that executed on installation. This was not a typosquatting attack; the legitimate package was compromised.
+
+**ShadowRay (March 2024):** Attackers exploited CVE-2023-48022 in the Ray framework (widely used for distributed ML training), compromising environments at Uber, Amazon, and OpenAI. Open-source ML infrastructure is a high-value target.
 
 **Keras CVE-2025-1550:** Demonstrated arbitrary code execution via custom layers in Keras models. A Keras model file could execute arbitrary Python code when loaded, similar to the pickle deserialization problem but through a different mechanism.
 
@@ -56,6 +60,7 @@ The tools designed to protect against malicious pickle files have their own vuln
 
 - **PickleScan**: JFrog found 3 zero-day critical vulnerabilities enabling bypass of the industry-standard pickle scanning tool.
 - **PickleScan (additional)**: Sonatype discovered 4 further vulnerabilities enabling scanner bypass.
+- **nullifAI evasion (February 2025)**: Malicious models used 7z archive format instead of ZIP to bypass PickleScan detection entirely. The scanner simply did not inspect the alternative archive format.
 
 **The implication:** Do not rely on a single scanning tool. Defence in depth applies here: prefer safe formats (SafeTensors), scan with multiple tools, and run model loading in sandboxed environments.
 
@@ -87,6 +92,16 @@ Recent research demonstrates that fine-tuning reliably degrades safety alignment
 
 Fine-tuning APIs from major providers allow users to upload arbitrary training data. While providers implement safeguards, the risk of harmful fine-tuning through these services remains an active area of concern. The line between legitimate customisation and safety degradation is difficult to enforce programmatically.
 
+## Backdoor and poisoning research
+
+Academic research is revealing how practical and difficult to detect model poisoning has become.
+
+**BackdoorLLM** (NeurIPS 2025) is the first comprehensive benchmark for LLM backdoor attacks, covering data poisoning, weight poisoning, hidden state steering, and chain-of-thought attacks. Researchers have demonstrated establishing robust trigger associations using only benign QA pairs, bypassing safety-aligned guardrails entirely. The trigger data does not need to look malicious.
+
+**Key thresholds:** As little as 3% poisoned data can increase test error from 3% to 24% (Koh et al.). In federated learning scenarios, targeting a small subset of "key parameters" can replicate full-model attack impact while greatly reducing detection risk.
+
+**Detection is improving but incomplete.** Defences like BaDExpert (backdoor functionality extraction), CrowdGuard (federated detection), FreqFed (frequency analysis), and TextGuard (provable defence for text classification) show partial efficacy but struggle at scale. No current defence reliably catches all backdoor types.
+
 ## Emerging threats
 
 ### Evaluation awareness and scheming
@@ -117,7 +132,11 @@ Anthropic disclosed (August 2025) documented attempts to weaponise Claude for ex
 A few statistics that frame the current threat environment:
 
 - **233 AI-related security and privacy incidents** in 2024, a 56.4% increase over 2023 (Stanford HAI 2025 AI Index)
+- **$4.7 million** average cost per AI-related security breach in 2025 (Stanford HAI)
 - **352,000 unsafe or suspicious issues** found across 51,700 models on Hugging Face in six months (Protect AI, October 2024 to April 2025)
+- **6.5x increase** in malicious models on Hugging Face in 2024 compared to prior year (JFrog 2025)
+- **400 million+ monthly downloads** of pickle-only models on Hugging Face, each carrying arbitrary code execution risk
+- **Only 6% of organisations** have an advanced AI security strategy (Stanford HAI 2025)
 - **93% of organisations** acknowledge generative AI brings risks, but only **9% feel prepared** (PwC / Credo AI)
 - **57% of enterprises** cite LLM prompt injection, model manipulation, and jailbreaking as a top-two AI security concern (IDC Asia/Pacific, August 2025)
 
@@ -142,4 +161,9 @@ Threat intelligence is only useful if it changes decisions. Apply these findings
     - [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
     - [CSO Online: GRP-Obliteration Single Prompt Attack](https://www.csoonline.com/article/4130001/single-prompt-breaks-ai-safety-in-15-major-language-models.html)
     - [Anthropic Threat Intelligence Disclosure, August 2025](https://www.anthropic.com/)
+    - [MITRE ATLAS AI Incident Sharing Initiative](https://atlas.mitre.org/)
+    - [MITRE SAFE-AI Framework](https://atlas.mitre.org/pdf-files/SAFEAI_Full_Report.pdf)
+    - [BackdoorLLM Benchmark, NeurIPS 2025](https://github.com/bboylyg/BackdoorLLM)
+    - [ReversingLabs: nullifAI Evasion Technique](https://www.reversinglabs.com/blog/rl-identifies-malware-ml-model-hosted-on-hugging-face)
+    - [JFrog 2025 ML Supply Chain Report](https://jfrog.com/blog/data-scientists-targeted-by-malicious-hugging-face-ml-models-with-silent-backdoor/)
     - [NIST AI 600-1: GenAI Risk Management Profile](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence)
