@@ -2,7 +2,7 @@
 description: What AI pre-runtime security means, why it matters, and how it fits into the complete AI security lifecycle.
 ---
 
-# What is AI Pre-Runtime Security?
+# Securing AI Before Deployment
 
 AI pre-runtime security is the discipline of securing AI systems before they reach production. It covers every decision and process from initial model selection through to the deployment gate: choosing models, selecting platforms, building pipelines, securing data, and validating that what you are about to deploy is trustworthy.
 
