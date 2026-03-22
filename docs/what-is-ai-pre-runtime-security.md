@@ -59,12 +59,13 @@ These differences mean that traditional security practices (code review, static 
 
 This site is organised around the practical decisions teams make when building AI systems:
 
-1. **Model Selection** covers choosing models securely: provenance, integrity, risk assessment, and vulnerability scanning
-2. **Platform Selection** covers where to run AI: cloud services, self-hosted, and hybrid approaches with their distinct security tradeoffs
-3. **AI DevOps** covers building and deploying securely: CI/CD for AI, infrastructure as code, and secrets management
-4. **MLOps Security** covers the ML pipeline: training, validation, lifecycle management, and experiment tracking
+1. **[Getting Started](getting-started/README.md)** covers risk classification, regulatory alignment, adversarial testing requirements, and production readiness. Start here to determine the right level of security for your specific AI system.
+2. **Model Selection** covers choosing models securely: provenance, integrity, risk assessment, and vulnerability scanning
+3. **Platform Selection** covers where to run AI: cloud services, self-hosted, and hybrid approaches with their distinct security tradeoffs
+4. **AI DevOps** covers building and deploying securely: CI/CD for AI, infrastructure as code, and secrets management
+5. **MLOps Security** covers the ML pipeline: training, validation, lifecycle management, and experiment tracking
 
-Each section focuses on what you need to do, not just what you need to know. The goal is practical guidance that teams can apply immediately.
+Each section focuses on what you need to do, not just what you need to know. The goal is practical guidance that teams can apply immediately. Every recommendation is scaled to the [risk tier](getting-started/risk-classification.md) of your system, so controls are proportionate to the harm the system could cause.
 
 !!! info "References"
     - [OWASP Machine Learning Security Top 10](https://owasp.org/www-project-machine-learning-security-top-10/)

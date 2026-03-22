@@ -22,6 +22,17 @@ Which model did you choose, and can you verify its integrity? Where is it hosted
 
 These are pre-runtime questions. Get them wrong, and runtime security has to work much harder to prevent issues that could have been avoided entirely.
 
+## Start here
+
+<div class="home-paths" markdown>
+<div class="home-path" markdown>
+#### Getting Started
+Classify the risk level of your AI system, understand your regulatory obligations, and follow the right security path. Everything else on this site is risk-proportionate, so start with classification.
+
+[Classify Your System](getting-started/README.md){ .md-button }
+</div>
+</div>
+
 ## What this site covers
 
 <div class="home-paths" markdown>
