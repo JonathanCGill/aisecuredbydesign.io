@@ -1,8 +1,13 @@
+---
+description: "Structured degradation paths for autonomous AI systems, covering state preservation, transaction safety, and graceful shutdown under failure."
+---
+
 # Agentic AI: Graceful Degradation and PACE Resilience
 
 *This section defines the structured degradation path for autonomous AI systems. For stateless generative AI (chatbots, content tools), the Emergency response is simple: stop the service, route to fallback, fix, restart. For agentic AI, it's not.*
 
-> *This document uses the simplified three-tier system (Tier 1/2/3). See [Risk Tiers - Simplified Tier Mapping](risk-tiers.md#simplified-tier-mapping) for the mapping to LOW/MEDIUM/HIGH/CRITICAL.*
+!!! info "Note"
+    This document uses the simplified three-tier system (Tier 1/2/3). See [Risk Tiers - Simplified Tier Mapping](risk-tiers.md#simplified-tier-mapping) for the mapping to LOW/MEDIUM/HIGH/CRITICAL.
 
 ## Why Agents Need a Degradation Path
 
@@ -16,7 +21,7 @@ Agentic AI systems can't be stopped the way you stop a web server. When you shut
 
 "Turn it off" is not a resilience plan. It's a panic response that creates orphaned transactions, locked resources, and confused downstream systems. The degradation path provides structured alternatives between "fully autonomous" and "completely stopped."
 
-![Agentic AI Graceful Degradation Path](../images/pace-degradation-path.svg)
+![Agentic AI Graceful Degradation Path](../images/pace-degradation-path.svg){ .arch-diagram }
 
 ## The Five Degradation Phases
 

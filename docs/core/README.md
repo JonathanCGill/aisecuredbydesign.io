@@ -6,7 +6,8 @@ description: Core implementation guide for AI runtime security controls includin
 
 Reducing harm caused by AI systems in production through risk-proportionate controls that you select, adapt, or consciously deselect based on your risk appetite and the way your organisation works.
 
-> *This is the implementation companion to the [Foundation overview](../foundations/). The Foundation explains the architecture and principles. This section contains the risk classification criteria, control definitions, checklists, and specialised controls you need to implement them. Start with the essentials. Branch into specialised topics based on your deployment. Deselect what does not apply.*
+!!! info "About this section"
+    This is the implementation companion to the Foundation overview. The Foundation explains the architecture and principles. This section contains the risk classification criteria, control definitions, checklists, and specialised controls you need to implement them. Start with the essentials. Branch into specialised topics based on your deployment. Deselect what does not apply.
 
 ## Reading Order
 
@@ -29,8 +30,8 @@ Start with the essentials, then branch into specialised topics based on your dep
 | Reasoning models (chain-of-thought) | [Reasoning Model Controls](reasoning-model-controls.md) |
 | Streaming responses | [Streaming Controls](streaming-controls.md) |
 | Persistent memory or long context | [Memory and Context](memory-and-context.md) |
-| Multi-agent systems | [Multi-Agent Controls](multi-agent-controls.md) then [MASO](../maso/) |
-| Open-weight / self-hosted models | [Open-Weight Models](../insights/open-weight-models-shift-the-burden.md) |
+| Multi-agent systems | [Multi-Agent Controls](multi-agent-controls.md) then MASO |
+| Open-weight / self-hosted models | Open-Weight Models |
 
 **PACE resilience (read after controls):**
 - [Control Layer Resilience](pace-controls-section.md) - PACE for each control layer
@@ -75,7 +76,7 @@ This isn't theoretical. Production implementations include:
 | AWS Bedrock Guardrails | Managed filtering |
 | Azure AI Content Safety | Content moderation |
 
-**→ For detailed solution comparison, see [Current Solutions](../extensions/technical/current-solutions.md)**
+**→ For detailed solution comparison, see Current Solutions**
 
 What has been missing: clear guidance on *why* this pattern is necessary and *how* to implement it proportionate to risk, in a way that respects how each organisation actually works.
 
@@ -154,16 +155,16 @@ What has been missing: clear guidance on *why* this pattern is necessary and *ho
 
 ### Architecture Overview
 
-![Architecture Overview](../images/architecture-overview.svg)
+![Architecture Overview](../images/architecture-overview.svg){ .arch-diagram }
 
 ## Extensions
 
 | Folder | Contents |
 |--------|----------|
-| [regulatory/](../extensions/regulatory/) | ISO 42001, EU AI Act mapping |
-| [technical/](../extensions/technical/) | Bypass prevention, infrastructure, metrics |
-| [templates/](../extensions/templates/) | Playbooks, threat models |
-| [examples/](../extensions/examples/) | Worked examples |
+| regulatory/ | ISO 42001, EU AI Act mapping |
+| technical/ | Bypass prevention, infrastructure, metrics |
+| templates/ | Playbooks, threat models |
+| examples/ | Worked examples |
 
 ## Key Principles
 

@@ -10,7 +10,7 @@ This framework covers a lot of ground. Nobody needs all of it. The framework is 
 
 These pages tell you **what matters for your role**, **why you should care**, and **where to start reading**. Each one is a window from your perspective, not a summary of everything, but a filter for what is relevant to your work.
 
-![Stakeholder Map](../images/stakeholder-map.svg)
+![Stakeholder Map](../images/stakeholder-map.svg){ .arch-diagram }
 
 ## Pick Your Role
 

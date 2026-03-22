@@ -1,8 +1,13 @@
+---
+description: "Pre-deployment and operational verification checklist for PACE resilience, organised by risk tier."
+---
+
 # PACE Resilience Checklist
 
 *Verification items for PACE resilience, organised by risk tier. Complete these before go-live and revalidate at the cadence specified for your tier.*
 
-> *This document uses the simplified three-tier system (Tier 1/2/3). See [Risk Tiers - Simplified Tier Mapping](risk-tiers.md#simplified-tier-mapping) for the mapping to LOW/MEDIUM/HIGH/CRITICAL.*
+!!! info "Note"
+    This document uses the simplified three-tier system (Tier 1/2/3). See [Risk Tiers - Simplified Tier Mapping](risk-tiers.md#simplified-tier-mapping) for the mapping to LOW/MEDIUM/HIGH/CRITICAL.
 
 ## All Tiers - Pre-Deployment
 

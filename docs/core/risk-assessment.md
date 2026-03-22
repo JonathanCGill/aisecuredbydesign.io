@@ -19,7 +19,8 @@ This document implements activities from all four functions of the [NIST AI Risk
 
 The methodology below follows the NIST RMF lifecycle: **identify** threats (MAP), **measure** control effectiveness (MEASURE), calculate **residual risk** for governance decisions (GOVERN), and define **response actions** when risk exceeds appetite (MANAGE).
 
-> For detailed infrastructure control mappings to all 51 NIST AI RMF subcategories, see [NIST AI RMF Mapping](../infrastructure/mappings/nist-ai-rmf.md).
+!!! info "See also"
+    For detailed infrastructure control mappings to all 51 NIST AI RMF subcategories, see [NIST AI RMF Mapping](../infrastructure/mappings/nist-ai-rmf.md).
 
 ## Why Quantify Control Effectiveness
 
@@ -27,7 +28,8 @@ Most AI security guidance says "add guardrails" or "implement human oversight" w
 
 This document provides a quantitative model for answering that question. It uses illustrative effectiveness rates - not empirically validated benchmarks - to demonstrate the methodology. Your actual rates will depend on your implementation quality, threat landscape, and operational maturity. The point is the approach, not the specific numbers.
 
-> **Important:** The effectiveness percentages in this document are illustrative. They exist to demonstrate how layered controls compound to reduce residual risk. Your organisation should measure actual effectiveness through red teaming, Judge accuracy calibration (see [Judge Assurance](judge-assurance.md)), and incident data. Replace the illustrative rates with your measured rates as they become available.
+!!! warning "Important"
+    The effectiveness percentages in this document are illustrative. They exist to demonstrate how layered controls compound to reduce residual risk. Your organisation should measure actual effectiveness through red teaming, Judge accuracy calibration (see [Judge Assurance](judge-assurance.md)), and incident data. Replace the illustrative rates with your measured rates as they become available.
 
 ## The Layered Control Model
 
@@ -260,7 +262,8 @@ Taking the two highest-severity scenarios and applying compensating controls:
 
 **Effective residual with compensating controls:** ~1 in 22 million transactions
 
-> **The point:** Compensating controls don't excuse weak AI-specific controls. But when a risk committee asks "what's the realistic probability of a customer being charged incorrectly?" the answer includes the full control stack, not just the AI layers. Present both the AI-layer residual and the compensated residual.
+!!! abstract "Key takeaway"
+    Compensating controls don't excuse weak AI-specific controls. But when a risk committee asks "what's the realistic probability of a customer being charged incorrectly?" the answer includes the full control stack, not just the AI layers. Present both the AI-layer residual and the compensated residual.
 
 ## Risk Tier Scenarios
 

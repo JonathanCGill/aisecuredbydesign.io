@@ -49,7 +49,7 @@ Every request to an AI system component - model endpoint, vector store, tool API
 
 ### Implementation Pattern
 
-![IAM Identity Chain](../diagrams/iam-identity-chain.svg)
+![IAM Identity Chain](../diagrams/iam-identity-chain.svg){ .arch-diagram }
 
 ### Anti-patterns
 
@@ -112,7 +112,7 @@ Before deployment, every agent must declare:
 
 Tool invocation must be mediated by an **authorization gateway** that sits between the agent and the tool. The agent does not call tools directly.
 
-![Authorization Gateway Flow](../diagrams/iam-auth-gateway-flow.svg)
+![Authorization Gateway Flow](../diagrams/iam-auth-gateway-flow.svg){ .arch-diagram }
 
 The gateway is infrastructure, not a prompt instruction. You cannot secure tool access by telling the agent "don't use tools you shouldn't." The agent doesn't enforce its own permissions - the gateway does.
 
@@ -133,7 +133,7 @@ Define these per deployment, but common examples:
 
 ### Approval Flow
 
-![Human Approval Flow](../diagrams/iam-approval-flow.svg)
+![Human Approval Flow](../diagrams/iam-approval-flow.svg){ .arch-diagram }
 
 ### Timeout Behavior
 

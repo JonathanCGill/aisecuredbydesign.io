@@ -41,7 +41,7 @@ Standard incident categories (malware, unauthorised access, data breach) don't a
 
 ### AI-Specific Incident Types
 
-![AI Incident Classification](../diagrams/incident-classification.svg)
+![AI Incident Classification](../diagrams/incident-classification.svg){ .arch-diagram }
 
 | Category | Description | Example |
 |----------|-------------|---------|

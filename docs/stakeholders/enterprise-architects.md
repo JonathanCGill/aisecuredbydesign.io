@@ -6,7 +6,7 @@ description: "AIRS framework guide for solution and platform architects, coverin
 
 **Solution Architects, Platform Architects, Technical Leads - where controls go in your pipeline, what they cost, and how they fail.**
 
-> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../)*
+> *Part of [Stakeholder Views](README.md) · [AI Secured by Design](../)*
 
 ## The Problem You Have
 
@@ -26,7 +26,7 @@ You don't need governance theory. You need an architecture reference.
 
 Every AI request passes through a pipeline. Controls intercept at specific points:
 
-![Pipeline Control Flow](../images/pipeline-control-flow.svg)
+![Pipeline Control Flow](../images/pipeline-control-flow.svg){ .arch-diagram }
 
 **Key architectural decisions:**
 - Judge runs **asynchronously** for most tiers (doesn't block response). Runs **synchronously** for CRITICAL tier (blocks until evaluated)
@@ -52,9 +52,9 @@ The framework fills the gaps, not replaces the stack. See [Infrastructure Contro
 
 | If You're Building... | Read | Key Architecture Decision |
 |---|---|---|
-| RAG pipeline | [RAG Security](../extensions/technical/rag-security.md) | Retrieval layer is your biggest attack surface - poisoned documents become instructions |
+| RAG pipeline | RAG Security | Retrieval layer is your biggest attack surface - poisoned documents become instructions |
 | Single agent with tools | [Agentic Controls](../core/agentic.md) | Tool access scoping, action classification (read/write/irreversible), confirmation gates |
-| Multi-agent orchestration | [MASO Integration Guide](../maso/integration/integration-guide.md) | Message bus signing, per-agent NHI, cross-agent DLP, delegation depth limits |
+| Multi-agent orchestration | MASO Integration Guide | Message bus signing, per-agent NHI, cross-agent DLP, delegation depth limits |
 | Streaming responses | [Streaming Controls](../core/streaming-controls.md) | You can't evaluate output that hasn't finished - buffer or accept partial validation |
 | Multimodal (image/audio/video) | [Multimodal Controls](../core/multimodal-controls.md) | Text guardrails don't work on images - you need modality-specific evaluation |
 
@@ -69,7 +69,7 @@ The Judge layer isn't free. Budget for it:
 | Guardrails + Judge (full, async) | ~10-20ms (non-blocking) | ~$5-20 | HIGH tier |
 | Guardrails + Judge (full, sync) | ~1-5s added | ~$5-20 | CRITICAL tier |
 
-Full analysis: [Cost & Latency](../extensions/technical/cost-and-latency.md)
+Full analysis: Cost & Latency
 
 ### PACE fail postures - what you wire into your architecture
 
@@ -82,7 +82,7 @@ Each control layer needs a defined failure mode. These aren't operational proced
 | Judge + Guardrails down | Circuit breaker activates → serve static fallback / disable AI path |
 | Human review queue overflows | Auto-hold new requests → expand queue capacity → degrade to narrower scope |
 
-Wire these as **health checks and circuit breakers** in your service mesh or orchestration layer. Not as runbooks. See [PACE Resilience](../PACE-RESILIENCE.md).
+Wire these as **health checks and circuit breakers** in your service mesh or orchestration layer. Not as runbooks. See PACE Resilience.
 
 ## Your Starting Path
 
@@ -91,26 +91,26 @@ Wire these as **health checks and circuit breakers** in your service mesh or orc
 | 1 | [Controls](../core/controls.md) | Three-layer pattern with implementation detail - the core architectural reference |
 | 2 | [Risk Tiers](../core/risk-tiers.md) | Determines your control requirements - different tiers, different architectures |
 | 3 | [Infrastructure Controls](../infrastructure/) | 80 controls across 11 domains - what to enforce at infrastructure level |
-| 4 | [Cost & Latency](../extensions/technical/cost-and-latency.md) | Budget the evaluation layer - latency vs. coverage trade-offs |
-| 5 | [PACE Resilience](../PACE-RESILIENCE.md) | Fail postures as architecture decisions |
+| 4 | Cost & Latency | Budget the evaluation layer - latency vs. coverage trade-offs |
+| 5 | PACE Resilience | Fail postures as architecture decisions |
 
 **If you're building with a specific platform:** [AWS Bedrock](../infrastructure/reference/platform-patterns/aws-bedrock.md) · [Microsoft Foundry](../infrastructure/reference/platform-patterns/microsoft-foundry.md) · [Databricks](../infrastructure/reference/platform-patterns/databricks.md)
 
-**If you're building multi-agent:** [MASO Integration Guide](../maso/integration/integration-guide.md) - LangGraph, AutoGen, CrewAI, AWS Bedrock patterns.
+**If you're building multi-agent:** MASO Integration Guide - LangGraph, AutoGen, CrewAI, AWS Bedrock patterns.
 
-**If you want to see one transaction end-to-end:** [Runtime Telemetry Reference](../extensions/technical/runtime-telemetry-reference.md) - every JSON event, every threshold, every evidence artefact for a single request through the full control stack.
+**If you want to see one transaction end-to-end:** Runtime Telemetry Reference - every JSON event, every threshold, every evidence artefact for a single request through the full control stack.
 
 ## What You Can Do Monday Morning
 
 1. **Map your existing infrastructure** against the [Infrastructure Controls](../infrastructure/) to identify what you already cover and where the AI-specific gaps are.
 
-2. **Add the Judge layer to your architecture.** Pick one HIGH or CRITICAL tier system. Add an independent LLM evaluation step - even async, even sampled. The [Model-as-Judge Implementation](../extensions/technical/model-as-judge-implementation.md) guide has the implementation patterns.
+2. **Add the Judge layer to your architecture.** Pick one HIGH or CRITICAL tier system. Add an independent LLM evaluation step - even async, even sampled. The Model-as-Judge Implementation guide has the implementation patterns.
 
 3. **Wire PACE health checks.** Add circuit breakers for your guardrail and Judge services. Define what the system does when each is unavailable. Test the failover path.
 
 4. **Scope your agent's permissions.** If you have an agentic system, classify every tool by action type (read / write / irreversible) and add confirmation gates for write and irreversible actions. See [Agentic Controls](../core/agentic.md).
 
-5. **Budget the evaluation layer.** Use the [Cost & Latency](../extensions/technical/cost-and-latency.md) analysis to present the cost of the Judge layer vs. the cost of the incidents it prevents. The [Risk Assessment](../core/risk-assessment.md) gives you the incident frequency numbers.
+5. **Budget the evaluation layer.** Use the Cost & Latency analysis to present the cost of the Judge layer vs. the cost of the incidents it prevents. The [Risk Assessment](../core/risk-assessment.md) gives you the incident frequency numbers.
 
 ## Common Objections - With Answers
 
@@ -118,10 +118,10 @@ Wire these as **health checks and circuit breakers** in your service mesh or orc
 Only if you run it synchronously. For HIGH tier, run it async - the guardrails provide real-time protection while the Judge evaluates in the background. Only CRITICAL tier needs synchronous Judge evaluation. Budget ~10ms for guardrails, not seconds.
 
 **"We're using [vendor]'s built-in guardrails. That's enough."**
-Vendor guardrails are your first layer. The framework's three-layer pattern adds an independent evaluation layer (different model, different detection approach) and human oversight. Single-layer controls have a ~10% miss rate. Three layers compound to ~0.01%. [Why Guardrails Aren't Enough](../insights/why-guardrails-arent-enough.md).
+Vendor guardrails are your first layer. The framework's three-layer pattern adds an independent evaluation layer (different model, different detection approach) and human oversight. Single-layer controls have a ~10% miss rate. Three layers compound to ~0.01%. Why Guardrails Aren't Enough.
 
 **"Our RAG pipeline grounds the model - it won't hallucinate."**
-RAG reduces but doesn't eliminate hallucination. More importantly, RAG creates a new attack surface: poisoned documents in your retrieval corpus become instructions to the model. [RAG Is Your Biggest Attack Surface](../insights/rag-is-your-biggest-attack-surface.md).
+RAG reduces but doesn't eliminate hallucination. More importantly, RAG creates a new attack surface: poisoned documents in your retrieval corpus become instructions to the model. RAG Is Your Biggest Attack Surface.
 
 **"The infrastructure team handles security, not us."**
 Infrastructure handles network, identity, and data-at-rest. Nobody handles the AI-specific controls (semantic evaluation, injection detection, decision chain audit, agent credential scoping) unless you design them into the pipeline. That's your job.

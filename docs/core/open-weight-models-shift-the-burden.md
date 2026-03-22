@@ -4,7 +4,8 @@ description: "How self-hosted open-weight AI models change the security control 
 
 # Open-Weight Models Shift the Burden
 
-> *This topic has been consolidated into a single canonical article. See **[Open-Weight Models Shift the Burden](../insights/open-weight-models-shift-the-burden.md)** in Insights for the full discussion of self-hosted model control implications.*
+!!! info "Redirect"
+    This topic has been consolidated into a single canonical article. See **Open-Weight Models Shift the Burden** in Insights for the full discussion of self-hosted model control implications.
 
 The article covers:
 - How deployment model changes the control surface

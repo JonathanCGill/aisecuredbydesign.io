@@ -6,7 +6,7 @@ description: "AIRS framework guide for CISOs and security directors, focused on 
 
 **CISOs, Security Directors, Security Architects - what this framework means for your security programme.**
 
-> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../)*
+> *Part of [Stakeholder Views](README.md) · [AI Secured by Design](../)*
 
 ## The Problem You Have
 
@@ -24,7 +24,7 @@ You've secured applications, networks, identities, and data for years. AI breaks
 
 Three layers, applied proportionately by risk:
 
-![Three-Layer Control Stack](../images/three-layer-stack.svg)
+![Three-Layer Control Stack](../images/three-layer-stack.svg){ .arch-diagram }
 
 This isn't a product recommendation. It's a **pattern** your teams implement with whatever tooling fits your environment. The framework describes *what needs to be true* at each layer and *how to verify it*.
 
@@ -57,15 +57,15 @@ Read these in order. Total time: ~90 minutes.
 
 | # | Document | Why You Need It |
 |---|---|---|
-| 1 | [Cheat Sheet](../CHEATSHEET.md) | The entire framework on one page - classify, control, fail posture, test |
+| 1 | Cheat Sheet | The entire framework on one page - classify, control, fail posture, test |
 | 2 | [Risk Tiers](../core/risk-tiers.md) | The classification scheme you'll mandate across the organisation |
 | 3 | [Controls](../core/controls.md) | What each layer does, how to verify it works, when each is required |
 | 4 | [Risk Assessment](../core/risk-assessment.md) | Quantitative methodology for board-level risk reporting |
-| 5 | [PACE Resilience](../PACE-RESILIENCE.md) | Fail postures - what happens when each control layer degrades |
+| 5 | PACE Resilience | Fail postures - what happens when each control layer degrades |
 
-**If you have multi-agent systems:** Add [MASO Overview](../maso/) and the [Red Team Playbook](../maso/red-team/red-team-playbook.md).
+**If you have multi-agent systems:** Add MASO Overview and the Red Team Playbook.
 
-**If you run a SOC:** Add [SOC Integration](../extensions/technical/soc-integration.md) and [Behavioral Anomaly Detection](../extensions/technical/behavioral-anomaly-detection.md).
+**If you run a SOC:** Add SOC Integration and Behavioral Anomaly Detection.
 
 ## What You Can Do Monday Morning
 
@@ -73,22 +73,22 @@ Read these in order. Total time: ~90 minutes.
 
 2. **Require the three-layer pattern** for any HIGH or CRITICAL tier system. Don't specify products - specify the pattern. "Every customer-facing AI system requires guardrails, an independent evaluation layer, and defined human oversight."
 
-3. **Ask every AI team one question:** *"What happens when your guardrails fail?"* If they don't have an answer, they need [PACE Resilience](../PACE-RESILIENCE.md).
+3. **Ask every AI team one question:** *"What happens when your guardrails fail?"* If they don't have an answer, they need PACE Resilience.
 
-4. **Add AI-specific scenarios to your next red team exercise.** The [Red Team Playbook](../maso/red-team/red-team-playbook.md) has 13 structured scenarios you can adapt.
+4. **Add AI-specific scenarios to your next red team exercise.** The Red Team Playbook has 13 structured scenarios you can adapt.
 
 5. **Use the [Risk Assessment](../core/risk-assessment.md) template** for the next board security update. Replace "we have AI guardrails" with quantified residual risk.
 
 ## Common Objections - With Answers
 
 **"We already have guardrails."**
-Guardrails alone catch ~90% of known-pattern issues. They miss semantic violations, novel attacks, and subtle policy breaches. The Judge layer catches 95% of what guardrails miss. [Why Guardrails Aren't Enough](../insights/why-guardrails-arent-enough.md) has the full argument.
+Guardrails alone catch ~90% of known-pattern issues. They miss semantic violations, novel attacks, and subtle policy breaches. The Judge layer catches 95% of what guardrails miss. Why Guardrails Aren't Enough has the full argument.
 
 **"This will slow down our AI delivery."**
-The [Fast Lane](../FAST-LANE.md) pre-approves low-risk deployments with minimal controls. Only HIGH and CRITICAL tier systems need the full three layers. The framework doesn't slow delivery - it prevents teams from deploying CRITICAL-tier systems with LOW-tier controls.
+The Fast Lane pre-approves low-risk deployments with minimal controls. Only HIGH and CRITICAL tier systems need the full three layers. The framework doesn't slow delivery - it prevents teams from deploying CRITICAL-tier systems with LOW-tier controls.
 
 **"We use [vendor X] - they handle security."**
-Your vendor provides guardrails. They don't provide the Judge layer, human oversight processes, PACE fail postures, or risk-tier classification. The framework sits above vendor tooling. See [Infrastructure Beats Instructions](../insights/infrastructure-beats-instructions.md).
+Your vendor provides guardrails. They don't provide the Judge layer, human oversight processes, PACE fail postures, or risk-tier classification. The framework sits above vendor tooling. See Infrastructure Beats Instructions.
 
 **"The AI team says their model is safe."**
 Design-time safety testing is necessary but insufficient. The question isn't whether the model is safe in the lab - it's whether it behaves correctly in production, under adversarial conditions, with real customer data. That's a runtime security problem. That's what this framework solves.
