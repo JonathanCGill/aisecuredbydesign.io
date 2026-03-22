@@ -1,8 +1,8 @@
 ---
 description: AI Secured by Design, securing AI before it runs. The complete pre-runtime security framework for AI systems.
+hide:
+  - title
 ---
-
-# AI Secured by Design
 
 <div class="home-subtitle" markdown>
 **Secure AI before it runs.**
