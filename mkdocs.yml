@@ -81,7 +81,7 @@ copyright: >-
 
 nav:
   - Home: README.md
-  - What is AI Pre-Runtime Security?: what-is-ai-pre-runtime-security.md
+  - Securing AI Before Deployment: what-is-ai-pre-runtime-security.md
 
   - Building Securely:
     - building/README.md
