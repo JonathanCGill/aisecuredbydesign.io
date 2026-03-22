@@ -87,6 +87,8 @@ nav:
     - building/README.md
     - Model Selection:
       - building/model-selection/README.md
+      - Trust and Evaluation: building/model-selection/trust-and-evaluation.md
+      - Threat Landscape: building/model-selection/threat-landscape.md
       - Provenance and Integrity: building/model-selection/provenance-and-integrity.md
       - Risk Assessment: building/model-selection/risk-assessment.md
       - Vulnerability Scanning: building/model-selection/vulnerability-scanning.md

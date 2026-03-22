@@ -22,9 +22,11 @@ Each type carries different risks and requires different security controls. The 
 
 Before selecting a model, assess:
 
-1. **Provenance**: Can you verify where this model came from and who trained it? See [Provenance and Integrity](provenance-and-integrity.md).
-2. **Risk**: What are the specific risks of this model type for your use case? See [Risk Assessment](risk-assessment.md).
-3. **Vulnerabilities**: Has the model been scanned for known attack vectors? See [Vulnerability Scanning](vulnerability-scanning.md).
+1. **Trust**: Can you verify the model's claims, evaluate its safety, and match it to your task? See [Trust and Evaluation](trust-and-evaluation.md).
+2. **Threats**: What real-world attacks target models like the one you are considering? See [Threat Landscape](threat-landscape.md).
+3. **Provenance**: Can you verify where this model came from and who trained it? See [Provenance and Integrity](provenance-and-integrity.md).
+4. **Risk**: What are the specific risks of this model type for your use case? See [Risk Assessment](risk-assessment.md).
+5. **Vulnerabilities**: Has the model been scanned for known attack vectors? See [Vulnerability Scanning](vulnerability-scanning.md).
 
 !!! warning "Model registries are not app stores"
     Hugging Face, Model Zoo, and similar repositories host models uploaded by anyone. Popularity is not a proxy for security. Treat model downloads like you would treat running untrusted code, because that is exactly what you are doing.
