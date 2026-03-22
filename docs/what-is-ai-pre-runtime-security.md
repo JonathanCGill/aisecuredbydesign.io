@@ -8,19 +8,17 @@ AI pre-runtime security is the discipline of securing AI systems before they rea
 
 ## Why pre-runtime matters
 
-Runtime security gets most of the attention. Guardrails, output filtering, anomaly detection, human oversight. These are important. But they share a common assumption: the system being monitored is fundamentally sound.
+Runtime security gets most of the attention. Guardrails, output filtering, anomaly detection, human oversight. These are important. But they work best when the system being monitored is fundamentally sound.
 
-That assumption breaks when:
+When pre-runtime security is weak, runtime has a much harder job:
 
-- The model was trained on poisoned data
-- A backdoor was introduced during fine-tuning
-- The pipeline that built the model had no integrity controls
-- The platform hosting the model has weak access controls
-- Nobody verified the model's provenance before deploying it
+- A model trained on poisoned data produces subtly wrong outputs that are difficult to distinguish from normal behaviour
+- A backdoor introduced during fine-tuning may only activate under specific conditions, making it hard to catch at runtime
+- A pipeline with no integrity controls means runtime security cannot trust what was deployed
+- Weak platform access controls create exposure that runtime monitoring may not cover
+- Unverified model provenance means runtime controls are protecting a system of unknown origin
 
-No runtime guardrail catches a backdoored model. No output filter fixes a poisoned training set. No monitoring dashboard alerts on a supply chain compromise that happened three months ago during training.
-
-Pre-runtime security addresses the root causes that runtime controls cannot.
+Runtime security can still contain damage in these cases, but the problems are harder to detect, slower to surface, and more costly to fix. Pre-runtime security addresses these root causes directly, so runtime controls can focus on genuinely unexpected behaviour rather than inherited weaknesses.
 
 ## The AI security lifecycle
 
@@ -39,7 +37,7 @@ Pre-runtime security addresses the root causes that runtime controls cannot.
 
 **Security decisions made before deployment constrain what is possible after deployment.**
 
-A well-chosen model on a well-configured platform, built through a secure pipeline with validated data, gives runtime controls something worth protecting. A poorly chosen model on an insecure platform, pushed through an unverified pipeline with untested data, gives runtime controls an impossible job.
+A well-chosen model on a well-configured platform, built through a secure pipeline with validated data, gives runtime controls something worth protecting. A poorly chosen model on an insecure platform, pushed through an unverified pipeline with untested data, forces runtime controls to compensate for problems that should never have reached production.
 
 ## What is different about securing AI?
 

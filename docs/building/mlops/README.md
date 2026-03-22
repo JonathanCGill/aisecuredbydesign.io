@@ -25,4 +25,4 @@ An insecure MLOps practice means every model it produces is suspect. Training on
 - **[Experiment Tracking](experiment-tracking.md)** covers securing the experiment process, protecting intellectual property in hyperparameters and results, and managing access to experiment data.
 
 !!! tip "MLOps is where pre-runtime and runtime meet"
-    The deployment stage of MLOps is the handoff point between pre-runtime and runtime security. Pre-runtime ensures the model is trustworthy. [Runtime security](https://airuntimesecurity.io/) ensures it stays trustworthy. A clean handoff requires both sides to agree on what "trustworthy" means and how to verify it.
+    The deployment stage of MLOps is where this site's coverage ends and [AI Runtime Security](https://airuntimesecurity.io/) picks up. Pre-runtime ensures the model is trustworthy. Runtime ensures it stays trustworthy. A clean handoff requires both sides to agree on what "trustworthy" means and how to verify it.
