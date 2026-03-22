@@ -11,7 +11,7 @@ Pre-runtime security covers every decision made before an AI system reaches prod
 </div>
 
 <div class="pull-quote" markdown>
-> A compromised model defeats all runtime controls. A poisoned dataset corrupts every output. An insecure pipeline makes every deployment suspect. Security starts before deployment.
+> A compromised model makes AI even less predictable. A poisoned dataset corrupts outputs in ways that may be subtle and slow to surface. An insecure pipeline makes every deployment suspect. Security starts before deployment, because the harder you make it for problems to reach production, the less runtime security has to catch.
 </div>
 
 ## The problem
@@ -20,7 +20,7 @@ Most AI security guidance focuses on what happens after deployment: guardrails, 
 
 Which model did you choose, and can you verify its integrity? Where is it hosted, and who controls the infrastructure? How does your pipeline move a model from experiment to production? What data trained it, and who had access?
 
-These are pre-runtime questions. Get them wrong, and no amount of runtime controls will save you.
+These are pre-runtime questions. Get them wrong, and runtime security has to work much harder to prevent issues that could have been avoided entirely.
 
 ## What this site covers
 
@@ -54,14 +54,16 @@ The pipeline that trains, validates, and deploys models must itself be secure. S
 </div>
 </div>
 
-## How this connects to runtime security
+## What comes next: runtime security
 
-Pre-runtime security ends where runtime security begins. This site ensures that what gets deployed is trustworthy. [AI Runtime Security](https://airuntimesecurity.io/) ensures it stays trustworthy.
+This site is the first half of the AI security lifecycle. It covers everything up to the point where a model reaches production. [AI Runtime Security](https://airuntimesecurity.io/) picks up where this site leaves off, covering what happens once the system is live.
+
+Read this site first, then continue to AI Runtime Security.
 
 <div class="runtime-callout" markdown>
-<p class="runtime-callout__label">Companion site</p>
+<p class="runtime-callout__label">Continue to</p>
 <p class="runtime-callout__title">AI Runtime Security</p>
-<p class="runtime-callout__desc">Once your AI system is deployed, runtime controls take over: guardrails, monitoring, human oversight, and incident response.</p>
+<p class="runtime-callout__desc">The sequel to this site. Once your AI system is deployed, runtime controls take over: guardrails, monitoring, human oversight, and incident response.</p>
 
-[Visit AI Runtime Security](https://airuntimesecurity.io/){ .md-button }
+[Continue to AI Runtime Security](https://airuntimesecurity.io/){ .md-button }
 </div>

@@ -16,4 +16,4 @@ This section covers four areas where those decisions are made:
 These areas are not independent. A model choice constrains platform options. A platform choice constrains pipeline design. A pipeline design constrains what validation is possible. Security decisions compound.
 
 !!! tip "Start where the risk is highest"
-    If you are new to AI pre-runtime security, start with [Model Selection](model-selection/README.md). A compromised model defeats every other control. Then work through platform, DevOps, and MLOps in order. Each builds on the previous.
+    If you are new to AI pre-runtime security, start with [Model Selection](model-selection/README.md). A compromised model undermines every other control, pre-runtime and runtime alike. Then work through platform, DevOps, and MLOps in order. Each builds on the previous. Once you have covered these topics, continue to [AI Runtime Security](https://airuntimesecurity.io/) for what comes after deployment.
