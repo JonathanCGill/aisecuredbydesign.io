@@ -24,6 +24,8 @@ Teams that apply standard DevOps practices without adaptation leave gaps that be
 - **[CI/CD for AI](ci-cd-for-ai.md)** covers how to adapt continuous integration and delivery pipelines for AI workloads, including model validation gates and artefact management.
 - **[Infrastructure as Code](infrastructure-as-code.md)** covers defining and managing AI infrastructure declaratively, from GPU provisioning to inference endpoint configuration.
 - **[Secrets Management](secrets-management.md)** covers the expanded secrets surface of AI systems and how to manage credentials for models, data stores, experiment trackers, and API endpoints.
+- **[Integration Security](integration-security.md)** covers securing the full AI system stack. AI does not exist in isolation: web frontends, databases, APIs, MCP connections, and traditional infrastructure all need securing alongside the AI components themselves.
+- **[Resilience](resilience.md)** covers PACE (Primary, Alternate, Contingency, Emergency) planning for AI systems, ensuring that every critical component has tested fallback options before reaching production.
 
 !!! abstract "DevOps secures the pipeline. MLOps secures the ML lifecycle."
     DevOps and [MLOps](../mlops/README.md) overlap but are not the same. DevOps focuses on the infrastructure and delivery pipeline. MLOps focuses on the ML-specific lifecycle (training, evaluation, registry, deployment). Both must be secured. This section covers the DevOps side.
