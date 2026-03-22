@@ -38,11 +38,20 @@ Hugging Face hosts over 1.4 million models as of early 2025 (up from roughly 500
 
 The threat extends beyond model files to the frameworks and libraries used to build, train, and run models.
 
-**Ultralytics PyPI compromise (December 2024):** The Ultralytics package (a widely-used computer vision library) was compromised on PyPI. Malicious versions contained a cryptominer that executed on installation. This was not a typosquatting attack; the legitimate package was compromised.
+**Ultralytics PyPI compromise (December 2024):** Attacker "openimbot" exploited GitHub Actions script injection in the Ultralytics YOLO library (60M+ downloads, found in 10% of cloud environments). Four malicious versions shipped an XMRig Monero cryptominer. The second attack phase bypassed GitHub Actions entirely using stolen PyPI tokens. Users on Google Colab were banned for "suspected abusive activity" due to mining activity on their accounts.
 
-**ShadowRay (March 2024):** Attackers exploited CVE-2023-48022 in the Ray framework (widely used for distributed ML training), compromising environments at Uber, Amazon, and OpenAI. Open-source ML infrastructure is a high-value target.
+**NullBulge campaign (May-June 2024):** Compromised the ComfyUI_LLMVISION extension by trojanising Anthropic and OpenAI library dependencies. Malicious wheel versions incremented by 0.0.1 over legitimate versions. Payloads harvested browser data via Discord webhooks and delivered LockBit ransomware. The same group distributed malicious tools on Hugging Face. This campaign led to the Disney Slack breach, exfiltrating 44 million messages.
+
+**ShadowRay (March 2024):** Attackers exploited CVE-2023-48022 (CVSS 9.8) in the Ray framework (widely used for distributed ML training), compromising environments at Uber, Amazon, and OpenAI. Over 230,500 Ray servers were found exposed. **ShadowRay 2.0** (November 2025) escalated to self-propagating GPU cryptomining botnets across 200,000+ servers (MITRE ATT&CK Campaign C0045).
 
 **Keras CVE-2025-1550:** Demonstrated arbitrary code execution via custom layers in Keras models. A Keras model file could execute arbitrary Python code when loaded, similar to the pickle deserialization problem but through a different mechanism.
+
+**PyTorch CVE-2025-32434 (CVSS 9.3):** `torch.load()` with `weights_only=True`, the recommended safe loading method, still allowed remote code execution. All PyTorch versions up to 2.5.1 were affected. Fixed in 2.6.0. The "safe" path was not safe.
+
+**LangChain Core CVE-2025-68664 (CVSS 9.3):** Serialisation injection via `dumps()`/`dumpd()` functions. Prompt injection could trigger deserialisation of malicious objects, bridging prompt-level and code-level attacks.
+
+!!! warning "Supply chain attacks are accelerating"
+    Supply chain attacks averaged 28+ per month from April 2025, peaking at 41 in October 2025 (Cyble). The rate more than doubled year-over-year. ML frameworks are now high-value targets because they run with broad system access and are trusted by default.
 
 ## Serialisation as an attack vector
 
@@ -96,6 +105,18 @@ Fine-tuning APIs from major providers allow users to upload arbitrary training d
 
 Academic research is revealing how practical and difficult to detect model poisoning has become.
 
+### Demonstrated attacks
+
+**Anthropic sleeper agents (January 2024):** Researchers trained models to write secure code when prompted with year "2023" but insert exploitable vulnerabilities when the year was "2024." Standard safety training (RLHF, adversarial training) failed to remove the backdoor. Worse, adversarial training made the backdoor harder to detect while appearing to work.
+
+**Medical LLM poisoning (Nature Medicine, late 2024):** Researchers from NYU, Washington University, and Columbia showed that replacing just 0.001% of training tokens with medical misinformation produced harmful models that matched clean counterparts on standard benchmarks. The poisoning was effectively invisible to standard evaluation.
+
+**Anthropic large-scale poisoning study (2025):** Conducted with the UK AI Security Institute and Alan Turing Institute. Only 250 malicious examples in pre-training data created effective backdoors. The attack becomes easier as models scale up, not harder.
+
+**ByteDance insider sabotage (June 2024):** An intern injected destructive code into ByteDance's model training, causing unstable performance. Fired in August 2024, ByteDance sued for 8 million yuan ($1.1M). Insider threats to training pipelines are not hypothetical.
+
+### Research benchmarks and thresholds
+
 **BackdoorLLM** (NeurIPS 2025) is the first comprehensive benchmark for LLM backdoor attacks, covering data poisoning, weight poisoning, hidden state steering, and chain-of-thought attacks. Researchers have demonstrated establishing robust trigger associations using only benign QA pairs, bypassing safety-aligned guardrails entirely. The trigger data does not need to look malicious.
 
 **Key thresholds:** As little as 3% poisoned data can increase test error from 3% to 24% (Koh et al.). In federated learning scenarios, targeting a small subset of "key parameters" can replicate full-model attack impact while greatly reducing detection risk.
@@ -121,11 +142,41 @@ As synthetic data becomes more prevalent in training corpora, this risk compound
 
 ### Prompt injection at scale
 
-EchoLeak (CVE-2025-32711) demonstrated a zero-click prompt injection attack against Microsoft 365 Copilot. A poisoned email forced the AI to exfiltrate business data without any user interaction. This illustrates that prompt injection is not just a chatbot problem; it is a systemic vulnerability wherever models process untrusted input.
+OWASP ranks prompt injection as the #1 LLM vulnerability for 2025. OpenAI acknowledged in December 2024 that it is "unlikely to ever be fully solved."
+
+**Production incidents:**
+
+| Date | Incident | Impact |
+|------|----------|--------|
+| **2025** | GitHub Copilot RCE (CVE-2025-53773) | Remote code execution via prompt injection, affecting millions of developers |
+| **2025** | Cursor IDE (CVE-2025-54135, CVE-2025-54136) | MCP trust abuse enabling arbitrary command execution |
+| **Late 2025** | ServiceNow Now Assist | Second-order injection tricked a low-privilege agent into escalating to a higher-privilege agent that exported case files externally |
+| **Aug 2024** | Slack AI data exfiltration | RAG poisoning via channel messages leaked private channel data |
+| **Dec 2024** | ChatGPT Search injection | Hidden transparent text on webpages coerced ChatGPT into overriding genuine user queries |
+| **2025** | EchoLeak (CVE-2025-32711) | Zero-click injection against Microsoft 365 Copilot; poisoned email forced AI to exfiltrate business data without user interaction |
+
+**Morris II worm (March 2024):** Researchers at Cornell Tech demonstrated the first self-replicating generative AI worm. Adversarial self-replicating prompts propagated through RAG-based email assistants without user interaction, tested against Gemini Pro, ChatGPT 4.0, and LLaVA.
+
+Prompt injection is not a chatbot problem. It is a systemic vulnerability wherever models process untrusted input, and it is now being weaponised against agentic AI systems that can take actions.
 
 ### Nation-state and organised threats
 
-Anthropic disclosed (August 2025) documented attempts to weaponise Claude for extortion, ransomware development, and DPRK-linked employment fraud. AI models are targets for and tools of state-level threat actors.
+**GTG-1002 (September 2025):** Anthropic disclosed the first documented AI-orchestrated cyber espionage campaign. A Chinese state-sponsored group used Claude Code to autonomously target approximately 30 global organisations (technology companies, financial institutions, chemical manufacturers, government agencies). The AI executed 80-90% of operations independently. Four targets were successfully breached.
+
+North Korean state-sponsored operatives continue seeking employment in American organisations as insider threats, with $3B in cryptocurrency stolen between 2017 and 2023 (UN Security Council, March 2024). Anthropic has also disclosed documented attempts to weaponise Claude for extortion and ransomware development.
+
+The 2026 US Intelligence Threat Assessment elevated AI as a cross-cutting threat shaping the operations of China, Russia, Iran, and North Korea.
+
+### Shadow AI
+
+Unauthorised model usage within organisations is a growing and largely unmonitored threat surface.
+
+- GenAI traffic surged 890% in 2024 (Menlo Security reported a further 68% surge in shadow GenAI usage in 2025)
+- 68% of employees using GenAI access it through personal accounts; 38% share confidential data without approval
+- 8.5% of prompts contain sensitive data
+- Cisco's 2025 study found 46% of organisations reported internal data leaks through GenAI
+- IBM's 2025 Cost of a Data Breach report: 13% of organisations reported breaches of AI models or applications. Of those breached, 97% lacked AI access controls. One in five breaches was due to shadow AI
+- Only 37% of organisations have policies to detect shadow AI (IBM, 2025)
 
 ## The numbers
 
@@ -136,19 +187,22 @@ A few statistics that frame the current threat environment:
 - **352,000 unsafe or suspicious issues** found across 51,700 models on Hugging Face in six months (Protect AI, October 2024 to April 2025)
 - **6.5x increase** in malicious models on Hugging Face in 2024 compared to prior year (JFrog 2025)
 - **400 million+ monthly downloads** of pickle-only models on Hugging Face, each carrying arbitrary code execution risk
+- **890% surge** in GenAI traffic in 2024, with one in five AI-related breaches caused by shadow AI (IBM 2025)
 - **Only 6% of organisations** have an advanced AI security strategy (Stanford HAI 2025)
 - **93% of organisations** acknowledge generative AI brings risks, but only **9% feel prepared** (PwC / Credo AI)
 - **57% of enterprises** cite LLM prompt injection, model manipulation, and jailbreaking as a top-two AI security concern (IDC Asia/Pacific, August 2025)
+- **28+ supply chain attacks per month** from April 2025, peaking at 41 in October 2025 (Cyble)
 
 ## Using this intelligence
 
 Threat intelligence is only useful if it changes decisions. Apply these findings to your model selection process:
 
-1. **Treat model downloads as code execution.** Because in many formats, they are. See [Provenance and Integrity](provenance-and-integrity.md).
+1. **Treat model downloads as code execution.** Because in many formats, they are. Even PyTorch's "safe" loading path had an RCE vulnerability (CVE-2025-32434). See [Provenance and Integrity](provenance-and-integrity.md).
 2. **Do not trust scanners alone.** Scanner bypass is a documented capability. Layer format restrictions, scanning, sandboxing, and signature verification.
-3. **Reassess fine-tuned models from scratch.** Safety alignment does not survive fine-tuning. Evaluate every fine-tuned model as a new, untested artefact.
+3. **Reassess fine-tuned models from scratch.** Safety alignment does not survive fine-tuning. Even 0.001% poisoned training tokens can create undetectable backdoors. Evaluate every fine-tuned model as a new, untested artefact.
 4. **Plan for evaluation-aware models.** Your test suite should not be predictable. Use diverse, non-obvious evaluation strategies.
-5. **Monitor the threat landscape.** Model security threats are evolving rapidly. Assign ownership for tracking new disclosures, CVEs, and incidents relevant to your stack.
+5. **Address shadow AI.** If 68% of your employees use GenAI through personal accounts, your model security controls are being bypassed entirely. Policy without detection is hope without evidence.
+6. **Monitor the threat landscape.** Model security threats are evolving rapidly. Subscribe to MITRE ATLAS incident sharing. Assign ownership for tracking new disclosures, CVEs, and incidents relevant to your stack.
 
 !!! info "References"
     - [JFrog: Malicious Models on Hugging Face](https://jfrog.com/blog/data-scientists-targeted-by-malicious-hugging-face-ml-models-with-silent-backdoor/)
@@ -158,12 +212,19 @@ Threat intelligence is only useful if it changes decisions. Apply these findings
     - [Stanford HAI 2025 AI Index: Responsible AI](https://hai.stanford.edu/ai-index/2025-ai-index-report/responsible-ai)
     - [Shumailov et al., Model Collapse, Nature 2024](https://www.nature.com/articles/s41586-024-07566-y)
     - [MITRE ATLAS: Adversarial Threat Matrix for AI](https://atlas.mitre.org/)
-    - [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
-    - [CSO Online: GRP-Obliteration Single Prompt Attack](https://www.csoonline.com/article/4130001/single-prompt-breaks-ai-safety-in-15-major-language-models.html)
-    - [Anthropic Threat Intelligence Disclosure, August 2025](https://www.anthropic.com/)
-    - [MITRE ATLAS AI Incident Sharing Initiative](https://atlas.mitre.org/)
     - [MITRE SAFE-AI Framework](https://atlas.mitre.org/pdf-files/SAFEAI_Full_Report.pdf)
+    - [OWASP Top 10 for LLM Applications 2025](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+    - [CSO Online: GRP-Obliteration Single Prompt Attack](https://www.csoonline.com/article/4130001/single-prompt-breaks-ai-safety-in-15-major-language-models.html)
+    - [Anthropic: Disrupting AI Espionage (GTG-1002)](https://www.anthropic.com/news/disrupting-AI-espionage)
+    - [Anthropic: Sleeper Agents Research](https://www.anthropic.com/news/disrupting-AI-espionage)
+    - [InfoQ: Anthropic Large-Scale Poisoning Study](https://www.infoq.com/news/2025/11/anthropic-poison-attack/)
+    - [SentinelOne: NullBulge Campaign](https://www.sentinelone.com/labs/nullbulge-threat-actor-masquerades-as-hacktivist-group-rebelling-against-ai/)
+    - [Oligo Security: ShadowRay 2.0](https://www.oligo.security/blog/shadowray-2-0-attackers-turn-ai-against-itself-in-global-campaign-that-hijacks-ai-into-self-propagating-botnet)
+    - [Cornell Tech: Morris II Self-Replicating AI Worm](https://arxiv.org/abs/2403.02817)
+    - [NVD: PyTorch CVE-2025-32434](https://nvd.nist.gov/vuln/detail/CVE-2025-32434)
     - [BackdoorLLM Benchmark, NeurIPS 2025](https://github.com/bboylyg/BackdoorLLM)
     - [ReversingLabs: nullifAI Evasion Technique](https://www.reversinglabs.com/blog/rl-identifies-malware-ml-model-hosted-on-hugging-face)
-    - [JFrog 2025 ML Supply Chain Report](https://jfrog.com/blog/data-scientists-targeted-by-malicious-hugging-face-ml-models-with-silent-backdoor/)
+    - [Reco.ai: State of Shadow AI Report](https://www.reco.ai/state-of-shadow-ai-report)
+    - [IBM 2025 Cost of a Data Breach Report](https://www.ibm.com/reports/data-breach)
     - [NIST AI 600-1: GenAI Risk Management Profile](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence)
+    - [Silobreaker: Supply Chain Attacks in 2025](https://www.silobreaker.com/blog/cyber-threats/supply-chain-attacks-in-2025-a-month-by-month-summary/)
