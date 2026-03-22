@@ -14,6 +14,13 @@ Before building controls, you need to know what you are building controls for. T
 
 <div class="home-paths" markdown>
 <div class="home-path" markdown>
+#### AI-Aware SDLC
+The complete lifecycle from ideation through production. If you want to see how everything fits together, start here. It maps each phase to the relevant guidance across this site and shows where risk classification, model selection, infrastructure controls, testing, and runtime handoff connect.
+
+[View the Lifecycle](ai-sdlc.md){ .md-button }
+</div>
+
+<div class="home-path" markdown>
 #### Risk Classification
 Determine the risk tier for your AI system. The tier drives every subsequent security decision, from control selection to testing cadence to human oversight requirements. This framework aligns with the [AI Runtime Security](https://airuntimesecurity.io/core/risk-tiers/) risk tiers so that pre-runtime and runtime controls stay in sync.
 
