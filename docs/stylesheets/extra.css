@@ -225,7 +225,33 @@ img[src$=".svg"] {
   }
 }
 
-/* ── Navbar ── */
+/* ── SbD indigo dot logo ── */
+.sbd-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  background-color: #4051b5;
+  color: #fff !important;
+  font-family: var(--md-text-font);
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  line-height: 1;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+.sbd-dot:hover {
+  background-color: #3545a0;
+  text-decoration: none;
+}
+
+/* ── Single-row navbar ── */
 .md-header {
   box-shadow: none;
   background-color: var(--md-default-bg-color) !important;
@@ -251,6 +277,52 @@ img[src$=".svg"] {
 .md-header__topic {
   color: var(--md-default-fg-color) !important;
   font-family: var(--md-text-font);
+}
+
+/* Inline nav tabs inside the header row */
+.md-header-tabs {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.25rem;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.md-header-tabs__link {
+  color: var(--md-default-fg-color);
+  font-family: var(--md-text-font);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.4rem 0.75rem;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  transition: color 0.15s, background-color 0.15s;
+}
+
+.md-header-tabs__link--active {
+  color: var(--md-default-fg-color);
+  font-weight: 600;
+}
+
+.md-header-tabs__link:hover {
+  color: var(--md-default-fg-color);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Hide inline tabs on mobile — drawer takes over */
+@media (max-width: 76.25em) {
+  .md-header-tabs {
+    display: none;
+  }
+}
+
+/* Old tabs bar is now empty — hide it */
+.md-tabs {
+  display: none;
 }
 
 /* Mobile drawer: remove accent colour, use black throughout */

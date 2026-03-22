@@ -1,0 +1,66 @@
+{# Single-row header: logo · centred nav tabs · search + palette toggle #}
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+
+    {# SbD indigo dot logo #}
+    <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}"
+       class="sbd-dot" aria-label="AI Secured by Design Home">SbD</a>
+
+    {# Mobile drawer toggle #}
+    <label class="md-header__button md-icon" for="__drawer">
+      {% set icon = config.theme.icon.menu or "material/menu" %}
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </label>
+
+    {# Logo #}
+    <a
+      href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}"
+      title="{{ config.site_name | e }}"
+      class="md-header__button md-logo"
+      aria-label="{{ config.site_name }}"
+    >
+      {% include "partials/logo.html" %}
+    </a>
+
+    {# Inline nav tabs — visible on desktop only #}
+    {# Macro: drill into nested sections to find the first actual page #}
+    {% macro first_page_url(item) %}
+      {%- if item.url -%}
+        {{ item.url | url }}
+      {%- elif item.children -%}
+        {{ first_page_url(item.children[0]) }}
+      {%- endif -%}
+    {% endmacro %}
+    <ul class="md-header-tabs">
+      {% for nav_item in nav %}
+      <li class="md-header-tabs__item">
+        <a
+          href="{% if nav_item.title == 'Home' %}{{ nav.homepage.url | url }}{% else %}{{ first_page_url(nav_item) | trim }}{% endif %}"
+          class="md-header-tabs__link{% if nav_item.active %} md-header-tabs__link--active{% endif %}"
+        >
+          {{ nav_item.title }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {# Colour-scheme toggle #}
+    {% if config.theme.palette %}
+      {% if not config.theme.palette is mapping %}
+        <div class="md-header__option">
+          {% include "partials/palette.html" %}
+        </div>
+      {% endif %}
+    {% endif %}
+
+    {# Search #}
+    {% if "search" in config.plugins %}
+      <label class="md-header__button md-icon" for="__search">
+        {% set icon = config.theme.icon.search or "material/magnify" %}
+        {% include ".icons/" ~ icon ~ ".svg" %}
+      </label>
+      {% include "partials/search.html" %}
+    {% endif %}
+
+  </nav>
+</header>
