@@ -102,6 +102,8 @@ nav:
       - CI/CD for AI: building/devops/ci-cd-for-ai.md
       - Infrastructure as Code: building/devops/infrastructure-as-code.md
       - Secrets Management: building/devops/secrets-management.md
+      - Integration Security: building/devops/integration-security.md
+      - Resilience: building/devops/resilience.md
     - MLOps Security:
       - building/mlops/README.md
       - Secure ML Pipelines: building/mlops/secure-ml-pipelines.md
