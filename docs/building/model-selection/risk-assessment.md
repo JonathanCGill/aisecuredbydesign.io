@@ -6,6 +6,9 @@ description: Risk assessment for AI model selection, evaluating open-weight vers
 
 Model selection risk assessment evaluates whether a specific model is acceptable for a specific use case. This is not a generic exercise. A model that is perfectly acceptable for internal experimentation may be completely unacceptable for customer-facing production use.
 
+!!! tip "Start with risk classification"
+    Before assessing individual models, classify the risk tier of your overall AI system using the [risk classification framework](../../getting-started/risk-classification.md). The tier determines the rigour required for this model assessment, the controls the model must support, and the approval authority needed.
+
 ## Risk dimensions
 
 Every model carries risk across multiple dimensions. Assess each one for your specific context.

@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 920" font-family="Inter, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+    <style>
+      .q-box { fill: #f8fafc; stroke: #4051b5; stroke-width: 2; rx: 8; }
+      .t-critical { fill: #dc2626; rx: 6; }
+      .t-high { fill: #ea580c; rx: 6; }
+      .t-medium { fill: #ca8a04; rx: 6; }
+      .t-low { fill: #16a34a; rx: 6; }
+      .q-text { font-size: 13px; fill: #1e293b; text-anchor: middle; font-weight: 500; }
+      .t-text { font-size: 14px; fill: #ffffff; text-anchor: middle; font-weight: 700; }
+      .label { font-size: 11px; fill: #64748b; text-anchor: middle; font-weight: 500; }
+      .y-label { fill: #dc2626; }
+      .n-label { fill: #16a34a; }
+      .edge { stroke: #64748b; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+      .note-box { fill: #f0f4ff; stroke: #4051b5; stroke-width: 1; rx: 6; stroke-dasharray: 4 2; }
+      .note-text { font-size: 11px; fill: #475569; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="360" y="30" text-anchor="middle" font-size="16" font-weight="700" fill="#1a1a2e">Risk Classification Decision Tree</text>
+  <text x="360" y="48" text-anchor="middle" font-size="11" fill="#64748b">Follow the path. If any answer pushes the tier up, use the higher tier.</text>
+
+  <!-- Q1: Autonomous decisions? -->
+  <rect class="q-box" x="210" y="70" width="300" height="50"/>
+  <text class="q-text" x="360" y="92">Does the system make autonomous</text>
+  <text class="q-text" x="360" y="107">decisions with real-world impact?</text>
+
+  <!-- Q1 Yes -> CRITICAL -->
+  <line class="edge" x1="510" y1="95" x2="600" y2="95"/>
+  <text class="label y-label" x="555" y="88">Yes</text>
+  <rect class="t-critical" x="610" y="78" width="100" height="34"/>
+  <text class="t-text" x="660" y="100">CRITICAL</text>
+
+  <!-- Q1 No -> Q2 -->
+  <line class="edge" x1="360" y1="120" x2="360" y2="155"/>
+  <text class="label n-label" x="375" y="142">No</text>
+
+  <!-- Q2: Regulated activity? -->
+  <rect class="q-box" x="210" y="160" width="300" height="50"/>
+  <text class="q-text" x="360" y="182">Is this a regulated activity</text>
+  <text class="q-text" x="360" y="197">(financial, medical, legal)?</text>
+
+  <!-- Q2 Yes -> CRITICAL -->
+  <line class="edge" x1="510" y1="185" x2="600" y2="185"/>
+  <text class="label y-label" x="555" y="178">Yes</text>
+  <rect class="t-critical" x="610" y="168" width="100" height="34"/>
+  <text class="t-text" x="660" y="190">CRITICAL</text>
+
+  <!-- Q2 No -> Q3 -->
+  <line class="edge" x1="360" y1="210" x2="360" y2="245"/>
+  <text class="label n-label" x="375" y="232">No</text>
+
+  <!-- Q3: Sensitive data access? -->
+  <rect class="q-box" x="210" y="250" width="300" height="50"/>
+  <text class="q-text" x="360" y="272">Does it access PII, financial,</text>
+  <text class="q-text" x="360" y="287">or confidential data?</text>
+
+  <!-- Q3 Yes -> Q4 -->
+  <line class="edge" x1="510" y1="275" x2="555" y2="275"/>
+  <text class="label y-label" x="535" y="268">Yes</text>
+
+  <!-- Q4: External-facing? (right branch) -->
+  <rect class="q-box" x="560" y="250" width="150" height="50"/>
+  <text class="q-text" x="635" y="272">External-</text>
+  <text class="q-text" x="635" y="287">facing?</text>
+
+  <!-- Q4 Yes -> CRITICAL -->
+  <line class="edge" x1="635" y1="250" x2="635" y2="230"/>
+  <text class="label y-label" x="648" y="242">Yes</text>
+  <line class="edge" x1="635" y1="230" x2="660" y2="210"/>
+
+  <!-- Q4 No -> HIGH -->
+  <line class="edge" x1="635" y1="300" x2="635" y2="330"/>
+  <text class="label n-label" x="648" y="318">No</text>
+  <rect class="t-high" x="585" y="335" width="100" height="34"/>
+  <text class="t-text" x="635" y="357">HIGH</text>
+
+  <!-- Q3 No -> Q5 -->
+  <line class="edge" x1="360" y1="300" x2="360" y2="345"/>
+  <text class="label n-label" x="375" y="327">No</text>
+
+  <!-- Q5: External-facing? -->
+  <rect class="q-box" x="210" y="350" width="300" height="50"/>
+  <text class="q-text" x="360" y="372">Is the system external-facing</text>
+  <text class="q-text" x="360" y="387">(customers, public)?</text>
+
+  <!-- Q5 Yes -> Q6 -->
+  <line class="edge" x1="510" y1="375" x2="555" y2="375"/>
+  <text class="label y-label" x="535" y="368">Yes</text>
+
+  <!-- Q6: Takes actions? -->
+  <rect class="q-box" x="560" y="350" width="150" height="50"/>
+  <text class="q-text" x="635" y="372">Takes</text>
+  <text class="q-text" x="635" y="387">actions?</text>
+
+  <!-- Q6 Yes -> HIGH -->
+  <line class="edge" x1="635" y1="400" x2="635" y2="425"/>
+  <text class="label y-label" x="648" y="415">Yes</text>
+  <rect class="t-high" x="585" y="430" width="100" height="34"/>
+  <text class="t-text" x="635" y="452">HIGH</text>
+
+  <!-- Q6 No -> MEDIUM -->
+  <line class="edge" x1="710" y1="375" x2="715" y2="375"/>
+  <text class="label n-label" x="695" y="368">No</text>
+
+  <!-- Q5 No -> Q7 -->
+  <line class="edge" x1="360" y1="400" x2="360" y2="445"/>
+  <text class="label n-label" x="375" y="427">No</text>
+
+  <!-- Q7: Decisions influenced? -->
+  <rect class="q-box" x="210" y="450" width="300" height="50"/>
+  <text class="q-text" x="360" y="472">Are its recommendations</text>
+  <text class="q-text" x="360" y="487">typically followed?</text>
+
+  <!-- Q7 Yes -> HIGH -->
+  <line class="edge" x1="510" y1="475" x2="575" y2="475"/>
+  <text class="label y-label" x="545" y="468">Yes</text>
+  <rect class="t-high" x="580" y="458" width="100" height="34"/>
+  <text class="t-text" x="630" y="480">HIGH</text>
+
+  <!-- Q7 No -> Q8 -->
+  <line class="edge" x1="360" y1="500" x2="360" y2="545"/>
+  <text class="label n-label" x="375" y="527">No</text>
+
+  <!-- Q8: Internal with domain expertise? -->
+  <rect class="q-box" x="210" y="550" width="300" height="50"/>
+  <text class="q-text" x="360" y="572">Internal users with</text>
+  <text class="q-text" x="360" y="587">domain expertise reviewing?</text>
+
+  <!-- Q8 Yes -> MEDIUM -->
+  <line class="edge" x1="510" y1="575" x2="575" y2="575"/>
+  <text class="label y-label" x="545" y="568">Yes</text>
+  <rect class="t-medium" x="580" y="558" width="100" height="34"/>
+  <text class="t-text" x="630" y="580">MEDIUM</text>
+
+  <!-- Q8 No -> Q9 -->
+  <line class="edge" x1="360" y1="600" x2="360" y2="645"/>
+  <text class="label n-label" x="375" y="627">No</text>
+
+  <!-- Q9: Public info only? -->
+  <rect class="q-box" x="210" y="650" width="300" height="50"/>
+  <text class="q-text" x="360" y="672">Public information only,</text>
+  <text class="q-text" x="360" y="687">no personal data?</text>
+
+  <!-- Q9 Yes -> LOW -->
+  <line class="edge" x1="510" y1="675" x2="575" y2="675"/>
+  <text class="label y-label" x="545" y="668">Yes</text>
+  <rect class="t-low" x="580" y="658" width="100" height="34"/>
+  <text class="t-text" x="630" y="680">LOW</text>
+
+  <!-- Q9 No -> MEDIUM -->
+  <line class="edge" x1="360" y1="700" x2="360" y2="730"/>
+  <text class="label n-label" x="375" y="718">No</text>
+  <rect class="t-medium" x="310" y="735" width="100" height="34"/>
+  <text class="t-text" x="360" y="757">MEDIUM</text>
+
+  <!-- Note box: Host application alignment -->
+  <rect class="note-box" x="30" y="800" width="660" height="85"/>
+  <text class="note-text" x="360" y="820" font-weight="600" fill="#1a1a2e">After classification: check the host application</text>
+  <text class="note-text" x="360" y="838">The AI component inherits the risk profile of the application it serves.</text>
+  <text class="note-text" x="360" y="854">If the host application is internet-facing, high-availability, or processes</text>
+  <text class="note-text" x="360" y="870">sensitive data, the AI tier cannot be lower than the application tier.</text>
+
+</svg>

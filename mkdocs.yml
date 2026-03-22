@@ -83,6 +83,13 @@ nav:
   - Home: README.md
   - Securing AI Before Deployment: what-is-ai-pre-runtime-security.md
 
+  - Getting Started:
+    - getting-started/README.md
+    - Risk Classification: getting-started/risk-classification.md
+    - Regulatory Alignment: getting-started/regulatory-alignment.md
+    - Adversarial Testing: getting-started/adversarial-testing.md
+    - Production Readiness: getting-started/production-readiness.md
+
   - Building Securely:
     - building/README.md
     - Model Selection:
