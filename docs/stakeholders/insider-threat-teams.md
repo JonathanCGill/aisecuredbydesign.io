@@ -6,7 +6,7 @@ description: "AIRS framework guide for insider risk analysts, extending UEBA and
 
 **Insider Risk Analysts, UEBA Engineers, Behavioral Analytics Teams - your programme already solves the problem AI agents create. Here's how to extend it.**
 
-> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../)*
+> *Part of [Stakeholder Views](README.md) · [AI Secured by Design](../)*
 
 ## The Problem You Already Solve
 
@@ -28,7 +28,7 @@ The question isn't whether to monitor agents for insider risk. It's whether you'
 
 ### A direct mapping from UEBA indicators to agent monitoring
 
-The framework's [Insider Risk Parallel](../extensions/technical/behavioral-anomaly-detection.md#the-insider-risk-parallel) maps your existing indicators directly to agent equivalents:
+The framework's Insider Risk Parallel maps your existing indicators directly to agent equivalents:
 
 | Your Indicator (Humans) | Agent Equivalent | What It Catches |
 |---|---|---|
@@ -53,7 +53,7 @@ These aren't analogies. They're the same indicators, applied to a different enti
 
 ### An anomaly scoring model your SIEM already understands
 
-The framework's [Observability Controls](../maso/controls/observability.md) define a nine-signal anomaly scoring model (Tier 2+) that maps to your existing UEBA scoring:
+The framework's Observability Controls define a nine-signal anomaly scoring model (Tier 2+) that maps to your existing UEBA scoring:
 
 | Signal | Weight | Your UEBA Equivalent |
 |---|---|---|
@@ -71,7 +71,7 @@ The last two were added specifically because your discipline has proven them. Th
 
 ### SIEM/SOAR integration already specified
 
-[OB-2.4](../maso/controls/observability.md) requires agent observability events to be forwarded to enterprise security operations. This means agent anomaly events should appear in your SIEM alongside network, endpoint, and identity alerts - correlated, not siloed.
+OB-2.4 requires agent observability events to be forwarded to enterprise security operations. This means agent anomaly events should appear in your SIEM alongside network, endpoint, and identity alerts - correlated, not siloed.
 
 The agent's NHI should be enrolled in your identity analytics the same way a service account is. The same rules that flag "service account active at unusual hours" should flag "agent active at unusual hours."
 
@@ -81,10 +81,10 @@ Read these in order. Total time: ~60 minutes.
 
 | # | Document | Why You Need It |
 |---|---|---|
-| 1 | [Behavioral Anomaly Detection](../extensions/technical/behavioral-anomaly-detection.md) | The full insider risk parallel - your indicators mapped to agents, peer group comparison, three threat categories |
-| 2 | [Observability Controls](../maso/controls/observability.md) | The anomaly scoring model, nine signals, SIEM integration, decision chain format |
-| 3 | [The Long-Horizon Problem](../insights/the-long-horizon-problem.md) | Why short-window detection misses slow attacks - and how anchored baselines and temporal analysis close the gap |
-| 4 | [Process-Aware Evaluation](../insights/process-aware-evaluation.md) | Evaluating the agent's reasoning trace, not just its output - the equivalent of reviewing an insider's full activity timeline |
+| 1 | Behavioral Anomaly Detection | The full insider risk parallel - your indicators mapped to agents, peer group comparison, three threat categories |
+| 2 | Observability Controls | The anomaly scoring model, nine signals, SIEM integration, decision chain format |
+| 3 | The Long-Horizon Problem | Why short-window detection misses slow attacks - and how anchored baselines and temporal analysis close the gap |
+| 4 | Process-Aware Evaluation | Evaluating the agent's reasoning trace, not just its output - the equivalent of reviewing an insider's full activity timeline |
 | 5 | [Oversight Readiness](../core/oversight-readiness-problem.md) | How humans become attack vectors, not just reviewers - social engineering the approver, weaponising alert fatigue |
 
 **If you run UEBA on Microsoft Sentinel:** Your entity profiles and peer group profiles already support non-human entities. Adding agent NHIs to the monitored entity set is a configuration change, not a new capability.
@@ -116,7 +116,7 @@ So are service accounts, and your programme already monitors those. The "E" in U
 The AI security team builds guardrails and evaluation layers. You build behavioral baselines and detect anomalies. These are complementary, not competing. The guardrails catch known-bad patterns in real-time. Your UEBA catches behavioral drift, temporal anomalies, and peer group deviations that guardrails don't look for. The [three-layer model](../core/controls.md) needs both.
 
 **"We don't have the data to baseline agents."**
-You have the same data you use for service accounts - authentication logs, API call logs, access logs, session metadata. Agent frameworks (LangChain, CrewAI, AutoGen) generate structured logs. The framework's [Observability Controls](../maso/controls/observability.md) specify exactly what to capture. Start with 30 days of collection; refine from there.
+You have the same data you use for service accounts - authentication logs, API call logs, access logs, session metadata. Agent frameworks (LangChain, CrewAI, AutoGen) generate structured logs. The framework's Observability Controls specify exactly what to capture. Start with 30 days of collection; refine from there.
 
 **"Our UEBA platform doesn't support AI agents as an entity type."**
 It doesn't need to explicitly. If it supports custom entity types or service account monitoring, you can model agents the same way. The behavioral signals (temporal patterns, access scope, volume, peer comparison) are platform-agnostic. The entity type label matters less than the data feeding the model.

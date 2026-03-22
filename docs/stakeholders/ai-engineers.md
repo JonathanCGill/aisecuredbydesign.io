@@ -6,7 +6,7 @@ description: "AIRS framework guide for ML engineers and AI developers, covering 
 
 **ML Engineers, AI Developers, Data Scientists, Platform Engineers - implementation patterns, not governance theory.**
 
-> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../)*
+> *Part of [Stakeholder Views](README.md) · [AI Secured by Design](../)*
 
 ## The Problem You Have
 
@@ -42,9 +42,9 @@ What you're implementing:
 
 Key constraint: **the Judge must use a different model than your task agent**. Same-model evaluation has correlated failure modes. If GPT-4 hallucinates a fact, GPT-4 evaluating that fact has a higher chance of missing it than Claude evaluating it, and vice versa.
 
-- Implementation guide: [Model-as-Judge Implementation](../extensions/technical/model-as-judge-implementation.md)
-- Prompt examples: [Judge Prompt Examples](../extensions/templates/judge-prompt-examples.md)
-- Model selection: [Judge Model Selection](../extensions/technical/judge-model-selection.md)
+- Implementation guide: Model-as-Judge Implementation
+- Prompt examples: Judge Prompt Examples
+- Model selection: Judge Model Selection
 - Calibration: [Judge Assurance](../core/judge-assurance.md)
 
 **3. Circuit breaker / PACE fail postures** - what your system does when control layers fail.
@@ -75,14 +75,14 @@ If you're building on a specific platform, these map framework controls to platf
 | AWS Bedrock | [AWS Bedrock Patterns](../infrastructure/reference/platform-patterns/aws-bedrock.md) | Bedrock Guardrails, CloudWatch, IAM |
 | Microsoft Foundry | [Microsoft Foundry Patterns](../infrastructure/reference/platform-patterns/microsoft-foundry.md) | Azure AI Content Safety, Responsible AI toolkit |
 | Databricks | [Databricks Patterns](../infrastructure/reference/platform-patterns/databricks.md) | MLflow, Unity Catalog, Model Serving |
-| LangChain / LangGraph | [Integration Guide](../maso/integration/integration-guide.md) | LangSmith, callbacks, output parsers |
+| LangChain / LangGraph | Integration Guide | LangSmith, callbacks, output parsers |
 
 ### Testing your controls
 
 Controls that aren't tested don't work. The framework provides:
 
-- [Testing Guidance](../extensions/templates/testing-guidance.md) - structured test scenarios for each control layer
-- [Red Team Playbook](../maso/red-team/red-team-playbook.md) - 13 adversarial scenarios (prompt injection, data exfiltration, privilege escalation, consensus manipulation)
+- Testing Guidance - structured test scenarios for each control layer
+- Red Team Playbook - 13 adversarial scenarios (prompt injection, data exfiltration, privilege escalation, consensus manipulation)
 - [Judge Assurance](../core/judge-assurance.md) - how to measure Judge accuracy, calibrate confidence thresholds, detect drift
 - [When the Judge Can Be Fooled](../core/when-the-judge-can-be-fooled.md) - failure modes specific to the evaluation layer
 
@@ -91,16 +91,16 @@ Controls that aren't tested don't work. The framework provides:
 | # | Document | Why You Need It |
 |---|---|---|
 | 1 | [Controls](../core/controls.md) | Three-layer implementation reference - what to build |
-| 2 | [Quick Start](../QUICK_START.md) | Zero to working controls in 30 minutes |
-| 3 | [Model-as-Judge Implementation](../extensions/technical/model-as-judge-implementation.md) | Judge layer patterns, prompts, routing logic |
+| 2 | Quick Start | Zero to working controls in 30 minutes |
+| 3 | Model-as-Judge Implementation | Judge layer patterns, prompts, routing logic |
 | 4 | [Judge Assurance](../core/judge-assurance.md) | How to measure and calibrate Judge accuracy |
 | 5 | [Checklist](../core/checklist.md) | Track what you've implemented |
 
 **If you're building agents:** [Agentic Controls](../core/agentic.md) - tool scoping, action classification, confirmation gates.
 
-**If you're building multi-agent systems:** [MASO Integration Guide](../maso/integration/integration-guide.md) - message bus signing, per-agent identity, cross-agent DLP.
+**If you're building multi-agent systems:** MASO Integration Guide - message bus signing, per-agent identity, cross-agent DLP.
 
-**If you're building RAG:** [RAG Security](../extensions/technical/rag-security.md) - the attack surface you probably haven't considered.
+**If you're building RAG:** RAG Security - the attack surface you probably haven't considered.
 
 ## What You Can Do Monday Morning
 
@@ -108,25 +108,25 @@ Controls that aren't tested don't work. The framework provides:
 
 2. **Add output grounding.** If your system uses RAG, validate that the response is actually grounded in the retrieved documents. This catches hallucinated facts before they reach users.
 
-3. **Implement a Judge on 10% of traffic.** Pick a different model from your task agent. Use the [Judge Prompt Examples](../extensions/templates/judge-prompt-examples.md) as starting points. Log results. Measure the catch rate. This tells you what your guardrails are missing.
+3. **Implement a Judge on 10% of traffic.** Pick a different model from your task agent. Use the Judge Prompt Examples as starting points. Log results. Measure the catch rate. This tells you what your guardrails are missing.
 
 4. **Wire a circuit breaker.** If your guardrail service goes down, your system should degrade to a safe state - not continue without protection. A simple health check and fallback route takes an afternoon.
 
-5. **Red team your own system.** Spend an hour trying to break it. The [Red Team Playbook](../maso/red-team/red-team-playbook.md) has structured scenarios. Document what you find. This is the most effective way to identify control gaps.
+5. **Red team your own system.** Spend an hour trying to break it. The Red Team Playbook has structured scenarios. Document what you find. This is the most effective way to identify control gaps.
 
 ## Common Objections - With Answers
 
 **"The Judge adds latency to every request."**
-Only for CRITICAL tier. For HIGH tier, run it asynchronously - it doesn't block the response. For MEDIUM tier, run it on a sample. For LOW tier, it's optional. See [Cost & Latency](../extensions/technical/cost-and-latency.md).
+Only for CRITICAL tier. For HIGH tier, run it asynchronously - it doesn't block the response. For MEDIUM tier, run it on a sample. For LOW tier, it's optional. See Cost & Latency.
 
 **"Our model is already aligned / fine-tuned / safe."**
 Model alignment is necessary but insufficient. Alignment reduces the base rate of harmful outputs but doesn't eliminate it. Prompt injection bypasses alignment. RAG poisoning bypasses alignment. Edge cases that weren't in the training data bypass alignment. Runtime controls catch what alignment misses.
 
 **"We don't have budget for a second model (the Judge)."**
-The Judge doesn't have to be expensive. A smaller, faster model (Haiku-class) running a focused evaluation prompt often outperforms a larger model for specific policy checks. Sample at 10% to start. The [Judge Model Selection](../extensions/technical/judge-model-selection.md) guide covers cost-effective configurations.
+The Judge doesn't have to be expensive. A smaller, faster model (Haiku-class) running a focused evaluation prompt often outperforms a larger model for specific policy checks. Sample at 10% to start. The Judge Model Selection guide covers cost-effective configurations.
 
 **"Human oversight doesn't scale."**
-Correct - which is why the framework doesn't require human review of every transaction (except at CRITICAL tier). The Judge handles scale. Humans handle the edge cases the Judge flags and the random samples that keep the system honest. See [Humans Remain Accountable](../insights/humans-remain-accountable.md).
+Correct - which is why the framework doesn't require human review of every transaction (except at CRITICAL tier). The Judge handles scale. Humans handle the edge cases the Judge flags and the random samples that keep the system honest. See Humans Remain Accountable.
 
 **"This is security's job, not mine."**
 Security sets the requirements. You implement them. The framework gives you concrete patterns so you're not guessing. The [Controls](../core/controls.md) document tells you exactly what to build. The [Checklist](../core/checklist.md) tracks your progress. Security reviews the result, not the implementation approach.

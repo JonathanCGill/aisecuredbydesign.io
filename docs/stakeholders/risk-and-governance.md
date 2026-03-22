@@ -6,7 +6,7 @@ description: "AIRS framework guide for CROs and risk managers, covering how to q
 
 **CROs, Risk Managers, GRC Teams - how to quantify AI risk, set appetite, and demonstrate control effectiveness to the board.**
 
-> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../)*
+> *Part of [Stakeholder Views](README.md) · [AI Secured by Design](../)*
 
 ## Executive Summary
 
@@ -34,7 +34,7 @@ The framework is built on five principles. Every control, every metric, every de
 
 ## How the Layers Work Together
 
-![Three-Layer Control Stack](../images/three-layer-stack.svg)
+![Three-Layer Control Stack](../images/three-layer-stack.svg){ .arch-diagram }
 
 Three independent control layers, each catching what the previous one missed:
 
@@ -70,7 +70,7 @@ Three questions your board is already asking:
 |---|---|---|
 | **How much AI risk do we have?** | Inventory and classification | [Risk Tiers](../core/risk-tiers.md) - six dimensions, four tiers |
 | **Are our controls actually working?** | Measurement, not assertion | [Risk Assessment](../core/risk-assessment.md) - quantified per layer |
-| **What happens when controls fail?** | Defined resilience posture | [PACE Resilience](../PACE-RESILIENCE.md) - predetermined degradation |
+| **What happens when controls fail?** | Defined resilience posture | PACE Resilience - predetermined degradation |
 
 ## The Cost of Doing Nothing
 
@@ -140,7 +140,7 @@ The tier drives everything downstream: which controls apply, how much evaluation
 
 Every control layer has a predetermined degradation path:
 
-![PACE Degradation Path](../images/pace-degradation.svg)
+![PACE Degradation Path](../images/pace-degradation.svg){ .arch-diagram }
 
 | State | What It Means | Risk Implication |
 |---|---|---|
@@ -159,7 +159,7 @@ Pre-built crosswalks to the standards your GRC team already tracks:
 |---|---|
 | NIST AI RMF 1.0 | [51 subcategories mapped](../infrastructure/mappings/nist-ai-rmf.md) |
 | ISO 42001 | [Annex A alignment](../infrastructure/mappings/iso42001-annex-a.md) |
-| EU AI Act | [Art. 9, 14, 15 crosswalk](../extensions/regulatory/eu-ai-act-crosswalk.md) |
+| EU AI Act | Art. 9, 14, 15 crosswalk |
 | OWASP LLM Top 10 | [Full control mapping](../infrastructure/mappings/owasp-llm-top10.md) |
 | NIST CSF 2.0 | [Function mapping](../infrastructure/mappings/csf-2.0.md) |
 
@@ -170,10 +170,10 @@ Pre-built crosswalks to the standards your GRC team already tracks:
 | 1 | [Risk Tiers](../core/risk-tiers.md) | The classification scheme - six dimensions, four tiers, governance approval gates | 15 min |
 | 2 | [Risk Assessment](../core/risk-assessment.md) | Quantitative methodology - worked examples at every tier, NIST AI RMF aligned | 20 min |
 | 3 | [Controls](../core/controls.md) | What each control layer does, so you can evaluate whether they're implemented correctly | 15 min |
-| 4 | [PACE Resilience](../PACE-RESILIENCE.md) | Operational resilience - defined fail postures and degradation paths | 15 min |
-| 5 | [AI Governance Operating Model](../extensions/regulatory/ai-governance-operating-model.md) | Organisational structure for AI risk governance | 20 min |
+| 4 | PACE Resilience | Operational resilience - defined fail postures and degradation paths | 15 min |
+| 5 | AI Governance Operating Model | Organisational structure for AI risk governance | 20 min |
 
-**For regulated industries:** Add [High-Risk Financial Services](../extensions/regulatory/high-risk-financial-services.md) and [EU AI Act Crosswalk](../extensions/regulatory/eu-ai-act-crosswalk.md).
+**For regulated industries:** Add High-Risk Financial Services and EU AI Act Crosswalk.
 
 ## What You Can Do Monday Morning
 
@@ -199,5 +199,5 @@ Risk classification is a governance function, not an engineering function. The s
 You can. Guardrail effectiveness is measured through red team exercises. Evaluation layer accuracy is measured through labelled datasets. Human reviewer effectiveness is measured through agreement studies. The [Risk Assessment](../core/risk-assessment.md) methodology explains exactly how - and what to do with illustrative rates before you have measured ones.
 
 **"This is too complex for our current maturity."**
-Start with the [Cheat Sheet](../CHEATSHEET.md) and apply tier classification only. Even classifying your AI systems into four tiers, without implementing any new controls, gives you a risk inventory you didn't have before. That alone is a board-reportable improvement.
+Start with the Cheat Sheet and apply tier classification only. Even classifying your AI systems into four tiers, without implementing any new controls, gives you a risk inventory you didn't have before. That alone is a board-reportable improvement.
 

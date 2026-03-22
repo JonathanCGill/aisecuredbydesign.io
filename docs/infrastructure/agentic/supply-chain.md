@@ -1,7 +1,11 @@
+---
+description: "Supply chain security controls for AI systems, covering model provenance, dependency verification, plugin integrity, and guardrail model trust."
+---
+
 # Supply Chain Security Controls
 
 > Part of the [AI Security Infrastructure Controls](../README.md) framework.
-> Companion to [AI Runtime Security](https://github.com/JonathanCGill/airuntimesecurity.io).
+> Companion to [AI Runtime Security](https://airuntimesecurity.io/).
 
 ## Overview
 

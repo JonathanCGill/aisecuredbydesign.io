@@ -1,9 +1,13 @@
+---
+description: "Mapping all 80 infrastructure controls to the three-layer behavioural security pattern: Guardrails, Model-as-Judge, and Human Oversight."
+---
+
 # Controls to Three-Layer Mapping
 
 > Maps all 80 infrastructure controls to the three-layer behavioral security pattern: **Guardrails → Model-as-Judge → Human Oversight**.
 >
 > Part of the [AI Security Infrastructure Controls](../README.md) framework.
-> Companion to [AI Runtime Security](https://github.com/JonathanCGill/airuntimesecurity.io).
+> Companion to [AI Runtime Security](https://airuntimesecurity.io/).
 
 ## How to Read This Mapping
 

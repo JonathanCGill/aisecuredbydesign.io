@@ -6,7 +6,7 @@ description: "AIRS framework guide for business unit leaders, covering how to ma
 
 **Business Unit Leaders, P&L Owners, General Managers - how to manage AI risk across your product lines when agents are operational, costs are real, and the risk is yours.**
 
-> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../)*
+> *Part of [Stakeholder Views](README.md) · [AI Secured by Design](../)*
 
 ## The Problem You Have
 
@@ -35,7 +35,7 @@ Not every AI system needs the same investment in controls. The framework gives y
 | Customer-facing chatbot | HIGH | Full three layers + PACE fail postures | 3-6 weeks added; meaningful but proportionate cost |
 | Autonomous agent making financial decisions | CRITICAL | Full three layers, 100% Judge, tested PACE, dedicated reviewers | 6-12 weeks; substantial control infrastructure |
 
-The [Fast Lane](../FAST-LANE.md) pre-approves low-risk deployments. If your AI meets four criteria (internal users, read-only, no regulated data, human reviews output), deploy with basic guardrails and move on. Don't put an internal FAQ bot through the same process as a payment agent.
+The Fast Lane pre-approves low-risk deployments. If your AI meets four criteria (internal users, read-only, no regulated data, human reviews output), deploy with basic guardrails and move on. Don't put an internal FAQ bot through the same process as a payment agent.
 
 ### The real cost of controls - and the cost of not having them
 
@@ -73,11 +73,11 @@ When you run multiple products with different agent sets, manage them as a portf
 | **Skills concentration risk** | Whether one person operates controls for multiple products | Cross-train or hire; single points of failure are unacceptable for HIGH/CRITICAL systems |
 | **Aggregate incident exposure** | Total expected incidents across all products | Board-level risk metric; drives insurance and regulatory conversations |
 
-**Multi-agent complexity:** If any product runs a multi-agent system (agents communicating with other agents), the control requirements increase. The [MASO Framework](../maso/) adds seven control domains: prompt integrity, identity and access, data protection, execution control, observability, supply chain, and privileged agent governance. This isn't optional overhead - it addresses risks (privilege escalation across agents, emergent behavior, delegation chain attacks) that don't exist in single-agent systems.
+**Multi-agent complexity:** If any product runs a multi-agent system (agents communicating with other agents), the control requirements increase. The MASO Framework adds seven control domains: prompt integrity, identity and access, data protection, execution control, observability, supply chain, and privileged agent governance. This isn't optional overhead - it addresses risks (privilege escalation across agents, emergent behavior, delegation chain attacks) that don't exist in single-agent systems.
 
 ### Operational staffing reality
 
-The [Human Factors](../strategy/human-factors.md) assessment and the [AI Governance Operating Model](../extensions/regulatory/ai-governance-operating-model.md) provide the staffing formula:
+The Human Factors assessment and the AI Governance Operating Model provide the staffing formula:
 
 ```
 FTE = (Volume × Sample Rate × Review Time) / Working Hours
@@ -99,7 +99,7 @@ The difference between MEDIUM and CRITICAL isn't a label - it's a 9x staffing di
 
 ### A clear path from pilot to scale
 
-Most AI initiatives start small. The framework supports this through [Progression](../strategy/progression.md):
+Most AI initiatives start small. The framework supports this through Progression:
 
 | Phase | What You Have | What You Need | Typical Duration |
 |---|---|---|---|
@@ -114,36 +114,36 @@ Each phase requires demonstrated operational maturity before progressing. You do
 
 | # | Document | Why You Need It |
 |---|---|---|
-| 1 | [Cheat Sheet](../CHEATSHEET.md) | The entire framework on one page - know your tier in 2 minutes |
-| 2 | [Fast Lane](../FAST-LANE.md) | Check if any of your products qualify for accelerated low-risk deployment |
-| 3 | [Business Alignment](../strategy/business-alignment.md) | Four questions every AI initiative must answer - including cost and skills feasibility |
+| 1 | Cheat Sheet | The entire framework on one page - know your tier in 2 minutes |
+| 2 | Fast Lane | Check if any of your products qualify for accelerated low-risk deployment |
+| 3 | Business Alignment | Four questions every AI initiative must answer - including cost and skills feasibility |
 | 4 | [Risk Assessment](../core/risk-assessment.md) | Quantified methodology for understanding your actual risk exposure |
-| 5 | [Cost & Latency](../extensions/technical/cost-and-latency.md) | The real numbers for control costs at each tier |
+| 5 | Cost & Latency | The real numbers for control costs at each tier |
 
-**If you run multi-agent products:** Add [MASO Overview](../maso/) - the seven control domains for multi-agent orchestration.
+**If you run multi-agent products:** Add MASO Overview - the seven control domains for multi-agent orchestration.
 
-**If you're building the business case for controls:** Add [Risk Stories](../insights/risk-stories.md) for documented incident costs and the [Risk Assessment](../core/risk-assessment.md) worked examples.
+**If you're building the business case for controls:** Add Risk Stories for documented incident costs and the [Risk Assessment](../core/risk-assessment.md) worked examples.
 
-**If you're planning AI strategy:** [From Strategy to Production](../strategy/) covers the full lifecycle from business alignment through data reality, human factors, and progression planning.
+**If you're planning AI strategy:** From Strategy to Production covers the full lifecycle from business alignment through data reality, human factors, and progression planning.
 
-**To see the framework in action across a full enterprise:** Read [A Day in the Life](../strategy/enterprise-day-in-the-life.md) - what a single day looks like when eight AI systems across multiple departments operate under the framework, including a Business Owner quarterly planning session.
+**To see the framework in action across a full enterprise:** Read A Day in the Life - what a single day looks like when eight AI systems across multiple departments operate under the framework, including a Business Owner quarterly planning session.
 
 ## What You Can Do Monday Morning
 
 1. **Classify every AI system in your portfolio** using the [Risk Tiers](../core/risk-tiers.md). Map each product's AI to a tier. This gives you the portfolio view - and reveals whether any products are running at a higher tier than their controls support.
 
-2. **Build a portfolio cost model.** For each product, map tier to control cost using the [Cost & Latency](../extensions/technical/cost-and-latency.md) analysis. Add staffing costs from the [Human Factors](../strategy/human-factors.md) assessment. Make these costs visible in each product's P&L.
+2. **Build a portfolio cost model.** For each product, map tier to control cost using the Cost & Latency analysis. Add staffing costs from the Human Factors assessment. Make these costs visible in each product's P&L.
 
 3. **Identify shared infrastructure opportunities.** If multiple products need guardrails and Judge evaluation, build shared services. The alternative - each product team building independently - costs more and creates inconsistent security posture across your portfolio.
 
-4. **Ask every product team two questions.** First: *"What happens when your AI gets it wrong?"* If they don't have a tested answer, they need [PACE Resilience](../PACE-RESILIENCE.md). Second: *"What's your human fallback?"* If the answer is "we'd figure it out," that's not a plan.
+4. **Ask every product team two questions.** First: *"What happens when your AI gets it wrong?"* If they don't have a tested answer, they need PACE Resilience. Second: *"What's your human fallback?"* If the answer is "we'd figure it out," that's not a plan.
 
 5. **Model the staffing requirement.** Use the FTE formula above for each product at its classified tier. Sum across the portfolio. If the total exceeds available capacity, either fund the gap or adjust the tier (by reducing autonomy, adding human review, or limiting scope). Operating a CRITICAL-tier system with MEDIUM-tier staffing is operating a CRITICAL-tier system without adequate controls.
 
 ## Common Objections - With Answers
 
 **"Controls will slow down our time to market."**
-The [Fast Lane](../FAST-LANE.md) exists specifically for this concern. Low-risk deployments (internal, read-only, no sensitive data, human-reviewed) deploy with basic guardrails in days. Only HIGH and CRITICAL tier systems need full controls - and those are the systems where moving fast without controls creates the incidents that slow you down for months (legal review, regulatory response, customer remediation).
+The Fast Lane exists specifically for this concern. Low-risk deployments (internal, read-only, no sensitive data, human-reviewed) deploy with basic guardrails in days. Only HIGH and CRITICAL tier systems need full controls - and those are the systems where moving fast without controls creates the incidents that slow you down for months (legal review, regulatory response, customer remediation).
 
 **"We can't afford this level of security on every product."**
 You don't need to. LOW-tier products need negligible investment. The cost concentrates at HIGH and CRITICAL tiers - which is where the risk concentrates. If a product's AI risk doesn't justify the control investment, reduce the tier by limiting autonomy or scope. The framework scales proportionately.
@@ -152,8 +152,8 @@ You don't need to. LOW-tier products need negligible investment. The cost concen
 Your competitors either have controls you can't see, or they're accumulating risk they haven't yet realised. The regulatory environment is tightening - the EU AI Act, DORA, and sector-specific regulations are all increasing AI governance requirements. Being ahead of regulatory enforcement is a strategic advantage. Being behind it is a liability.
 
 **"We don't have the people to operate these controls."**
-This is the most honest objection and the most important one to address. The [Human Factors](../strategy/human-factors.md) assessment provides three paths: retrain existing staff (most operational roles), hire specialists (architecture and leadership), or reduce the tier by keeping humans in the loop (which trades automation for reduced control overhead). What you cannot do is deploy CRITICAL-tier systems with nobody trained to operate the controls.
+This is the most honest objection and the most important one to address. The Human Factors assessment provides three paths: retrain existing staff (most operational roles), hire specialists (architecture and leadership), or reduce the tier by keeping humans in the loop (which trades automation for reduced control overhead). What you cannot do is deploy CRITICAL-tier systems with nobody trained to operate the controls.
 
 **"Each business unit should decide its own AI risk appetite."**
-Business units should inform risk appetite through their domain expertise. But risk appetite for AI is an enterprise governance decision - because a single AI incident in one business unit creates reputational and regulatory exposure for the entire organisation. The framework's [AI Governance Operating Model](../extensions/regulatory/ai-governance-operating-model.md) provides the structure for enterprise-level AI governance with business unit input.
+Business units should inform risk appetite through their domain expertise. But risk appetite for AI is an enterprise governance decision - because a single AI incident in one business unit creates reputational and regulatory exposure for the entire organisation. The framework's AI Governance Operating Model provides the structure for enterprise-level AI governance with business unit input.
 

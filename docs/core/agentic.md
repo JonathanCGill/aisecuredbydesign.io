@@ -21,7 +21,7 @@ Additional controls for AI systems that take autonomous actions.
 
 Agentic AI security reduces to two problems:
 
-![The Two Core Problems](../images/agentic-two-problems.svg)
+![The Two Core Problems](../images/agentic-two-problems.svg){ .arch-diagram }
 
 | Problem | Question | Failure Mode |
 |---------|----------|--------------|
@@ -99,7 +99,7 @@ Validate every action independently. Don't trust agent reasoning.
 
 **Validation flow:**
 
-![Action Validator Flow](../images/action-validator-flow.svg)
+![Action Validator Flow](../images/action-validator-flow.svg){ .arch-diagram }
 
 **Dry-run / simulation mode:** For high-risk or first-time actions, execute in simulation mode before committing. The gateway routes the action to a sandbox or staging environment, captures the result, and presents it for review. Only after validation does the action execute against production systems. This is especially valuable during initial deployment when behavioral baselines have not yet been established.
 
@@ -154,7 +154,8 @@ Agents are typically HIGH or CRITICAL tier. LOW/MEDIUM agents are rare.
 
 Per-interaction controls have a structural blind spot: **task decomposition attacks**. Adversaries, including AI-orchestrated campaigns, break malicious goals into sub-tasks that individually pass every control layer. Each input clears guardrails. Each output passes Judge. No single action triggers a circuit breaker. The malicious intent only exists in the aggregate.
 
-> In September 2025, Anthropic disclosed that a state-sponsored group used Claude Code to execute 80–90% of a cyber espionage campaign autonomously by decomposing the campaign into individually benign sub-tasks. CrowdStrike documented adversaries building custom frameworks that decompose malicious tasks into innocent-looking components. Per-interaction controls catch none of this.
+!!! warning "Real-world example"
+    In September 2025, Anthropic disclosed that a state-sponsored group used Claude Code to execute 80–90% of a cyber espionage campaign autonomously by decomposing the campaign into individually benign sub-tasks. CrowdStrike documented adversaries building custom frameworks that decompose malicious tasks into innocent-looking components. Per-interaction controls catch none of this.
 
 Session-level intent analysis detects what per-interaction controls cannot: **aggregate intent across a sequence of benign-looking actions.**
 
@@ -187,13 +188,15 @@ Standard circuit breakers use per-action thresholds that decomposition attacks d
 | **Scope surface area** | Session's aggregate data access footprint exceeds role baseline → pause |
 | **Intent coherence** | Session actions don't form a coherent path toward declared goal → flag |
 
-> For the full behavioral anomaly detection architecture (signal collection, aggregation pipeline, ML detection, and UEBA parallels), see [Behavioral Anomaly Detection](../extensions/technical/behavioral-anomaly-detection.md). For trace-level evaluation methodology, see [Process-Aware Evaluation](../insights/process-aware-evaluation.md).
+!!! info "See also"
+    For the full behavioral anomaly detection architecture (signal collection, aggregation pipeline, ML detection, and UEBA parallels), see Behavioral Anomaly Detection. For trace-level evaluation methodology, see Process-Aware Evaluation.
 
 ## 7. Synchronous Pre-Action Evaluation
 
 The standard Judge operates **asynchronously**, evaluating actions after they have been taken. For chatbot use cases this is sufficient. For agentic systems with tool access operating at machine speed, async evaluation means damage is done before detection fires.
 
-> CrowdStrike documented the fastest eCrime breakout time at 27 seconds. The standard async Judge evaluation cycle (500ms–5s per evaluation, plus queue time) cannot intercept actions within this window. When agents can execute irreversible actions at machine speed, post-action evaluation is a forensic tool, not a prevention layer.
+!!! warning "Real-world example"
+    CrowdStrike documented the fastest eCrime breakout time at 27 seconds. The standard async Judge evaluation cycle (500ms–5s per evaluation, plus queue time) cannot intercept actions within this window. When agents can execute irreversible actions at machine speed, post-action evaluation is a forensic tool, not a prevention layer.
 
 ### When to Evaluate Synchronously
 
@@ -233,13 +236,15 @@ Synchronous evaluation adds latency to the agent's action loop. Budget for it:
 
 The tradeoff is explicit: latency for prevention. For systems where a 27-second breakout window exists, the latency cost is justified.
 
-> For detailed latency budgets and cost optimisation strategies, see [Cost & Latency](../extensions/technical/cost-and-latency.md).
+!!! info "See also"
+    For detailed latency budgets and cost optimisation strategies, see Cost & Latency.
 
 ## 8. Tool and Integration Supply Chain
 
 The integration layer (MCP servers, tool endpoints, agent frameworks, RAG data sources) is the **primary attack surface** for agentic systems. Cisco's 2025 threat research found that attackers increasingly target the surrounding components that feed information into models rather than the models themselves.
 
-> As of 2025–2026: 43% of MCP servers tested had command injection vulnerabilities. CVE-2025-6514 achieved CVSS 10.0 (RCE via MCP). A fake npm MCP package silently copied emails. GitHub issue injection via MCP enabled full repository takeover.
+!!! warning "Real-world evidence"
+    As of 2025–2026: 43% of MCP servers tested had command injection vulnerabilities. CVE-2025-6514 achieved CVSS 10.0 (RCE via MCP). A fake npm MCP package silently copied emails. GitHub issue injection via MCP enabled full repository takeover.
 
 **This is not an optional extension. For agentic systems, supply chain security is a prerequisite.**
 
@@ -263,7 +268,8 @@ The integration layer (MCP servers, tool endpoints, agent frameworks, RAG data s
 | **Capability restriction** | Restrict MCP server capabilities to declared scope. A calendar MCP server cannot access the filesystem. |
 | **Update verification** | MCP server updates require the same review as application code changes. |
 
-> For the full treatment of MCP as an attack surface, including the AISI 5-level autonomy classification and SLSA-style provenance, see [The MCP Problem](../insights/the-mcp-problem.md) and [Supply Chain Controls](../maso/controls/supply-chain.md).
+!!! info "See also"
+    For the full treatment of MCP as an attack surface, including the AISI 5-level autonomy classification and SLSA-style provenance, see The MCP Problem and Supply Chain Controls.
 
 ## Judge for Agents
 

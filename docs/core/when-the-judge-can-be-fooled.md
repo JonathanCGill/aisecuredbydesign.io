@@ -4,13 +4,14 @@ description: "Adversarial failure modes for Model-as-Judge evaluation, including
 
 # When the Judge Can Be Fooled
 
-> *This document uses the simplified three-tier system (Tier 1/2/3). See [Risk Tiers - Simplified Tier Mapping](risk-tiers.md#simplified-tier-mapping) for the mapping to LOW/MEDIUM/HIGH/CRITICAL.*
+!!! info "Note"
+    This document uses the simplified three-tier system (Tier 1/2/3). See [Risk Tiers - Simplified Tier Mapping](risk-tiers.md#simplified-tier-mapping) for the mapping to LOW/MEDIUM/HIGH/CRITICAL.
 
 **The Model-as-Judge pattern works because it provides independent evaluation. But the Judge is itself an LLM - and LLMs can be manipulated.**
 
 ## The Problem
 
-[The Judge Detects. It Doesn't Decide.](../insights/judge-detects-not-decides.md) explains why asynchronous LLM evaluation is a critical layer in the three-layer pattern. The Judge catches what guardrails miss - the unknown-bad, the subtly inappropriate, the contextually wrong.
+The Judge Detects. It Doesn't Decide. This explains why asynchronous LLM evaluation is a critical layer in the three-layer pattern. The Judge catches what guardrails miss - the unknown-bad, the subtly inappropriate, the contextually wrong.
 
 But this only works if the Judge's evaluations are reliable.
 
@@ -20,7 +21,7 @@ The UK AI Security Institute's *Frontier AI Trends Report* (December 2025) adds 
 
 If the primary model can detect and game evaluations, it can potentially game your Judge too.
 
-This doesn't invalidate the Judge pattern. It means the Judge layer needs its own threat model. For a comprehensive treatment of evaluation integrity risks - including sandbagging mitigations and canary interaction strategies - see **[Evaluation Integrity Risks](../insights/evaluation-integrity-risks.md)**.
+This doesn't invalidate the Judge pattern. It means the Judge layer needs its own threat model. For a comprehensive treatment of evaluation integrity risks - including sandbagging mitigations and canary interaction strategies - see **Evaluation Integrity Risks**.
 
 ## How the Judge Can Fail
 
@@ -63,7 +64,7 @@ None of these are complete solutions. They reduce the attack surface - which is 
 | **Model independence** | Use a different model (ideally from a different provider) for Judge evaluation. A model can't game an evaluation system it doesn't know exists and hasn't been optimised against. |
 | **Structured evaluation criteria** | Define Judge evaluation as specific, measurable checks rather than open-ended quality assessment. "Does this output contain PII?" is harder to game than "Is this output appropriate?" |
 | **Evaluation prompt hardening** | Apply the same prompt injection defences to the Judge prompt that you apply to the primary system. The Judge is an LLM endpoint - treat it as one. |
-| **Statistical monitoring** | Track Judge pass/fail rates over time. A sudden shift in approval rates - in either direction - may indicate gaming or drift. [Behavioral Anomaly Detection](../extensions/technical/behavioral-anomaly-detection.md) applies here. |
+| **Statistical monitoring** | Track Judge pass/fail rates over time. A sudden shift in approval rates - in either direction - may indicate gaming or drift. Behavioral Anomaly Detection applies here. |
 | **Rotating evaluation strategies** | Periodically change evaluation criteria, prompts, or models. Prevents the primary model from being optimised (through fine-tuning or prompt engineering) to pass a static evaluation. |
 | **Domain-specific Judges** | For high-risk domains, use Judges fine-tuned or prompted with domain expertise. A general-purpose Judge evaluating medical advice is a known weak point. |
 | **Human calibration** | Regularly sample Judge evaluations and compare them to human assessment. Measure agreement rates. Adjust when they diverge. This is the Human Oversight layer doing its job. |

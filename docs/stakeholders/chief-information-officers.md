@@ -6,7 +6,7 @@ description: "AIRS framework guide for CIOs and CTOs, covering how to govern AI 
 
 **CIOs, CTOs, VP Technology - how to govern AI across your technology portfolio when every product runs different agents with different risk profiles.**
 
-> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../)*
+> *Part of [Stakeholder Views](README.md) · [AI Secured by Design](../)*
 
 ## The Problem You Have
 
@@ -35,7 +35,7 @@ The framework's [Risk Tiers](../core/risk-tiers.md) provide a consistent languag
 
 ### Cost governance across the AI portfolio
 
-The control overhead is real and varies dramatically by tier. The [Cost & Latency](../extensions/technical/cost-and-latency.md) analysis provides the numbers:
+The control overhead is real and varies dramatically by tier. The Cost & Latency analysis provides the numbers:
 
 | Risk Tier | Security Overhead (% of Generator Cost) | Per 1M Requests/Month | What's Included |
 |---|---|---|---|
@@ -46,11 +46,11 @@ The control overhead is real and varies dramatically by tier. The [Cost & Latenc
 
 **When multiple products run different agent sets**, total AI security cost is the sum across the portfolio - not an average. A portfolio of 5 LOW-tier and 1 CRITICAL-tier system is dominated by the CRITICAL-tier cost. Budget accordingly.
 
-For multi-agent systems, add MASO controls: inter-agent message bus, per-agent identity management, cross-agent DLP, and delegation chain auditing. The [MASO Integration Guide](../maso/integration/integration-guide.md) details the implementation overhead per agent framework (LangGraph, AutoGen, CrewAI, AWS Bedrock).
+For multi-agent systems, add MASO controls: inter-agent message bus, per-agent identity management, cross-agent DLP, and delegation chain auditing. The MASO Integration Guide details the implementation overhead per agent framework (LangGraph, AutoGen, CrewAI, AWS Bedrock).
 
 ### Technology skills planning
 
-The [Human Factors](../strategy/human-factors.md) assessment maps the skills gap directly:
+The Human Factors assessment maps the skills gap directly:
 
 | Skill Domain | Who Needs It | Availability | Time to Competence |
 |---|---|---|---|
@@ -97,31 +97,31 @@ Read these in order. Total time: ~90 minutes.
 
 | # | Document | Why You Need It |
 |---|---|---|
-| 1 | [Cheat Sheet](../CHEATSHEET.md) | The entire framework on one page - classification, controls, fail postures |
+| 1 | Cheat Sheet | The entire framework on one page - classification, controls, fail postures |
 | 2 | [Risk Tiers](../core/risk-tiers.md) | The classification scheme you'll mandate as the portfolio standard |
-| 3 | [Business Alignment](../strategy/business-alignment.md) | Four strategic questions every AI initiative must answer before investment |
-| 4 | [Cost & Latency](../extensions/technical/cost-and-latency.md) | Budget the control layers - the numbers behind the portfolio cost model |
-| 5 | [Human Factors](../strategy/human-factors.md) | The skills gap that will determine whether your AI portfolio can actually be operated |
+| 3 | Business Alignment | Four strategic questions every AI initiative must answer before investment |
+| 4 | Cost & Latency | Budget the control layers - the numbers behind the portfolio cost model |
+| 5 | Human Factors | The skills gap that will determine whether your AI portfolio can actually be operated |
 
-**If you have multi-agent products:** Add [MASO Overview](../maso/) and [Multi-Agent Controls](../core/multi-agent-controls.md).
+**If you have multi-agent products:** Add MASO Overview and [Multi-Agent Controls](../core/multi-agent-controls.md).
 
-**If you're building a platform team:** Add [Infrastructure Controls](../infrastructure/) and [AI Governance Operating Model](../extensions/regulatory/ai-governance-operating-model.md).
+**If you're building a platform team:** Add [Infrastructure Controls](../infrastructure/) and AI Governance Operating Model.
 
 **If you're presenting to the board:** Add [Risk Assessment](../core/risk-assessment.md) for the quantified methodology.
 
-**To see the framework in action across a full enterprise:** Read [A Day in the Life](../strategy/enterprise-day-in-the-life.md) - what a single day looks like when eight AI systems across multiple departments operate under the framework.
+**To see the framework in action across a full enterprise:** Read A Day in the Life - what a single day looks like when eight AI systems across multiple departments operate under the framework.
 
 ## What You Can Do Monday Morning
 
 1. **Inventory every AI deployment** across the portfolio. Use the [Risk Tiers](../core/risk-tiers.md) six-dimension scoring to classify each one. Most CIOs don't have a complete, consistently classified view of their AI estate.
 
-2. **Establish a portfolio cost model.** Map each system's tier to its control cost using [Cost & Latency](../extensions/technical/cost-and-latency.md). Add these costs to existing product P&Ls. AI security cost should be visible, not hidden in infrastructure budgets.
+2. **Establish a portfolio cost model.** Map each system's tier to its control cost using Cost & Latency. Add these costs to existing product P&Ls. AI security cost should be visible, not hidden in infrastructure budgets.
 
-3. **Assess the skills gap.** For each tier in your portfolio, check whether you have the people to operate the required controls. Use the [Human Factors](../strategy/human-factors.md) framework. A CRITICAL-tier system with no trained Judge operator is an uncontrolled CRITICAL-tier system.
+3. **Assess the skills gap.** For each tier in your portfolio, check whether you have the people to operate the required controls. Use the Human Factors framework. A CRITICAL-tier system with no trained Judge operator is an uncontrolled CRITICAL-tier system.
 
 4. **Mandate shared infrastructure for common controls.** If multiple products need guardrails and Judge evaluation, build once and share. The alternative - every product team building their own - multiplies cost, fragments expertise, and creates inconsistent security posture.
 
-5. **Add AI risk to your technology governance cadence.** The [AI Governance Operating Model](../extensions/regulatory/ai-governance-operating-model.md) provides the structure. At minimum: quarterly portfolio risk review, tier reclassification triggers, and PACE state monitoring.
+5. **Add AI risk to your technology governance cadence.** The AI Governance Operating Model provides the structure. At minimum: quarterly portfolio risk review, tier reclassification triggers, and PACE state monitoring.
 
 ## Common Objections - With Answers
 
@@ -129,13 +129,13 @@ Read these in order. Total time: ~90 minutes.
 Product teams should own their risk classification and business-specific controls. But shared infrastructure (guardrails, Judge, logging, identity) is more cost-effective, more consistent, and easier to govern than N independent implementations. This is the same argument as shared authentication services or centralised logging - the pattern is proven.
 
 **"We don't have the budget for a platform team."**
-The alternative is every product team funding their own AI security capability - which costs more in aggregate. A shared guardrail service, a shared Judge infrastructure, and a shared SIEM integration cost less than five teams building five separate versions. The [Cost & Latency](../extensions/technical/cost-and-latency.md) analysis provides the numbers for the business case.
+The alternative is every product team funding their own AI security capability - which costs more in aggregate. A shared guardrail service, a shared Judge infrastructure, and a shared SIEM integration cost less than five teams building five separate versions. The Cost & Latency analysis provides the numbers for the business case.
 
 **"Our AI maturity is too low for this level of governance."**
-Start with classification. Even just categorising your AI systems into four tiers - without implementing any new controls - gives you a portfolio view you didn't have before. The [Quick Start](../QUICK_START.md) is designed for exactly this situation. Gartner's AI Maturity Model and MITRE's AI Maturity Model both emphasise that governance maturity must grow alongside technical maturity, not lag behind it.
+Start with classification. Even just categorising your AI systems into four tiers - without implementing any new controls - gives you a portfolio view you didn't have before. The Quick Start is designed for exactly this situation. Gartner's AI Maturity Model and MITRE's AI Maturity Model both emphasise that governance maturity must grow alongside technical maturity, not lag behind it.
 
 **"The skills market is too competitive - we can't hire AI security people."**
-You don't need to hire all of them. The [Human Factors](../strategy/human-factors.md) assessment shows that most operational roles can be filled by retraining existing security and operations staff. Guardrail maintenance is an extension of existing security operations. Judge calibration is an extension of QA. Dedicated hiring is needed for architecture and leadership roles, not every operational position.
+You don't need to hire all of them. The Human Factors assessment shows that most operational roles can be filled by retraining existing security and operations staff. Guardrail maintenance is an extension of existing security operations. Judge calibration is an extension of QA. Dedicated hiring is needed for architecture and leadership roles, not every operational position.
 
 **"Different products need different approaches."**
 They do - and the framework supports that. Different products get different risk tiers, which drive different control requirements. What's shared is the classification methodology, the control infrastructure, and the governance process. Product-specific decisions (sampling rates, Judge prompts, PACE thresholds) remain with the product team.

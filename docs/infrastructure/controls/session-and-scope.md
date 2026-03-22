@@ -1,3 +1,7 @@
+---
+description: "Infrastructure controls for agentic AI session isolation, scope limits, and blast radius containment in autonomous operations."
+---
+
 # Session & Scope for Agentic AI
 
 > **Control Domain:** Agentic - Containment Controls  

@@ -124,7 +124,7 @@ The critical distinction is between *application services* (deterministic, predi
 
 Every agent identity passes through six governed phases. No exceptions.
 
-![Agent Identity Lifecycle](../images/iam-identity-lifecycle.svg)
+![Agent Identity Lifecycle](../images/iam-identity-lifecycle.svg){ .arch-diagram }
 
 ### Phase 1: Provisioning
 
@@ -256,7 +256,7 @@ All credentials revoked, all active sessions terminated, all downstream system a
 
 In multi-agent systems, the delegation chain determines who is accountable for every action.
 
-![Delegation Chain](../images/iam-delegation-chain.svg)
+![Delegation Chain](../images/iam-delegation-chain.svg){ .arch-diagram }
 
 ### The Delegation Rules
 
@@ -287,13 +287,13 @@ Context-aware access requires:
 - Data layer enforces user permissions (row-level security, column masking, view-based access)
 - AI receives only what the user would receive if they queried the system directly
 
-**See also:** [High-Risk Financial Services - Access Controls](../extensions/regulatory/high-risk-financial-services.md#access-controls-who-can-touch-what)
+**See also:** High-Risk Financial Services - Access Controls
 
 ## The IAM Threat Landscape
 
 AI agents face identity-based threats that traditional IAM was not designed to counter.
 
-![IAM Threat Landscape](../images/iam-threat-landscape.svg)
+![IAM Threat Landscape](../images/iam-threat-landscape.svg){ .arch-diagram }
 
 ### Current Threats
 
@@ -342,7 +342,7 @@ The three layers must operate independently for IAM:
 - A Judge model failure does not impair the guardrails' enforcement of identity validation
 - A compromised HITL reviewer's session does not affect the guardrail or Judge layer
 
-This is PACE resilience applied to IAM. If one layer fails, the others continue. If all three fail, the [circuit breaker](../PACE-RESILIENCE.md) routes traffic to a non-AI fallback.
+This is PACE resilience applied to IAM. If one layer fails, the others continue. If all three fail, the circuit breaker routes traffic to a non-AI fallback.
 
 ## Standards and Frameworks
 
@@ -405,10 +405,10 @@ This governance model draws from internationally recognised standards and emergi
 | **Secrets and credentials** | [Infrastructure - Secrets & Credentials](../infrastructure/controls/secrets-and-credentials.md) | SEC-01 through SEC-08: context window isolation, short-lived tokens, vault management, credential scanning, rotation, agent isolation |
 | **Tool access controls** | [Infrastructure - Tool Access Controls](../infrastructure/agentic/tool-access-controls.md) | TOOL-01 through TOOL-06: allowlisting, gateway enforcement, parameter constraints, reversibility classification, rate limits, logging |
 | **Delegation chains** | [Infrastructure - Delegation Chains](../infrastructure/agentic/delegation-chains.md) | DEL-01 through DEL-05: least delegation, audit trails, depth limits, explicit authorisation, identity propagation |
-| **Multi-agent IAM** | [MASO - Identity & Access](../maso/controls/identity-and-access.md) | Tiered controls for multi-agent systems: NHI lifecycle, mutual authentication, behavioral binding, delegation contracts |
-| **NHI lifecycle** | [Extensions - NHI Lifecycle](../extensions/technical/nhi-lifecycle.md) | Six-phase lifecycle: provisioning, authentication, authorisation, monitoring, review, deprovisioning |
-| **Financial services IAM** | [High-Risk Financial Services](../extensions/regulatory/high-risk-financial-services.md) | Four access control layers, financial services requirements, access control anti-patterns |
+| **Multi-agent IAM** | MASO - Identity & Access | Tiered controls for multi-agent systems: NHI lifecycle, mutual authentication, behavioral binding, delegation contracts |
+| **NHI lifecycle** | Extensions - NHI Lifecycle | Six-phase lifecycle: provisioning, authentication, authorisation, monitoring, review, deprovisioning |
+| **Financial services IAM** | High-Risk Financial Services | Four access control layers, financial services requirements, access control anti-patterns |
 | **IAM architecture diagram** | [IAM Control Layers](../infrastructure/diagrams/iam-control-layers.svg) | Visual: control plane / data plane separation with agent authorisation gateway |
 | **Three-layer pattern** | [Core Controls](controls.md) | How guardrails, Judge, and Human Oversight work together |
-| **PACE resilience** | [PACE Resilience](../PACE-RESILIENCE.md) | Failover methodology applied to all controls including IAM |
+| **PACE resilience** | PACE Resilience | Failover methodology applied to all controls including IAM |
 

@@ -5,8 +5,9 @@ description: "Security controls for streaming AI output, addressing the challeng
 # Streaming Controls
 
 > Validating output that hasn't finished yet.
->
-> *This document uses the simplified three-tier system (Tier 1/2/3). See [Risk Tiers - Simplified Tier Mapping](risk-tiers.md#simplified-tier-mapping) for the mapping to LOW/MEDIUM/HIGH/CRITICAL.*
+
+!!! info "Note"
+    This document uses the simplified three-tier system (Tier 1/2/3). See [Risk Tiers - Simplified Tier Mapping](risk-tiers.md#simplified-tier-mapping) for the mapping to LOW/MEDIUM/HIGH/CRITICAL.
 
 ## The Problem
 
@@ -32,7 +33,7 @@ For Tier 2–3 - customer-facing, regulated, consequential - delivering unevalua
 
 Hold tokens in a server-side buffer. Release in chunks after evaluation.
 
-![Buffer and Release Pattern](../images/streaming-buffer-release.svg)
+![Buffer and Release Pattern](../images/streaming-buffer-release.svg){ .arch-diagram }
 
 | Parameter | Setting | Trade-off |
 |-----------|---------|-----------|
@@ -49,7 +50,7 @@ Hold tokens in a server-side buffer. Release in chunks after evaluation.
 
 Deliver tokens immediately. Evaluate the complete response asynchronously. Retract or flag if evaluation fails.
 
-![Post-Hoc Evaluation Pattern](../images/streaming-post-hoc.svg)
+![Post-Hoc Evaluation Pattern](../images/streaming-post-hoc.svg){ .arch-diagram }
 
 | Step | Timing | What Happens |
 |------|--------|-------------|
@@ -66,7 +67,7 @@ Deliver tokens immediately. Evaluate the complete response asynchronously. Retra
 
 Don't stream. Generate the complete response, evaluate it, then deliver.
 
-![Non-Streaming Full Evaluation](../images/streaming-non-streaming.svg)
+![Non-Streaming Full Evaluation](../images/streaming-non-streaming.svg){ .arch-diagram }
 
 | Trade-off | Impact |
 |-----------|--------|

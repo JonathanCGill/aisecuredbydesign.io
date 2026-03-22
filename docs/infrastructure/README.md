@@ -6,7 +6,7 @@ description: Infrastructure controls that enforce AI behavioral security across 
 
 **The infrastructure layer that makes behavioral AI security enforceable.**
 
-Companion to [AI Runtime Security](https://github.com/JonathanCGill/airuntimesecurity.io), which defines the three-layer behavioral security pattern (Guardrails, Model-as-Judge, Human Oversight). This section defines 80 technical infrastructure controls that underpin that pattern. Each control specifies which risk tiers it applies to, so you can quickly identify what you need and deselect what you do not.
+Companion to [AI Runtime Security](https://airuntimesecurity.io/), which defines the three-layer behavioral security pattern (Guardrails, Model-as-Judge, Human Oversight). This section defines 80 technical infrastructure controls that underpin that pattern. Each control specifies which risk tiers it applies to, so you can quickly identify what you need and deselect what you do not.
 
 ## The Problem
 
@@ -24,19 +24,19 @@ You cannot enforce behavioral security controls on infrastructure you do not con
 
 ### How Technical Controls Enable the Three-Layer Pattern
 
-![Relationship to Parent Framework](diagrams/relationship-to-parent.svg)
+![Relationship to Parent Framework](diagrams/relationship-to-parent.svg){ .arch-diagram }
 
 ### IAM Control Architecture
 
-![IAM Control Layers](diagrams/iam-control-layers.svg)
+![IAM Control Layers](diagrams/iam-control-layers.svg){ .arch-diagram }
 
 ### Logging Pipeline and Detection Architecture
 
-![Logging Architecture](diagrams/logging-architecture.svg)
+![Logging Architecture](diagrams/logging-architecture.svg){ .arch-diagram }
 
 ### Network Zone Architecture
 
-![Network Zones](diagrams/network-zones.svg)
+![Network Zones](diagrams/network-zones.svg){ .arch-diagram }
 
 ## Control Domains
 

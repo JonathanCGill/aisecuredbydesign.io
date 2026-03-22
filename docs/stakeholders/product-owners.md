@@ -6,7 +6,7 @@ description: "AIRS framework guide for product managers: quickly identify the co
 
 **Product Managers, Business Owners, Delivery Leads: quickly identify the controls you need, consciously deselect the ones you do not, and ship AI with proportionate security.**
 
-> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../)*
+> *Part of [Stakeholder Views](README.md) · [AI Secured by Design](../)*
 
 ## The Problem You Have
 
@@ -24,7 +24,7 @@ Here's what's actually happening:
 
 ### A fast path for low-risk AI
 
-If your AI system meets **all four** of these criteria, it qualifies for the [Fast Lane](../FAST-LANE.md):
+If your AI system meets **all four** of these criteria, it qualifies for the Fast Lane:
 
 - Internal users only
 - Read-only (no write access to external systems)
@@ -61,36 +61,36 @@ The [Risk Assessment](../core/risk-assessment.md) has the full worked example: a
 
 ### A classification you can do in 15 minutes
 
-The [Use Case Definition](../strategy/use-case-definition.md) provides ten questions that classify your AI system and determine exactly what controls are required. Complete it before your first security review. You'll arrive with answers instead of questions.
+The Use Case Definition provides ten questions that classify your AI system and determine exactly what controls are required. Complete it before your first security review. You'll arrive with answers instead of questions.
 
 ## Your Starting Path
 
 | # | Document | Why You Need It |
 |---|---|---|
-| 1 | [Cheat Sheet](../CHEATSHEET.md) | The entire framework on one page - decide your tier in 2 minutes |
-| 2 | [Fast Lane](../FAST-LANE.md) | Check if your system qualifies for accelerated deployment |
+| 1 | Cheat Sheet | The entire framework on one page - decide your tier in 2 minutes |
+| 2 | Fast Lane | Check if your system qualifies for accelerated deployment |
 | 3 | [Risk Tiers](../core/risk-tiers.md) | If not Fast Lane, classify your system using the six dimensions |
-| 4 | [Use Case Definition](../strategy/use-case-definition.md) | Ten questions that feed directly into security requirements |
+| 4 | Use Case Definition | Ten questions that feed directly into security requirements |
 | 5 | [Checklist](../core/checklist.md) | Track your implementation - know what's done and what's left |
 
-**If you're planning AI strategy:** [From Strategy to Production](../strategy/) covers business alignment, data reality, human factors, and progression planning.
+**If you're planning AI strategy:** From Strategy to Production covers business alignment, data reality, human factors, and progression planning.
 
 ## What You Can Do Monday Morning
 
-1. **Classify your AI system** using the [Cheat Sheet](../CHEATSHEET.md). Can it go through the Fast Lane? If so, do that. If not, know your tier.
+1. **Classify your AI system** using the Cheat Sheet. Can it go through the Fast Lane? If so, do that. If not, know your tier.
 
-2. **Complete the [Use Case Definition](../strategy/use-case-definition.md)** before requesting a security review. Ten questions, 15 minutes, and you arrive with a clear scope that security can approve faster.
+2. **Complete the Use Case Definition** before requesting a security review. Ten questions, 15 minutes, and you arrive with a clear scope that security can approve faster.
 
-3. **Budget for the evaluation layer** based on your tier. LOW tier = negligible. MEDIUM = modest (Judge on 10% sample). HIGH/CRITICAL = meaningful but proportionate. The [Cost & Latency](../extensions/technical/cost-and-latency.md) analysis has actual numbers.
+3. **Budget for the evaluation layer** based on your tier. LOW tier = negligible. MEDIUM = modest (Judge on 10% sample). HIGH/CRITICAL = meaningful but proportionate. The Cost & Latency analysis has actual numbers.
 
 4. **Frame controls as a feature, not overhead.** "Our chatbot has a 99.99% accuracy rate with three-layer verification" is a competitive advantage, not a burden. Customers trust AI systems that can demonstrate safety.
 
-5. **Plan your progression.** If you're starting with a MEDIUM-tier system and want to evolve to HIGH (e.g., adding autonomous actions), the [Progression](../strategy/progression.md) guide maps the path. This typically takes 6-12 months of operational maturity per tier jump.
+5. **Plan your progression.** If you're starting with a MEDIUM-tier system and want to evolve to HIGH (e.g., adding autonomous actions), the Progression guide maps the path. This typically takes 6-12 months of operational maturity per tier jump.
 
 ## Common Objections - With Answers
 
 **"Our competitors ship AI without all this."**
-Your competitors either have controls you can't see, or they're accumulating unquantified risk. The first major AI incident in your industry will change the conversation. Being ahead of that conversation is a strategic advantage. See [Risk Stories](../insights/risk-stories.md) for what happens when controls are absent.
+Your competitors either have controls you can't see, or they're accumulating unquantified risk. The first major AI incident in your industry will change the conversation. Being ahead of that conversation is a strategic advantage. See Risk Stories for what happens when controls are absent.
 
 **"We can add security later."**
 Retrofitting controls is 3-5x more expensive than building them in. The architecture decisions (where the Judge sits, how the circuit breaker works, what the fail posture is) are easier at design time. The controls themselves are incremental - start with guardrails, add Judge, add oversight.

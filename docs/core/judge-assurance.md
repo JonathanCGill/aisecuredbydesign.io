@@ -8,7 +8,7 @@ description: "How to validate Model-as-Judge accuracy against human ground truth
 
 ## The Problem
 
-The three-layer pattern depends on the Model-as-Judge to detect "unknown-bad" outputs that guardrails miss. The Judge may be a large LLM running asynchronously, a [distilled SLM](../extensions/technical/distill-judge-slm.md) running inline as a sidecar, or both in a tiered arrangement. Regardless of size, the Judge is itself a model. It hallucinates. It drifts. It can be manipulated.
+The three-layer pattern depends on the Model-as-Judge to detect "unknown-bad" outputs that guardrails miss. The Judge may be a large LLM running asynchronously, a distilled SLM running inline as a sidecar, or both in a tiered arrangement. Regardless of size, the Judge is itself a model. It hallucinates. It drifts. It can be manipulated.
 
 If you deploy a Judge without evaluating its accuracy, you have added cost and latency without knowing whether you have added safety.
 
@@ -96,7 +96,7 @@ When the Judge is unavailable, degraded, or untrusted:
 | Judge API timeout | Apply guardrails only + increase human review sample |
 | Judge accuracy below threshold | Increase human review to 100% for affected risk tier |
 | Judge model deprecated by provider | Switch to backup judge model (you should have one) |
-| Judge cost exceeds budget | Sample-based evaluation (see [Cost and Latency](../extensions/technical/cost-and-latency.md)) |
+| Judge cost exceeds budget | Sample-based evaluation (see Cost and Latency) |
 
 **Never fail open.** If the Judge can't evaluate, tighten other controls. Don't skip evaluation.
 
@@ -123,7 +123,7 @@ Answer these five questions before deploying a judge:
 | **2. Are the consequences of an undetected failure material?** (Financial loss, regulatory violation, reputational harm, patient safety) | The cost of the judge is justified by the cost of the failure. | The failure is tolerable. Sample-based or post-hoc review is enough. |
 | **3. Can a judge realistically catch the failure?** (Is the evaluation task within current model capability?) | Deploy the judge and calibrate it. | A judge that cannot detect the threat is security theatre. Invest in guardrails, infrastructure constraints, or human review instead. |
 | **4. Is the judge's false negative rate lower than the base rate of the threat?** | The judge is net-positive for security. | The judge misses more than it catches. Retrain, replace, or remove it. |
-| **5. Does the workflow have multiple policy domains that could conflict?** (Fraud, security, compliance, data protection) | Multi-domain evaluation with [conflict resolution](../maso/controls/privileged-agent-governance.md#inter-judge-conflict-resolution). | Single-domain evaluation or guardrails only. |
+| **5. Does the workflow have multiple policy domains that could conflict?** (Fraud, security, compliance, data protection) | Multi-domain evaluation with conflict resolution. | Single-domain evaluation or guardrails only. |
 
 ### Judge ROI Assessment
 
@@ -138,7 +138,7 @@ Where:
 
 - **Threats caught** = Judge true positive rate × threat volume
 - **Cost per undetected threat** = financial, regulatory, or reputational impact of the threat the judge is designed to catch
-- **Judge operating cost** = infrastructure + API costs + calibration + maintenance (see [Cost and Latency](../extensions/technical/cost-and-latency.md))
+- **Judge operating cost** = infrastructure + API costs + calibration + maintenance (see Cost and Latency)
 - **False positive cost** = false positive rate × cost per false positive (human review time, delayed transactions, user friction)
 - **Judge failure risk** = probability of judge failure × impact of false assurance (operating with a broken judge is worse than operating with no judge, because the team believes it is protected)
 
@@ -161,7 +161,7 @@ The full evaluation stack is reserved for critical-risk workflows where the cost
 
 Even with all these controls, you cannot prove the Judge is correct. You can only measure its accuracy against human judgment, track its consistency over time, and react when it drifts.
 
-This is the same epistemic limitation identified in [The Verification Gap](../insights/the-verification-gap.md). The Judge doesn't solve it - it manages it. Judge Assurance ensures you know how well it's managing.
+This is the same epistemic limitation identified in The Verification Gap. The Judge doesn't solve it - it manages it. Judge Assurance ensures you know how well it's managing.
 
 ## Related Documents
 
@@ -170,8 +170,8 @@ The Judge layer is covered across several documents. If you're here, you probabl
 | Document | What It Covers |
 |----------|---------------|
 | [When the Judge Can Be Fooled](when-the-judge-can-be-fooled.md) | Adversarial failure modes: output crafting, judge manipulation, judge limitations. Tier-specific mitigations. |
-| [Cost and Latency](../extensions/technical/cost-and-latency.md) | Judge latency budgets (500ms–5s per evaluation), sync vs async guidance, sampling strategies by risk tier, tiered evaluation cascade (rule-based → small model → large model → human). |
-| [Privileged Agent Governance](../maso/controls/privileged-agent-governance.md) | MASO controls for the Judge as a privileged agent: calibration testing (PA-2.2), criteria versioning (PA-2.3), model rotation (PA-3.4), continuous calibration (PA-3.5). |
-| [Execution Control - EC-2.5](../maso/controls/execution-control.md) | Judge as the gate for agent actions. Action classification rules. Cross-validation at Tier 3 (EC-3.3). |
-| [Distilling the Judge into an SLM](../extensions/technical/distill-judge-slm.md) | Knowledge distillation from a large Judge into a fast, local Small Language Model for inline action screening. Includes the "check the checker" validation loop. |
+| Cost and Latency | Judge latency budgets (500ms–5s per evaluation), sync vs async guidance, sampling strategies by risk tier, tiered evaluation cascade (rule-based → small model → large model → human). |
+| Privileged Agent Governance | MASO controls for the Judge as a privileged agent: calibration testing (PA-2.2), criteria versioning (PA-2.3), model rotation (PA-3.4), continuous calibration (PA-3.5). |
+| Execution Control - EC-2.5 | Judge as the gate for agent actions. Action classification rules. Cross-validation at Tier 3 (EC-3.3). |
+| Distilling the Judge into an SLM | Knowledge distillation from a large Judge into a fast, local Small Language Model for inline action screening. Includes the "check the checker" validation loop. |
 

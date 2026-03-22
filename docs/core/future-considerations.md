@@ -22,7 +22,7 @@ These topics are likely to be addressed in future iterations of this framework.
 
 ### Open-Weight Deployment Controls
 
-Organisations deploying self-hosted open-weight models inherit control responsibilities that would otherwise sit with the model provider - input/output filtering, safeguard maintenance, abuse monitoring, and more. The current framework doesn't differentiate control requirements by deployment model. It should. See [Open-Weight Models Shift the Burden](../insights/open-weight-models-shift-the-burden.md) for the argument and interim guidance.
+Organisations deploying self-hosted open-weight models inherit control responsibilities that would otherwise sit with the model provider - input/output filtering, safeguard maintenance, abuse monitoring, and more. The current framework doesn't differentiate control requirements by deployment model. It should. See Open-Weight Models Shift the Burden for the argument and interim guidance.
 
 ### Adversarial Robustness of the Judge Layer
 

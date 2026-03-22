@@ -81,7 +81,8 @@ Minimal impact, non-sensitive context.
 | Depth | - | Basic quality | Full policy | Full + reasoning |
 | Escalation | - | Weekly | Same-day | Immediate |
 
-> **Note:** "Real-time" Judge evaluation for CRITICAL tier means near-real-time parallel assessment - the Judge evaluates alongside or immediately after delivery. It does not mean inline blocking, which is the Guardrail's role. Principle: **Guardrails prevent. Judge detects. Humans decide.**
+!!! info "Note"
+    "Real-time" Judge evaluation for CRITICAL tier means near-real-time parallel assessment, where the Judge evaluates alongside or immediately after delivery. It does not mean inline blocking, which is the Guardrail's role. Principle: **Guardrails prevent. Judge detects. Humans decide.**
 
 ### Human Oversight
 
@@ -119,7 +120,8 @@ This finding reinforces a critical principle: **one-size-fits-all guardrails are
 - Don't assume that a model's strong performance in one safety category (e.g., refusing to generate malware) transfers to your domain (e.g., refusing to give inappropriate financial advice).
 - Schedule domain-specific red-team testing at least quarterly for HIGH tier and monthly for CRITICAL tier systems.
 
-> **Source:** UK AI Security Institute, *Frontier AI Trends Report*, December 2025.
+!!! info "Source"
+    UK AI Security Institute, *Frontier AI Trends Report*, December 2025.
 
 ## Classification Process
 
@@ -155,7 +157,7 @@ If any dimension suggests higher tier, use it.
 
 ## Simplified Tier Mapping
 
-Some framework documents - particularly [PACE](pace-controls-section.md), [CHEATSHEET](../CHEATSHEET.md), and specialized controls - use a simplified **three-tier numbered system** (Tier 1/2/3). This is intentional: the three-tier system is a practical shorthand for operational contexts where the full four-tier classification adds complexity without proportionate benefit.
+Some framework documents - particularly [PACE](pace-controls-section.md), CHEATSHEET, and specialized controls - use a simplified **three-tier numbered system** (Tier 1/2/3). This is intentional: the three-tier system is a practical shorthand for operational contexts where the full four-tier classification adds complexity without proportionate benefit.
 
 | Simplified Tier | Named Risk Tiers | Description |
 |-----------------|-----------------|-------------|
@@ -165,16 +167,16 @@ Some framework documents - particularly [PACE](pace-controls-section.md), [CHEAT
 
 **When in doubt, use the four-tier system.** The simplified tiers are for operational guidance (PACE resilience, testing cadence, fail posture) where the distinction between LOW and MEDIUM or HIGH and CRITICAL is less material than the distinction between internal/customer-facing/regulated.
 
-The [MASO Framework](../maso/) also uses Tier 1/2/3 for multi-agent **autonomy levels** (Supervised → Managed → Autonomous), which is a separate dimension from risk classification.
+The MASO Framework also uses Tier 1/2/3 for multi-agent **autonomy levels** (Supervised → Managed → Autonomous), which is a separate dimension from risk classification.
 
 ## Related
 
 | If you need... | Go to |
 |----------------|-------|
-| Low-risk systems that skip the full review | [Fast Lane](../FAST-LANE.md) - self-certification for internal, read-only, no regulated data |
-| Cost implications of each tier | [Cost & Latency](../extensions/technical/cost-and-latency.md) - security overhead is 15–40% at Tier 2, 40–100% at Tier 3 |
+| Low-risk systems that skip the full review | Fast Lane - self-certification for internal, read-only, no regulated data |
+| Cost implications of each tier | Cost & Latency - security overhead is 15–40% at Tier 2, 40–100% at Tier 3 |
 | Quantitative risk scoring | [Risk Assessment](risk-assessment.md) - six-dimension scoring for board reporting |
-| Multi-agent tier progression | [MASO Implementation Tiers](../maso/) - Supervised → Managed → Autonomous |
+| Multi-agent tier progression | MASO Implementation Tiers - Supervised → Managed → Autonomous |
 
 ## Tier Changes
 

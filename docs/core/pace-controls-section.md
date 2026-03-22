@@ -1,14 +1,19 @@
+---
+description: "What happens when each control layer degrades: PACE resilience plans for guardrails, Model-as-Judge, and human oversight."
+---
+
 # Control Layer Resilience: Internal PACE
 
-*This section defines what happens when each control layer degrades. Every control has its own PACE plan (vertical axis) in addition to the architecture-level PACE across layers (horizontal axis). See the [PACE Resilience Methodology](../PACE-RESILIENCE.md) for the full model.*
+*This section defines what happens when each control layer degrades. Every control has its own PACE plan (vertical axis) in addition to the architecture-level PACE across layers (horizontal axis). See the PACE Resilience Methodology for the full model.*
 
-> *This document uses the simplified three-tier system (Tier 1/2/3). See [Risk Tiers - Simplified Tier Mapping](risk-tiers.md#simplified-tier-mapping) for the mapping to LOW/MEDIUM/HIGH/CRITICAL.*
+!!! info "Note"
+    This document uses the simplified three-tier system (Tier 1/2/3). See [Risk Tiers - Simplified Tier Mapping](risk-tiers.md#simplified-tier-mapping) for the mapping to LOW/MEDIUM/HIGH/CRITICAL.
 
 ## Design Principle
 
 Every control layer will eventually fail. The question is not *whether* but *how*. Before deploying any AI system, the architect must define the fail posture for each control at the assigned risk tier. This is a mandatory design input, not an operational afterthought.
 
-![Fail Posture Decision Tree](../images/pace-fail-posture-decision.svg)
+![Fail Posture Decision Tree](../images/pace-fail-posture-decision.svg){ .arch-diagram }
 
 ## Guardrails - Internal PACE
 
@@ -70,7 +75,8 @@ Human Oversight is the Contingency layer: slow, expensive, but brings judgment t
 | C → E | Zero qualified reviewers available; queue wait time >5x SLA with no resolution timeline |
 | Recovery: E → P | Reviewers available and confirmed; queue backlog cleared or triaged; SLA performance confirmed for >4 hours |
 
-> **See also:** [Humans in the Business Process](../extensions/technical/humans-in-the-business-process.md) describes how existing business process checkpoints can serve as an Alternate or Contingency layer when dedicated HITL reviewers degrade - without adding new reviewers or changing the automated decision.
+!!! info "See also"
+    Humans in the Business Process describes how existing business process checkpoints can serve as an Alternate or Contingency layer when dedicated HITL reviewers degrade, without adding new reviewers or changing the automated decision.
 
 ## Cross-Layer PACE: Architecture-Level Resilience
 

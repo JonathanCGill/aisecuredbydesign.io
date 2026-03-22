@@ -21,7 +21,7 @@ Real-time controls that block known-bad inputs and outputs.
 
 **Processing flow:**
 
-![Input Processing Flow](../images/input-processing-flow.svg)
+![Input Processing Flow](../images/input-processing-flow.svg){ .arch-diagram }
 
 ### Output Guardrails
 
@@ -42,13 +42,15 @@ Guardrails catch **known patterns**. They miss:
 
 This is why the Judge provides the second layer.
 
-> For practical implementation guidance - international PII detection, RAG ingestion filtering, secrets scanning, alerting design, and guardrail exception governance - see **[Practical Guardrails](../insights/practical-guardrails.md)**.
+!!! info "See also"
+    For practical implementation guidance, including international PII detection, RAG ingestion filtering, secrets scanning, alerting design, and guardrail exception governance, see **Practical Guardrails**.
 
 ## 2. Model-as-Judge
 
-Evaluation of interactions for quality and policy compliance. The Judge can be a large LLM (for async assurance and complex reasoning) or a [distilled SLM](../extensions/technical/distill-judge-slm.md) (for inline, real-time action screening). Both approaches can be combined: an SLM screens every action in under 50ms, while a large LLM audits a sample asynchronously.
+Evaluation of interactions for quality and policy compliance. The Judge can be a large LLM (for async assurance and complex reasoning) or a distilled SLM (for inline, real-time action screening). Both approaches can be combined: an SLM screens every action in under 50ms, while a large LLM audits a sample asynchronously.
 
-→ For model selection guidance, see [Judge Model Selection](../extensions/technical/judge-model-selection.md)
+!!! info "See also"
+    For model selection guidance, see Judge Model Selection
 
 ### What the Judge Does
 
@@ -69,7 +71,7 @@ Evaluation of interactions for quality and policy compliance. The Judge can be a
 
 ### Architecture
 
-![Judge Architecture - Simple and Two-Tier](../images/judge-simple-flow.svg)
+![Judge Architecture - Simple and Two-Tier](../images/judge-simple-flow.svg){ .arch-diagram }
 
 ### Evaluation Criteria
 
@@ -107,7 +109,7 @@ The Judge will make mistakes.
 
 Humans review findings, make decisions, remain accountable.
 
-![HITL Architecture](../images/hitl-architecture.svg)
+![HITL Architecture](../images/hitl-architecture.svg){ .arch-diagram }
 
 ### Triggers
 
@@ -151,13 +153,13 @@ Humans review findings, make decisions, remain accountable.
 
 | Topic | Document |
 |-------|----------|
-| What these controls cost in production | [Cost & Latency](../extensions/technical/cost-and-latency.md) - latency budgets, sampling strategies, tiered evaluation cascade |
+| What these controls cost in production | Cost & Latency - latency budgets, sampling strategies, tiered evaluation cascade |
 | Judge accuracy, drift, and adversarial failure | [Judge Assurance](judge-assurance.md) · [When the Judge Can Be Fooled](when-the-judge-can-be-fooled.md) |
-| Practical guardrail configurations | [Practical Guardrails](../insights/practical-guardrails.md) - what to turn on first, encoding detection, international PII |
-| When HITL doesn't scale | [Humans in the Business Process](../extensions/technical/humans-in-the-business-process.md) - using existing business process checkpoints as a detection layer |
-| Controls for multi-agent systems | [MASO Framework](../maso/) - 128 controls across 7 domains for agent orchestration |
+| Practical guardrail configurations | Practical Guardrails - what to turn on first, encoding detection, international PII |
+| When HITL doesn't scale | Humans in the Business Process - using existing business process checkpoints as a detection layer |
+| Controls for multi-agent systems | MASO Framework - 128 controls across 7 domains for agent orchestration |
 | Controls for reasoning models (o1, etc.) | [Reasoning Model Controls](reasoning-model-controls.md) - trace scanning, instruction adherence, consistency checks |
-| Session-level and pre-action evaluation | [Output Evaluator](../extensions/technical/output-evaluator.md) - session-aware, pre-action evaluation architecture for agentic systems |
+| Session-level and pre-action evaluation | Output Evaluator - session-aware, pre-action evaluation architecture for agentic systems |
 
 ## Implementation Order
 

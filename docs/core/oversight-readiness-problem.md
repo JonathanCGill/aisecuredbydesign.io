@@ -12,7 +12,7 @@ This assumption is wrong - not in theory, but in practice. The problem is not th
 
 This is the **oversight readiness problem**: the more reliable your automated controls become, the less prepared your human reviewers are when those controls fail or encounter something novel.
 
-![The Ironies of Automation - The Readiness Paradox](../images/ironies-of-automation.svg)
+![The Ironies of Automation - The Readiness Paradox](../images/ironies-of-automation.svg){ .arch-diagram }
 
 The concept was first identified by Lisanne Bainbridge in 1983 as the "ironies of automation" and has been validated repeatedly in aviation, nuclear power, and process control. The aviation industry has spent four decades engineering solutions to this problem and still gets it wrong. AI systems face a more acute version because the failure modes are less predictable than those in physical systems.
 
@@ -45,7 +45,7 @@ In an AI context, the equivalent scenario is: your guardrails and Model-as-Judge
 
 Not every degradation event requires a human in the loop. Mandating human review for all failures creates its own problems - queue saturation, alert fatigue, and the perverse effect of devaluing the escalation signal. The decision of when humans must be involved should be driven by two dimensions: **consequence severity** and **failure novelty**.
 
-![Oversight Decision Matrix](../images/oversight-decision-matrix.svg)
+![Oversight Decision Matrix](../images/oversight-decision-matrix.svg){ .arch-diagram }
 
 ### Automatic Degradation Is Appropriate When:
 
@@ -81,7 +81,7 @@ When human oversight is required, passive monitoring does not work. The "human w
 
 The architecture must **force active cognition** at every stage.
 
-![Active Oversight Architecture - Forced Cognition Model](../images/active-oversight-architecture.svg)
+![Active Oversight Architecture - Forced Cognition Model](../images/active-oversight-architecture.svg){ .arch-diagram }
 
 ### Mechanism 1: Synthetic Probe Injection
 
@@ -155,7 +155,7 @@ The AF447 lesson - and every subsequent aviation incident involving automation s
 
 You need leading indicators that detect degradation before a real-world failure proves it.
 
-![Oversight Health Indicators](../images/oversight-health-indicators.svg)
+![Oversight Health Indicators](../images/oversight-health-indicators.svg){ .arch-diagram }
 
 ### Red Indicators - Intervene Immediately
 
@@ -260,7 +260,7 @@ The ironies of automation guarantee that the moment you most need human judgemen
 
 | Topic | Document |
 |-------|----------|
-| When direct AI supervision doesn't scale | [Humans in the Business Process](../extensions/technical/humans-in-the-business-process.md) - using existing business process checkpoints as a detection and correction layer, extending HITL without adding reviewers |
-| The human constraints behind oversight failure | [Human Factors](../strategy/human-factors.md) - skills, time, capacity, willingness, sustainability |
-| The principle behind human oversight | [Humans Remain Accountable](../insights/humans-remain-accountable.md) - AI assists, humans own outcomes |
+| When direct AI supervision doesn't scale | Humans in the Business Process - using existing business process checkpoints as a detection and correction layer, extending HITL without adding reviewers |
+| The human constraints behind oversight failure | Human Factors - skills, time, capacity, willingness, sustainability |
+| The principle behind human oversight | Humans Remain Accountable - AI assists, humans own outcomes |
 
