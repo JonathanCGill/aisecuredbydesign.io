@@ -1,1 +1,93 @@
 {% extends "base.html" %}
+
+{% block extrahead %}
+{{ super() }}
+<!-- SEO meta tags -->
+{% if page and page.meta and page.meta.description %}
+  <meta name="description" content="{{ page.meta.description }}" />
+{% else %}
+  <meta name="description" content="{{ config.site_description }}" />
+{% endif %}
+<meta name="author" content="{{ config.site_author }}" />
+<meta name="robots" content="index, follow" />
+<meta name="language" content="en" />
+<link rel="canonical" href="{{ page.canonical_url }}" />
+<!-- JSON-LD structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "{{ config.site_name }}",
+      "url": "{{ config.site_url }}",
+      "description": "{{ config.site_description }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ config.site_author }}",
+        "url": "https://www.linkedin.com/in/jonathancgill/",
+        "sameAs": [
+          "https://github.com/JonathanCGill",
+          "https://www.linkedin.com/in/jonathancgill/"
+        ]
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "{{ config.site_author }}"
+      },
+      "inLanguage": "en",
+      "license": "https://opensource.org/licenses/MIT"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ config.site_url }}"
+        }{% if page and page.parent %},
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ page.parent.title }}",
+          "item": "{{ config.site_url }}{{ page.parent.url }}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{ page.title }}"
+        }{% elif page and page.title != config.site_name %},
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ page.title }}"
+        }{% endif %}
+      ]
+    }
+  ]
+}
+</script>
+{% if page and page.meta %}
+  {% set seo_description = page.meta.get('og_description', page.meta.get('description', config.site_description)) %}
+  <!-- Open Graph / LinkedIn -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="{{ page.meta.get('og_title', page.meta.get('title', page.title)) }} — {{ config.site_name }}" />
+  <meta property="og:description" content="{{ seo_description }}" />
+  <meta property="og:url" content="{{ page.canonical_url }}" />
+  <meta property="og:site_name" content="{{ config.site_name }}" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="article:author" content="https://www.linkedin.com/in/jonathancgill/" />
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="{{ page.meta.get('og_title', page.meta.get('title', page.title)) }} — {{ config.site_name }}" />
+  <meta name="twitter:description" content="{{ seo_description }}" />
+{% else %}
+  <!-- Fallback OG tags (e.g. 404 page) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{ config.site_name }}" />
+  <meta property="og:description" content="{{ config.site_description }}" />
+  <meta property="og:site_name" content="{{ config.site_name }}" />
+  <meta property="og:locale" content="en_US" />
+{% endif %}
+{% endblock %}
