@@ -68,10 +68,8 @@ img[src$=".svg"] {
 
 /* ── Homepage styles ── */
 
-.md-main__inner > .md-content:only-child .md-content__inner > h1:first-child {
-  display: none;
-}
-.md-main__inner > .md-content:only-child .md-source-file {
+/* Homepage: hide the auto-generated page title (only when .home-subtitle follows) */
+.md-content__inner > h1:first-child:has(+ .home-subtitle) {
   display: none;
 }
 
