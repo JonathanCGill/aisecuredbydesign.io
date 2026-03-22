@@ -85,6 +85,7 @@ nav:
 
   - Getting Started:
     - getting-started/README.md
+    - AI-Aware SDLC: getting-started/ai-sdlc.md
     - Risk Classification: getting-started/risk-classification.md
     - Regulatory Alignment: getting-started/regulatory-alignment.md
     - Adversarial Testing: getting-started/adversarial-testing.md
@@ -118,6 +119,71 @@ nav:
       - Secure ML Pipelines: building/mlops/secure-ml-pipelines.md
       - Model Lifecycle: building/mlops/model-lifecycle.md
       - Experiment Tracking: building/mlops/experiment-tracking.md
+
+  - Runtime Controls:
+    - core/README.md
+    - Risk Tiers: core/risk-tiers.md
+    - Risk Assessment: core/risk-assessment.md
+    - Controls: core/controls.md
+    - Agentic: core/agentic.md
+    - IAM Governance: core/iam-governance.md
+    - Judge Assurance: core/judge-assurance.md
+    - Checklist: core/checklist.md
+    - Specialised Controls:
+      - Multimodal: core/multimodal-controls.md
+      - Reasoning Models: core/reasoning-model-controls.md
+      - Streaming: core/streaming-controls.md
+      - Memory and Context: core/memory-and-context.md
+      - Multi-Agent: core/multi-agent-controls.md
+      - Emerging Controls: core/emerging-controls.md
+    - PACE Resilience:
+      - Control Layers: core/pace-controls-section.md
+      - Agentic: core/pace-agentic-section.md
+      - Checklist: core/pace-checklist-section.md
+    - Analysis:
+      - Oversight Readiness: core/oversight-readiness-problem.md
+      - When the Judge Can Be Fooled: core/when-the-judge-can-be-fooled.md
+      - Open-Weight Models: core/open-weight-models-shift-the-burden.md
+      - Future Considerations: core/future-considerations.md
+
+  - Infrastructure:
+    - infrastructure/README.md
+    - Controls:
+      - Identity and Access: infrastructure/controls/identity-and-access.md
+      - Logging and Observability: infrastructure/controls/logging-and-observability.md
+      - Network and Segmentation: infrastructure/controls/network-and-segmentation.md
+      - Data Protection: infrastructure/controls/data-protection.md
+      - Secrets and Credentials: infrastructure/controls/secrets-and-credentials.md
+      - Session and Scope: infrastructure/controls/session-and-scope.md
+      - Incident Response: infrastructure/controls/incident-response.md
+    - Agentic:
+      - Tool Access Controls: infrastructure/agentic/tool-access-controls.md
+      - Delegation Chains: infrastructure/agentic/delegation-chains.md
+      - Sandbox Patterns: infrastructure/agentic/sandbox-patterns.md
+      - Supply Chain: infrastructure/agentic/supply-chain.md
+    - Standards Mappings:
+      - Controls to Three Layers: infrastructure/mappings/controls-to-three-layers.md
+      - NIST CSF 2.0: infrastructure/mappings/csf-2.0.md
+      - ISO 42001: infrastructure/mappings/iso42001-annex-a.md
+      - NIST AI RMF: infrastructure/mappings/nist-ai-rmf.md
+      - NIST SP 800-218A: infrastructure/mappings/nist-sp800-218a.md
+      - OWASP LLM Top 10: infrastructure/mappings/owasp-llm-top10.md
+    - Platform Patterns:
+      - AWS Bedrock: infrastructure/reference/platform-patterns/aws-bedrock.md
+      - Microsoft Foundry: infrastructure/reference/platform-patterns/microsoft-foundry.md
+      - Databricks: infrastructure/reference/platform-patterns/databricks.md
+
+  - Stakeholders:
+    - stakeholders/README.md
+    - Security Leaders: stakeholders/security-leaders.md
+    - Risk and Governance: stakeholders/risk-and-governance.md
+    - Enterprise Architects: stakeholders/enterprise-architects.md
+    - Chief Information Officers: stakeholders/chief-information-officers.md
+    - Business Owners: stakeholders/business-owners.md
+    - Product Owners: stakeholders/product-owners.md
+    - AI Engineers: stakeholders/ai-engineers.md
+    - Compliance and Legal: stakeholders/compliance-and-legal.md
+    - Insider Threat Teams: stakeholders/insider-threat-teams.md
 
   - Insights:
     - insights/README.md

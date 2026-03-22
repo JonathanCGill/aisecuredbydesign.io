@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" font-family="Inter, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+    <marker id="arr-feedback" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4051b5"/>
+    </marker>
+    <style>
+      .phase-box { rx: 8; stroke-width: 2; }
+      .phase-text { font-size: 11px; fill: #ffffff; text-anchor: middle; font-weight: 700; }
+      .phase-sub { font-size: 9px; fill: #ffffff; text-anchor: middle; font-weight: 400; opacity: 0.9; }
+      .label { font-size: 9px; fill: #475569; text-anchor: middle; }
+      .edge { stroke: #64748b; stroke-width: 1.5; fill: none; marker-end: url(#arr); }
+      .risk-line { stroke: #4051b5; stroke-width: 1.5; fill: none; stroke-dasharray: 6 3; }
+      .feedback-edge { stroke: #4051b5; stroke-width: 1.5; fill: none; stroke-dasharray: 4 3; marker-end: url(#arr-feedback); }
+      .site-label { font-size: 10px; font-weight: 600; text-anchor: middle; }
+      .section-bg { rx: 10; fill-opacity: 0.06; stroke-width: 1; stroke-dasharray: 4 2; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="360" y="24" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a2e">AI-Aware SDLC Lifecycle</text>
+
+  <!-- Pre-runtime background -->
+  <rect class="section-bg" x="10" y="36" width="530" height="340" fill="#4051b5" stroke="#4051b5"/>
+  <text class="site-label" x="275" y="54" fill="#4051b5">Pre-Runtime (aisecuredbydesign.io)</text>
+
+  <!-- Runtime background -->
+  <rect class="section-bg" x="550" y="36" width="160" height="340" fill="#16a34a" stroke="#16a34a"/>
+  <text class="site-label" x="630" y="54" fill="#16a34a">Runtime</text>
+
+  <!-- Phase 1: Ideation -->
+  <rect class="phase-box" x="30" y="70" width="110" height="60" fill="#6366f1" stroke="#4f46e5"/>
+  <text class="phase-text" x="85" y="93">1. Ideate</text>
+  <text class="phase-sub" x="85" y="106">Use case eval</text>
+  <text class="phase-sub" x="85" y="118">AI suitability</text>
+
+  <!-- Phase 2: Classify -->
+  <rect class="phase-box" x="160" y="70" width="110" height="60" fill="#8b5cf6" stroke="#7c3aed"/>
+  <text class="phase-text" x="215" y="93">2. Classify</text>
+  <text class="phase-sub" x="215" y="106">Risk tier</text>
+  <text class="phase-sub" x="215" y="118">Regulatory check</text>
+
+  <!-- Phase 3: Design -->
+  <rect class="phase-box" x="290" y="70" width="110" height="60" fill="#a855f7" stroke="#9333ea"/>
+  <text class="phase-text" x="345" y="93">3. Design</text>
+  <text class="phase-sub" x="345" y="106">Model + Platform</text>
+  <text class="phase-sub" x="345" y="118">Infra controls</text>
+
+  <!-- Phase 4: Build -->
+  <rect class="phase-box" x="420" y="70" width="110" height="60" fill="#c084fc" stroke="#a855f7"/>
+  <text class="phase-text" x="475" y="93">4. Build</text>
+  <text class="phase-sub" x="475" y="106">Pipeline + Data</text>
+  <text class="phase-sub" x="475" y="118">Guardrails</text>
+
+  <!-- Arrows between top row -->
+  <line class="edge" x1="140" y1="100" x2="158" y2="100"/>
+  <line class="edge" x1="270" y1="100" x2="288" y2="100"/>
+  <line class="edge" x1="400" y1="100" x2="418" y2="100"/>
+
+  <!-- Phase 5: Test -->
+  <rect class="phase-box" x="420" y="170" width="110" height="60" fill="#e879f9" stroke="#d946ef"/>
+  <text class="phase-text" x="475" y="193">5. Test</text>
+  <text class="phase-sub" x="475" y="206">Adversarial</text>
+  <text class="phase-sub" x="475" y="218">Domain-specific</text>
+
+  <!-- Arrow Build -> Test -->
+  <line class="edge" x1="475" y1="130" x2="475" y2="168"/>
+
+  <!-- Phase 6: Deploy -->
+  <rect class="phase-box" x="420" y="270" width="110" height="60" fill="#f472b6" stroke="#ec4899"/>
+  <text class="phase-text" x="475" y="293">6. Deploy</text>
+  <text class="phase-sub" x="475" y="306">Gate + Staged</text>
+  <text class="phase-sub" x="475" y="318">Runtime handoff</text>
+
+  <!-- Arrow Test -> Deploy -->
+  <line class="edge" x1="475" y1="230" x2="475" y2="268"/>
+
+  <!-- Phase 7: Run -->
+  <rect class="phase-box" x="575" y="170" width="110" height="60" fill="#22c55e" stroke="#16a34a"/>
+  <text class="phase-text" x="630" y="193">7. Run</text>
+  <text class="phase-sub" x="630" y="206">Three-layer pattern</text>
+  <text class="phase-sub" x="630" y="218">Monitor + Respond</text>
+
+  <!-- Arrow Deploy -> Run -->
+  <path class="edge" d="M 530 300 L 560 300 L 560 200 L 573 200"/>
+
+  <!-- Risk classification continuous line -->
+  <line class="risk-line" x1="215" y1="135" x2="215" y2="380"/>
+  <line class="risk-line" x1="215" y1="380" x2="630" y2="380"/>
+  <line class="risk-line" x1="630" y1="380" x2="630" y2="235"/>
+  <text x="400" y="396" text-anchor="middle" font-size="9" fill="#4051b5" font-weight="500">Risk classification carries through every phase and drives control intensity</text>
+
+  <!-- Feedback loop from Run back to Classify -->
+  <path class="feedback-edge" d="M 630 235 L 630 420 L 215 420 L 215 135"/>
+  <text x="420" y="436" text-anchor="middle" font-size="9" fill="#4051b5" font-weight="500">Feedback loop: production observations trigger reclassification, model re-evaluation, re-testing</text>
+
+  <!-- Key content references -->
+  <text x="85" y="155" text-anchor="middle" font-size="8" fill="#64748b">Stakeholder views</text>
+  <text x="215" y="155" text-anchor="middle" font-size="8" fill="#64748b">Risk tiers</text>
+  <text x="345" y="155" text-anchor="middle" font-size="8" fill="#64748b">80 infra controls</text>
+  <text x="475" y="155" text-anchor="middle" font-size="8" fill="#64748b">DevOps + MLOps</text>
+
+</svg>
