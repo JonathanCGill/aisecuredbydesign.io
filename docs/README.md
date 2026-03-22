@@ -27,13 +27,13 @@ These are pre-runtime questions. Get them wrong, and runtime security has to wor
 <div class="home-paths" markdown>
 <div class="home-path" markdown>
 #### Getting Started
-Classify the risk level of your AI system, understand your regulatory obligations, and follow the right security path. Everything else on this site is risk-proportionate, so start with classification.
+Classify the risk level of your AI system, understand your regulatory obligations, and follow the right security path. The [AI-Aware SDLC](getting-started/ai-sdlc.md) maps the complete lifecycle from ideation through production.
 
-[Classify Your System](getting-started/README.md){ .md-button }
+[Get Started](getting-started/README.md){ .md-button }
 </div>
 </div>
 
-## What this site covers
+## Pre-runtime security
 
 <div class="home-paths" markdown>
 <div class="home-path" markdown>
@@ -67,18 +67,16 @@ The pipeline that trains, validates, and deploys models must itself be secure. S
 
 ## Runtime controls and infrastructure
 
-This site now includes the runtime control definitions and infrastructure controls that were previously only on [AI Runtime Security](https://airuntimesecurity.io/). This means you can see the full picture in one place: the [three-layer control pattern](core/controls.md) (guardrails, Judge, human oversight), the [80 infrastructure controls](infrastructure/README.md) (IAM, logging, network, data protection, secrets, supply chain, incident response), and [stakeholder-specific views](stakeholders/README.md) for every role involved in AI security.
+The runtime control definitions and infrastructure controls are here alongside the pre-runtime content, so you can see the full picture in one place: the [three-layer control pattern](core/controls.md) (guardrails, Judge, human oversight), the [80 infrastructure controls](infrastructure/README.md) (IAM, logging, network, data protection, secrets, supply chain, incident response), and [role-specific entry points](stakeholders/README.md) for every stakeholder involved in AI security.
 
-The [AI-Aware SDLC](getting-started/ai-sdlc.md) ties everything together into a single lifecycle from ideation through production.
+## What comes next: runtime operations
 
-## What comes next: runtime security
-
-This site covers the complete AI security lifecycle, from pre-runtime decisions through to the control definitions that runtime operations implement. [AI Runtime Security](https://airuntimesecurity.io/) is the operational companion, covering the day-to-day execution of guardrails, Judge evaluation, human oversight, and incident response in production.
+[AI Runtime Security](https://airuntimesecurity.io/) is the operational companion. This site defines the controls and the lifecycle. That site covers the day-to-day execution of guardrails, Judge evaluation, human oversight, and incident response in production.
 
 <div class="runtime-callout" markdown>
 <p class="runtime-callout__label">Continue to</p>
 <p class="runtime-callout__title">AI Runtime Security</p>
-<p class="runtime-callout__desc">The sequel to this site. Once your AI system is deployed, runtime controls take over: guardrails, monitoring, human oversight, and incident response.</p>
+<p class="runtime-callout__desc">Once your AI system is deployed, runtime operations take over: guardrails, monitoring, human oversight, and incident response.</p>
 
 [Continue to AI Runtime Security](https://airuntimesecurity.io/){ .md-button }
 </div>

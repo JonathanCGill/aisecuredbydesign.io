@@ -81,7 +81,6 @@ copyright: >-
 
 nav:
   - Home: README.md
-  - Securing AI Before Deployment: what-is-ai-pre-runtime-security.md
 
   - Getting Started:
     - getting-started/README.md
@@ -91,7 +90,7 @@ nav:
     - Adversarial Testing: getting-started/adversarial-testing.md
     - Production Readiness: getting-started/production-readiness.md
 
-  - Building Securely:
+  - Pre-Runtime Security:
     - building/README.md
     - Model Selection:
       - building/model-selection/README.md
@@ -184,6 +183,3 @@ nav:
     - AI Engineers: stakeholders/ai-engineers.md
     - Compliance and Legal: stakeholders/compliance-and-legal.md
     - Insider Threat Teams: stakeholders/insider-threat-teams.md
-
-  - Insights:
-    - insights/README.md
