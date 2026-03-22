@@ -106,6 +106,8 @@ nav:
       - Resilience: building/devops/resilience.md
     - MLOps Security:
       - building/mlops/README.md
+      - Threat Intelligence: building/mlops/threat-intelligence.md
+      - Data Governance: building/mlops/data-governance.md
       - Secure ML Pipelines: building/mlops/secure-ml-pipelines.md
       - Model Lifecycle: building/mlops/model-lifecycle.md
       - Experiment Tracking: building/mlops/experiment-tracking.md
