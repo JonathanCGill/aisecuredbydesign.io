@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 680" width="750" height="680">
+  <style>
+    .title { font: bold 15px Inter, Arial, sans-serif; fill: #1e293b; }
+    .label { font: bold 11px Inter, Arial, sans-serif; fill: #1e293b; }
+    .detail { font: 9px Inter, Arial, sans-serif; fill: #64748b; }
+    .track { font: bold 9px Inter, Arial, sans-serif; fill: #1e293b; }
+    .tier { font: 9px Inter, Arial, sans-serif; fill: #475569; }
+    .yes { fill: #166534; }
+    .no { fill: #b91c1c; }
+    .arrow { fill: #475569; }
+  </style>
+
+  <!-- Background -->
+  <rect width="750" height="680" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="375" y="25" text-anchor="middle" class="title">Foundation Model Onboarding: Selection to Operation</text>
+
+  <!-- Step 1: Request -->
+  <rect x="275" y="45" width="200" height="40" rx="6" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="375" y="63" text-anchor="middle" class="label">Request Submission</text>
+  <text x="375" y="76" text-anchor="middle" class="detail">Model, justification, data flows, tier</text>
+
+  <!-- Arrow -->
+  <line x1="375" y1="85" x2="375" y2="105" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="375,110 370,102 380,102" class="arrow"/>
+
+  <!-- Step 2: Triage -->
+  <rect x="275" y="115" width="200" height="40" rx="6" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="375" y="133" text-anchor="middle" class="label">Triage and Classification</text>
+  <text x="375" y="146" text-anchor="middle" class="detail">Category, max tier, review tracks (2-3 days)</text>
+
+  <!-- Decision: Already approved? -->
+  <line x1="275" y1="135" x2="130" y2="135" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="130,135 138,130 138,140" class="arrow"/>
+  <rect x="20" y="118" width="110" height="34" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="75" y="133" text-anchor="middle" class="detail" font-weight="bold" fill="#92400e">Already approved</text>
+  <text x="75" y="145" text-anchor="middle" class="detail" fill="#92400e">or equivalent?</text>
+
+  <!-- Arrow down -->
+  <line x1="375" y1="155" x2="375" y2="175" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="375,180 370,172 380,172" class="arrow"/>
+
+  <!-- Step 3: Parallel review tracks -->
+  <rect x="50" y="185" width="650" height="100" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="375" y="200" text-anchor="middle" class="label" fill="#475569">Parallel Review Tracks</text>
+
+  <!-- Track boxes -->
+  <rect x="70" y="210" width="110" height="60" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="125" y="228" text-anchor="middle" class="track">A: Legal</text>
+  <text x="125" y="242" text-anchor="middle" class="detail">Licence, IP,</text>
+  <text x="125" y="253" text-anchor="middle" class="detail">DPA, jurisdiction</text>
+
+  <rect x="195" y="210" width="110" height="60" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="250" y="228" text-anchor="middle" class="track">B: Security</text>
+  <text x="250" y="242" text-anchor="middle" class="detail">Vendor posture,</text>
+  <text x="250" y="253" text-anchor="middle" class="detail">supply chain, robustness</text>
+
+  <rect x="320" y="210" width="110" height="60" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="375" y="228" text-anchor="middle" class="track">C: Privacy</text>
+  <text x="375" y="242" text-anchor="middle" class="detail">POPIA/GDPR,</text>
+  <text x="375" y="253" text-anchor="middle" class="detail">data flows, DPIA</text>
+
+  <rect x="445" y="210" width="110" height="60" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="500" y="228" text-anchor="middle" class="track">D: Tech Risk</text>
+  <text x="500" y="242" text-anchor="middle" class="detail">Infra, compute,</text>
+  <text x="500" y="253" text-anchor="middle" class="detail">monitoring, DR</text>
+
+  <rect x="570" y="210" width="110" height="60" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="625" y="228" text-anchor="middle" class="track">E: Model Risk</text>
+  <text x="625" y="242" text-anchor="middle" class="detail">Performance, bias,</text>
+  <text x="625" y="253" text-anchor="middle" class="detail">fairness, stress test</text>
+
+  <!-- Arrow down -->
+  <line x1="375" y1="285" x2="375" y2="305" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="375,310 370,302 380,302" class="arrow"/>
+
+  <!-- Decision diamond: Pass? -->
+  <polygon points="375,315 445,350 375,385 305,350" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="375" y="347" text-anchor="middle" class="label" fill="#92400e">All tracks</text>
+  <text x="375" y="360" text-anchor="middle" class="label" fill="#92400e">pass?</text>
+
+  <!-- Fail branch -->
+  <line x1="305" y1="350" x2="200" y2="350" stroke="#ef4444" stroke-width="1.5"/>
+  <polygon points="200,350 208,345 208,355" fill="#ef4444"/>
+  <rect x="80" y="333" width="120" height="34" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="140" y="348" text-anchor="middle" class="label" fill="#991b1b">Rejected</text>
+  <text x="140" y="360" text-anchor="middle" class="detail" fill="#991b1b">Remediate and resubmit</text>
+
+  <!-- Pass arrow down -->
+  <line x1="375" y1="385" x2="375" y2="405" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="375,410 370,402 380,402" class="arrow"/>
+
+  <!-- Tier-based approval -->
+  <rect x="230" y="415" width="290" height="95" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="375" y="433" text-anchor="middle" class="label" fill="#475569">Approval Authority (by tier)</text>
+  <text x="250" y="452" class="tier"><tspan font-weight="bold">Tier 0:</tspan> AI governance + Tracks A, B</text>
+  <text x="250" y="466" class="tier"><tspan font-weight="bold">Tier 1:</tspan> AI governance, all tracks pass</text>
+  <text x="250" y="480" class="tier"><tspan font-weight="bold">Tier 2:</tspan> MRM + CISO + data privacy</text>
+  <text x="250" y="494" class="tier"><tspan font-weight="bold">Tier 3:</tspan> AI governance committee, full pass</text>
+
+  <!-- Arrow down -->
+  <line x1="375" y1="510" x2="375" y2="530" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="375,535 370,527 380,527" class="arrow"/>
+
+  <!-- Registry entry -->
+  <rect x="275" y="540" width="200" height="40" rx="6" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="375" y="558" text-anchor="middle" class="label" fill="#166534">Model Registry Entry</text>
+  <text x="375" y="571" text-anchor="middle" class="detail" fill="#166534">Tier ceiling, constraints, expiry</text>
+
+  <!-- Arrow down -->
+  <line x1="375" y1="580" x2="375" y2="600" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="375,605 370,597 380,597" class="arrow"/>
+
+  <!-- Ongoing governance -->
+  <rect x="250" y="610" width="250" height="50" rx="6" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="375" y="630" text-anchor="middle" class="label">Ongoing Governance</text>
+  <text x="375" y="645" text-anchor="middle" class="detail">Monitoring, re-attestation, revalidation triggers</text>
+
+  <!-- Revalidation loop back -->
+  <line x1="500" y1="635" x2="660" y2="635" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="660" y1="635" x2="660" y2="200" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+  <polygon points="660,200 655,208 665,208" fill="#94a3b8"/>
+  <text x="668" y="420" class="detail" fill="#94a3b8" transform="rotate(90,668,420)">Revalidation trigger</text>
+</svg>
