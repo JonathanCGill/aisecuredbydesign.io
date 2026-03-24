@@ -127,6 +127,8 @@ Before a model enters the approved registry, it must be evaluated across multipl
 
 The approval process consists of two distinct but linked procedures: **model onboarding** (getting a model into the approved registry) and **use case approval** (getting permission to use an approved model for a specific purpose). Decoupling these prevents redundant evaluation of models already in the registry.
 
+![Foundation model onboarding flow from request submission through parallel review tracks to registry entry and ongoing governance](../../images/foundation-model-onboarding-flow.svg){ .arch-diagram }
+
 ### Model onboarding
 
 #### Step 1: Request submission
@@ -184,6 +186,8 @@ Approved models are entered into the central [model registry](model-lifecycle.md
 - Assigned owner responsible for ongoing vendor and publisher monitoring
 
 ### Use case approval
+
+![Use case approval flow from model registry through risk assessment and tier-based approval to go-live gate](../../images/use-case-approval-flow.svg){ .arch-diagram }
 
 #### Step 1: Use case registration
 
@@ -258,6 +262,8 @@ The following models are prohibited from access or download under any circumstan
 - Models requiring network egress for telemetry purposes unless the telemetry is contractually governed and approved
 
 ## Ongoing governance and monitoring
+
+![Model decay over time showing performance degradation, revalidation triggers, and upgrade paths](../../images/model-decay-upgrade-cycle.svg){ .arch-diagram }
 
 ### Model registry
 

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 560" width="750" height="560">
+  <style>
+    .title { font: bold 15px Inter, Arial, sans-serif; fill: #1e293b; }
+    .label { font: bold 11px Inter, Arial, sans-serif; fill: #1e293b; }
+    .detail { font: 9px Inter, Arial, sans-serif; fill: #64748b; }
+    .check { font: 9px Inter, Arial, sans-serif; fill: #475569; }
+    .tier-label { font: bold 10px Inter, Arial, sans-serif; }
+    .arrow { fill: #475569; }
+  </style>
+
+  <!-- Background -->
+  <rect width="750" height="560" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="375" y="25" text-anchor="middle" class="title">Use Case Approval: Matching Approved Models to Use Cases</text>
+
+  <!-- Approved registry (source) -->
+  <rect x="40" y="50" width="160" height="50" rx="6" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="120" y="72" text-anchor="middle" class="label" fill="#166534">Model Registry</text>
+  <text x="120" y="86" text-anchor="middle" class="detail" fill="#166534">Approved models with tier ceilings</text>
+
+  <!-- Arrow right -->
+  <line x1="200" y1="75" x2="240" y2="75" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="245,75 237,70 237,80" class="arrow"/>
+
+  <!-- Use case request -->
+  <rect x="250" y="50" width="200" height="50" rx="6" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="350" y="70" text-anchor="middle" class="label">Use Case Registration</text>
+  <text x="350" y="84" text-anchor="middle" class="detail">Description, model, tier, data class,</text>
+  <text x="350" y="94" text-anchor="middle" class="detail">user population, guardrails</text>
+
+  <!-- Use case context -->
+  <rect x="520" y="50" width="190" height="50" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="615" y="68" text-anchor="middle" class="label" fill="#475569">Context Inputs</text>
+  <text x="615" y="82" text-anchor="middle" class="detail">Human oversight design</text>
+  <text x="615" y="93" text-anchor="middle" class="detail">Controls, data classification</text>
+
+  <line x1="520" y1="75" x2="455" y2="75" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+  <polygon points="455,75 463,70 463,80" fill="#94a3b8"/>
+
+  <!-- Arrow down -->
+  <line x1="350" y1="100" x2="350" y2="125" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="350,130 345,122 355,122" class="arrow"/>
+
+  <!-- Decision: Within tier ceiling? -->
+  <polygon points="350,135 430,170 350,205 270,170" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="350" y="165" text-anchor="middle" class="label" fill="#92400e">Within tier</text>
+  <text x="350" y="178" text-anchor="middle" class="label" fill="#92400e">ceiling?</text>
+
+  <!-- No branch -->
+  <line x1="270" y1="170" x2="160" y2="170" stroke="#ef4444" stroke-width="1.5"/>
+  <polygon points="160,170 168,165 168,175" fill="#ef4444"/>
+  <rect x="40" y="153" width="120" height="34" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="100" y="168" text-anchor="middle" class="detail" font-weight="bold" fill="#991b1b">Exceeds ceiling</text>
+  <text x="100" y="180" text-anchor="middle" class="detail" fill="#991b1b">Re-evaluate model first</text>
+
+  <!-- Yes arrow down -->
+  <line x1="350" y1="205" x2="350" y2="230" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="350,235 345,227 355,227" class="arrow"/>
+
+  <!-- Risk assessment -->
+  <rect x="225" y="240" width="250" height="50" rx="6" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="350" y="260" text-anchor="middle" class="label">Risk Assessment</text>
+  <text x="350" y="274" text-anchor="middle" class="detail">Controls proportionate? Regulatory implications?</text>
+  <text x="350" y="284" text-anchor="middle" class="detail">Data classification compatible?</text>
+
+  <!-- Arrow down -->
+  <line x1="350" y1="290" x2="350" y2="315" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="350,320 345,312 355,312" class="arrow"/>
+
+  <!-- Tier-based approval -->
+  <rect x="80" y="325" width="140" height="55" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="150" y="342" text-anchor="middle" class="tier-label" fill="#475569">Tier 0</text>
+  <text x="150" y="356" text-anchor="middle" class="detail">Line manager</text>
+  <text x="150" y="368" text-anchor="middle" class="detail">Self-service, synthetic data</text>
+
+  <rect x="235" y="325" width="140" height="55" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="305" y="342" text-anchor="middle" class="tier-label" fill="#1e40af">Tier 1</text>
+  <text x="305" y="356" text-anchor="middle" class="detail">AI governance function</text>
+  <text x="305" y="368" text-anchor="middle" class="detail">Internal data, proportionate</text>
+
+  <rect x="390" y="325" width="140" height="55" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="460" y="342" text-anchor="middle" class="tier-label" fill="#92400e">Tier 2</text>
+  <text x="460" y="356" text-anchor="middle" class="detail">MRM + risk + data owner</text>
+  <text x="460" y="368" text-anchor="middle" class="detail">Customer data, full validation</text>
+
+  <rect x="545" y="325" width="160" height="55" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="625" y="342" text-anchor="middle" class="tier-label" fill="#991b1b">Tier 3</text>
+  <text x="625" y="356" text-anchor="middle" class="detail">AI governance committee</text>
+  <text x="625" y="368" text-anchor="middle" class="detail">Full MRM, monitoring, rollback</text>
+
+  <!-- Arrows converging down -->
+  <line x1="150" y1="380" x2="150" y2="410" stroke="#475569" stroke-width="1"/>
+  <line x1="305" y1="380" x2="305" y2="410" stroke="#475569" stroke-width="1"/>
+  <line x1="460" y1="380" x2="460" y2="410" stroke="#475569" stroke-width="1"/>
+  <line x1="625" y1="380" x2="625" y2="410" stroke="#475569" stroke-width="1"/>
+  <line x1="150" y1="410" x2="625" y2="410" stroke="#475569" stroke-width="1"/>
+  <line x1="375" y1="410" x2="375" y2="430" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="375,435 370,427 380,427" class="arrow"/>
+
+  <!-- Go-live gate -->
+  <rect x="225" y="440" width="250" height="85" rx="6" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="350" y="458" text-anchor="middle" class="label" fill="#166534">Go-Live Gate</text>
+  <text x="255" y="474" class="check">&#x2610; Controls implemented and tested</text>
+  <text x="255" y="488" class="check">&#x2610; Monitoring active</text>
+  <text x="255" y="502" class="check">&#x2610; Incident response documented</text>
+  <text x="255" y="516" class="check">&#x2610; Rollback plan tested</text>
+
+  <!-- Arrow to production -->
+  <line x1="375" y1="525" x2="375" y2="545" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="375,550 370,542 380,542" fill="#22c55e"/>
+  <text x="375" y="558" text-anchor="middle" class="label" fill="#166534">Production</text>
+</svg>
