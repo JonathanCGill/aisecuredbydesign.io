@@ -37,6 +37,7 @@ Traditional software follows a predictable path from code to deployment. ML syst
 - **[Data Governance](data-governance.md)** covers data lineage, versioning, classification, quality controls, and regulatory compliance for ML workflows.
 - **[Secure ML Pipelines](secure-ml-pipelines.md)** covers end-to-end pipeline security from training through deployment, including reproducibility and attestation.
 - **[Model Lifecycle](model-lifecycle.md)** covers managing models through their entire lifecycle: versioning, staging, production, retirement, and the approval gates between each stage.
+- **[Foundation Model Access](foundation-model-access.md)** covers the governance structure for accessing foundation models: sourcing classification, risk tiering, minimum requirements, evaluation criteria, approval processes, and ongoing monitoring.
 - **[Experiment Tracking](experiment-tracking.md)** covers securing the experiment process, protecting intellectual property in hyperparameters and results, and managing access to experiment data.
 
 ## Key frameworks and standards
