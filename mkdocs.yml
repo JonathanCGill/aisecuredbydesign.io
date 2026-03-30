@@ -92,6 +92,7 @@ nav:
 
   - Pre-Runtime Security:
     - building/README.md
+    - Designing Runtime Controls: building/secure-design-guardrails.md
     - Model Selection:
       - building/model-selection/README.md
       - Trust and Evaluation: building/model-selection/trust-and-evaluation.md

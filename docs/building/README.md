@@ -57,6 +57,7 @@ These differences mean that traditional security practices (code review, static 
 
 Each choice, which model, which platform, which pipeline, which data, constrains what is possible downstream and determines the security posture of the deployed system. This section covers four areas where those decisions are made:
 
+- **[Designing Runtime Controls](secure-design-guardrails.md)** covers guardrail selection, judge selection, behavioural expectations, threat-to-control mapping, and active monitoring design
 - **[Model Selection](model-selection/README.md)** covers choosing and verifying the models your system depends on
 - **[Platform Selection](platform-selection/README.md)** covers where and how you host AI workloads
 - **[AI DevOps](devops/README.md)** covers the pipelines that build, test, and deploy AI systems
