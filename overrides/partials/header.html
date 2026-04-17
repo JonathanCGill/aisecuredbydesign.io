@@ -33,14 +33,16 @@
     {% endmacro %}
     <ul class="md-header-tabs">
       {% for nav_item in nav %}
+      {% if nav_item.title != "Home" %}
       <li class="md-header-tabs__item">
         <a
-          href="{% if nav_item.title == 'Home' %}{{ nav.homepage.url | url }}{% else %}{{ first_page_url(nav_item) | trim }}{% endif %}"
+          href="{{ first_page_url(nav_item) | trim }}"
           class="md-header-tabs__link{% if nav_item.active %} md-header-tabs__link--active{% endif %}"
         >
           {{ nav_item.title }}
         </a>
       </li>
+      {% endif %}
       {% endfor %}
     </ul>
 
