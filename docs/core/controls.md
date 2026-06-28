@@ -1,8 +1,8 @@
 ---
-description: "The three-layer control model for AI runtime security: guardrails for known-bad, Model-as-Judge (LLM or distilled SLM) for unknown-bad, and human oversight for high-consequence decisions."
+description: "The three-layer control model for AI runtime security: deterministic guardrails for known-bad, a reviewing layer (scanners, semantic firewall, model-as-judge) for unknown-bad, and human oversight for high-consequence decisions."
 ---
 
-# Controls: Guardrails, Judge, and Human Oversight
+# Controls: Guardrails, Reviewing Controls, and Human Oversight
 
 ## 1. Guardrails
 
@@ -40,19 +40,48 @@ Guardrails catch **known patterns**. They miss:
 - Context-dependent violations
 - Subtle policy violations
 
-This is why the Judge provides the second layer.
+This is why **reviewing controls** add a second layer.
 
 !!! info "See also"
     For practical implementation guidance, including international PII detection, RAG ingestion filtering, secrets scanning, alerting design, and guardrail exception governance, see **Practical Guardrails**.
 
-## 2. Model-as-Judge
+## 2. Reviewing controls
 
-Evaluation of interactions for quality and policy compliance. The Judge can be a large LLM (for async assurance and complex reasoning) or a distilled SLM (for inline, real-time action screening). Both approaches can be combined: an SLM screens every action in under 50ms, while a large LLM audits a sample asynchronously.
+A second opinion before anything reaches the user: **scanners**, a **semantic firewall**, and a **model-as-judge** weighing the response against policy, context, and intent. This is what catches the subtle failures a fixed rule waves straight through.
+
+The judge is itself a model, so it is probabilistic and can be fooled. It **informs the decision rather than making the final call**, and it never stands in for the deterministic guardrails beneath it. Treat the reviewing layer as assurance that raises confidence, not as a hard gate your safety case can rest on.
+
+| Component | What it does | Determinism | Typical placement |
+|-----------|--------------|-------------|-------------------|
+| **Scanners** | Signature and classifier checks over the response: PII, secrets, toxicity, known-bad patterns | Mostly deterministic | Inline, low latency |
+| **Semantic firewall** | Weighs the response against policy and context, catching semantic violations a regex waves through | Mixed | Inline, low to moderate latency |
+| **Model-as-judge** | An LLM or distilled SLM weighing the response against policy, context, and intent | Probabilistic | SLM inline (~50ms); LLM async |
+
+!!! info "On the runtime side"
+    - [Inside the semantic firewall](https://airuntimesecurity.io/core/semantic-firewall/)
+    - [When the judge can be fooled](https://airuntimesecurity.io/core/when-the-judge-can-be-fooled/)
+
+### Choosing reviewing controls: risk, latency, and PACE
+
+Match the reviewing layer to the risk it guards, the latency the interaction can spend, and the [PACE](pace-controls-section.md) posture you fall back to when part of the layer is degraded.
+
+| Risk tier | Reviewing layer | Latency posture | PACE fallback |
+|-----------|-----------------|-----------------|---------------|
+| **LOW** | Output scanners | Inline, negligible | Primary scanners; if down, log and serve |
+| **MEDIUM** | Scanners plus a sampled async judge | Inline scan; judge off the hot path | Drop to scanners only; sample later |
+| **HIGH** | Scanners plus semantic firewall, inline SLM judge, async LLM audit | SLM under ~50ms inline; LLM async | Alternate to scanners plus firewall; deterministic block on high-impact actions |
+| **CRITICAL** | Full reviewing layer inline on high-impact actions, plus human oversight | Inline within the action's budget | Emergency: deny the action, route to a human |
+
+The judge informs; it does not hold the line alone. Where latency forbids an inline judge, keep deterministic scanners and the semantic firewall in the hot path and run the judge asynchronously. The [control matrix](risk-tiers.md#control-matrix) gives baseline depth per tier.
+
+### The model-as-judge
+
+Evaluation of interactions for quality and policy compliance. The judge can be a large LLM (for async assurance and complex reasoning) or a distilled SLM (for inline, real-time action screening). Both can be combined: an SLM screens every action in under 50ms while a large LLM audits a sample asynchronously.
 
 !!! info "See also"
-    For model selection guidance, see Judge Model Selection
+    For model selection guidance, see Judge Model Selection.
 
-### What the Judge Does
+#### What the judge does
 
 | Function | Description |
 |----------|-------------|
@@ -61,19 +90,20 @@ Evaluation of interactions for quality and policy compliance. The Judge can be a
 | Anomaly detection | Unusual patterns? |
 | Risk flagging | What needs human review? |
 
-### What the Judge Does NOT Do
+#### What the judge does NOT do
 
 - Block transactions in real-time
 - Make final decisions
 - Replace human judgment
+- Replace the deterministic guardrails beneath it
 
-**The Judge surfaces findings. Humans decide actions.**
+**The judge surfaces findings and informs the decision. Deterministic controls hold the line, and humans decide actions.**
 
-### Architecture
+#### Architecture
 
 ![Judge Architecture - Simple and Two-Tier](../images/judge-simple-flow.svg){ .arch-diagram }
 
-### Evaluation Criteria
+#### Evaluation criteria
 
 | Criterion | Scoring |
 |-----------|---------|
@@ -84,7 +114,7 @@ Evaluation of interactions for quality and policy compliance. The Judge can be a
 
 **Output:** PASS / REVIEW / ESCALATE
 
-### Deployment Phases
+#### Deployment phases
 
 | Phase | Action on Findings |
 |-------|-------------------|
@@ -94,9 +124,9 @@ Evaluation of interactions for quality and policy compliance. The Judge can be a
 
 **Start in shadow mode.** Validate accuracy before acting.
 
-### Accuracy
+#### Accuracy
 
-The Judge will make mistakes.
+The judge will make mistakes.
 
 | Error | Impact | Mitigation |
 |-------|--------|------------|
@@ -165,10 +195,10 @@ Humans review findings, make decisions, remain accountable.
 
 1. **Logging** - Can't evaluate what you don't capture
 2. **Basic guardrails** - Block obvious attacks
-3. **Judge in shadow** - Evaluate without action
+3. **Reviewing controls in shadow** - Scan and evaluate without action
 4. **HITL queues** - Somewhere for findings
-5. **Judge advisory** - Surface to humans
+5. **Reviewing layer advisory** - Surface to humans
 6. **Enhanced guardrails** - Add ML detection
-7. **Judge operational** - Drive workflows
+7. **Reviewing layer operational** - Drive workflows
 8. **Continuous tuning** - Improve from findings
 
