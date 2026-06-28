@@ -2,12 +2,12 @@
 description: Core implementation guide for AI runtime security controls including risk classification, control definitions, and specialised controls for production AI systems.
 ---
 
-# AI Runtime Security - Core
+# Controls
 
-Reducing harm caused by AI systems in production through risk-proportionate controls that you select, adapt, or consciously deselect based on your risk appetite and the way your organisation works.
+This is where you choose the controls. Once you have [threat modelled](../threat-modelling.md) the system and sized its [risk tier](risk-tiers.md), this section gives you the control set to apply: the three-layer pattern, agentic and IAM controls, the Judge, and the specialised controls particular deployments need. Select what fits the risk, adapt it to how your organisation works, and consciously deselect the rest.
 
 !!! info "Canonical home: airuntimesecurity.io"
-    Runtime security is maintained in depth on [AI Runtime Security](https://airuntimesecurity.io/core/). These pages mirror that material so the pre-runtime lifecycle on this site connects directly into the runtime controls a deployed system needs. Where the two differ, airuntimesecurity.io is authoritative. This section contains the risk classification criteria, control definitions, checklists, and specialised controls. Start with the essentials, branch into specialised topics based on your deployment, and deselect what does not apply.
+    The runtime control definitions are maintained in depth on [AI Runtime Security](https://airuntimesecurity.io/core/). These pages mirror that material so an architect can design the control set here and hand off to AIRS for runtime operation. Where the two differ, airuntimesecurity.io is authoritative.
 
 ## Reading Order
 
@@ -30,8 +30,8 @@ Start with the essentials, then branch into specialised topics based on your dep
 | Reasoning models (chain-of-thought) | [Reasoning Model Controls](reasoning-model-controls.md) |
 | Streaming responses | [Streaming Controls](streaming-controls.md) |
 | Persistent memory or long context | [Memory and Context](memory-and-context.md) |
-| Multi-agent systems | [Multi-Agent Controls](multi-agent-controls.md) then MASO |
-| Open-weight / self-hosted models | Open-Weight Models |
+| Multi-agent systems | [Multi-Agent Controls](multi-agent-controls.md) then [MASO](https://airuntimesecurity.io/maso/) |
+| Open-weight / self-hosted models | [Open-Weight Models Shift the Burden](https://airuntimesecurity.io/insights/open-weight-models-shift-the-burden/) |
 
 **PACE resilience (read after controls):**
 - [Control Layer Resilience](pace-controls-section.md) - PACE for each control layer
@@ -133,15 +133,6 @@ What has been missing: clear guidance on *why* this pattern is necessary and *ho
 | [Memory and Context](memory-and-context.md) | Long context and persistent memory controls |
 | [Reasoning Model Controls](reasoning-model-controls.md) | Controls for chain-of-thought reasoning models |
 | [Streaming Controls](streaming-controls.md) | Controls for real-time streaming outputs |
-
-### Analysis & Insights
-
-| Document | Purpose |
-|----------|---------|
-| [Oversight Readiness Problem](oversight-readiness-problem.md) | Why human-in-the-loop fails and how to fix it |
-| [When the Judge Can Be Fooled](when-the-judge-can-be-fooled.md) | Judge adversarial robustness |
-| [Open Weight Models Shift the Burden](open-weight-models-shift-the-burden.md) | Self-hosted model control implications |
-| [Future Considerations](future-considerations.md) | Future framework scope |
 
 ### PACE Sections
 

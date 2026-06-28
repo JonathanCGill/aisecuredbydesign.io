@@ -169,7 +169,7 @@ The Judge layer is covered across several documents. If you're here, you probabl
 
 | Document | What It Covers |
 |----------|---------------|
-| [When the Judge Can Be Fooled](when-the-judge-can-be-fooled.md) | Adversarial failure modes: output crafting, judge manipulation, judge limitations. Tier-specific mitigations. |
+| [When the Judge Can Be Fooled](https://airuntimesecurity.io/core/when-the-judge-can-be-fooled/) | Adversarial failure modes: output crafting, judge manipulation, judge limitations. Tier-specific mitigations. |
 | Cost and Latency | Judge latency budgets (500ms–5s per evaluation), sync vs async guidance, sampling strategies by risk tier, tiered evaluation cascade (rule-based → small model → large model → human). |
 | Privileged Agent Governance | MASO controls for the Judge as a privileged agent: calibration testing (PA-2.2), criteria versioning (PA-2.3), model rotation (PA-3.4), continuous calibration (PA-3.5). |
 | Execution Control - EC-2.5 | Judge as the gate for agent actions. Action classification rules. Cross-validation at Tier 3 (EC-3.3). |
