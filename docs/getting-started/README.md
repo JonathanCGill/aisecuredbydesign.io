@@ -2,9 +2,11 @@
 description: Start here. Classify the risk level of your AI system, understand your regulatory obligations, and follow the right security path for your context.
 ---
 
-# Getting Started
+# Start Here
 
-Before building controls, you need to know what you are building controls for. This section helps you answer three questions:
+Before you threat model or choose a single control, you need to know what you are securing and how much rigour it warrants. This section orients you: it sets the lifecycle context, classifies the system, and establishes the regulatory baseline. From here the design work begins with [Threat Modelling](../threat-modelling.md).
+
+This section helps you answer three questions:
 
 1. **What is the risk level of your AI system?** A public FAQ bot and an autonomous trading agent need very different security postures.
 2. **What are your legal and regulatory obligations?** Your country, industry, and the nature of the AI system determine the compliance baseline.

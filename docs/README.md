@@ -1,82 +1,74 @@
 ---
-description: AI Secured by Design, securing AI before it runs. The complete pre-runtime security framework for AI systems.
+description: AI Secured by Design, the security architect's hub for designing AI systems that achieve runtime security. Threat modelling, risk-based control selection, testing, identity, logging, and monitoring.
 hide:
   - title
 ---
 
 <div class="home-subtitle" markdown>
-**Secure AI before it runs.**
+**Design AI systems that achieve runtime security.**
 
-Pre-runtime security covers every decision made before an AI system reaches production: which model to use, where to host it, how to build the pipeline, and how to validate what you are deploying.
+A working hub for the security architect: how to threat model an AI system, which risks to worry about, which controls to apply for each risk, what to test, and how to run identity, logging, and monitoring once it is live.
 </div>
 
 <div class="pull-quote" markdown>
-> A compromised model makes AI even less predictable. A poisoned dataset corrupts outputs in ways that may be subtle and slow to surface. An insecure pipeline makes every deployment suspect. Security starts before deployment, because the harder you make it for problems to reach production, the less runtime security has to catch.
+> Runtime security is won or lost at design time. The architect who maps the threats, sizes the risk, and chooses controls that match it gives the running system far less to catch. This site is where that design work happens.
 </div>
 
-## The problem
+## Who this is for
 
-Most AI security guidance focuses on what happens after deployment: guardrails, monitoring, incident response. That matters. But by the time a model is running in production, the most consequential security decisions have already been made.
+You are designing or reviewing an AI system and you are accountable for it being secure when it runs. You need technical answers, not slideware: where the threats are, which controls actually address them, how to size the effort to the risk, and how to prove it works. The material here is organised as the path an architect walks, from a blank threat model to a system you can operate.
 
-Which model did you choose, and can you verify its integrity? Where is it hosted, and who controls the infrastructure? How does your pipeline move a model from experiment to production? What data trained it, and who had access?
-
-These are pre-runtime questions. Get them wrong, and runtime security has to work much harder to prevent issues that could have been avoided entirely.
-
-## Start here
+## The design workflow
 
 <div class="home-paths" markdown>
 <div class="home-path" markdown>
-#### Getting Started
-Classify the risk level of your AI system, understand your regulatory obligations, and follow the right security path. The [AI-Aware SDLC](getting-started/ai-sdlc.md) maps the complete lifecycle from ideation through production.
+#### 1. Threat model
+Map the assets, trust boundaries, and AI-specific attack surface (prompt injection, poisoning, tool abuse, data exfiltration) before you choose a single control.
 
-[Get Started](getting-started/README.md){ .md-button }
-</div>
-</div>
-
-## Pre-runtime security
-
-<div class="home-paths" markdown>
-<div class="home-path" markdown>
-#### Model Selection
-Choosing a model is a security decision. Provenance verification, risk assessment, vulnerability scanning, and understanding the tradeoffs between open-weight and closed API models.
-
-[Explore Model Selection](building/model-selection/README.md){ .md-button }
+[Start threat modelling](threat-modelling.md){ .md-button }
 </div>
 
 <div class="home-path" markdown>
-#### Platform Selection
-Where you run AI determines your security posture. Cloud AI services, self-hosted infrastructure, and hybrid patterns each carry distinct risks and responsibilities.
+#### 2. Size the risk
+Classify the system into a risk tier and quantify residual risk, so the controls you choose are proportionate to the harm the system could cause.
 
-[Explore Platform Selection](building/platform-selection/README.md){ .md-button }
+[Classify and assess risk](core/risk-tiers.md){ .md-button }
 </div>
 
 <div class="home-path" markdown>
-#### AI DevOps
-CI/CD for AI is not the same as CI/CD for software. Pipeline integrity, infrastructure as code for ML environments, and secrets management for model endpoints and data credentials.
+#### 3. Choose controls
+Apply the three-layer pattern (guardrails, Judge, human oversight) and the agentic and IAM controls each risk tier demands. Select what applies, deselect what does not.
 
-[Explore AI DevOps](building/devops/README.md){ .md-button }
+[Select controls](core/README.md){ .md-button }
 </div>
 
 <div class="home-path" markdown>
-#### MLOps Security
-The pipeline that trains, validates, and deploys models must itself be secure. Secure ML pipelines, model lifecycle management, and experiment tracking security.
+#### 4. Test and validate
+Adversarially test the design, then run it through production-readiness gates before it ships.
 
-[Explore MLOps Security](building/mlops/README.md){ .md-button }
+[Test the design](getting-started/adversarial-testing.md){ .md-button }
+</div>
+
+<div class="home-path" markdown>
+#### 5. Operate
+Stand up the infrastructure that makes the controls real: identity and access, logging and observability, network segmentation, secrets, and incident response.
+
+[Operate securely](infrastructure/README.md){ .md-button }
 </div>
 </div>
 
-## Runtime controls and infrastructure
+## Choosing the model and platform
 
-The runtime control definitions and infrastructure controls are here alongside the pre-runtime content, so you can see the full picture in one place: the [three-layer control pattern](core/controls.md) (guardrails, Judge, human oversight), the [80 infrastructure controls](infrastructure/README.md) (IAM, logging, network, data protection, secrets, supply chain, incident response), and [role-specific entry points](stakeholders/README.md) for every stakeholder involved in AI security.
+Two decisions shape every control choice that follows: **which model** you trust and **where** you run it. Model selection (provenance, evaluation, vulnerability scanning) and platform selection (cloud, self-hosted, hybrid) each carry distinct risks, and the secure pipeline that builds and deploys the system has to hold them together. See [Build & Deploy](building/README.md) and [Model Selection](building/model-selection/README.md).
 
-## What comes next: runtime operations
+## How this aligns with AI Runtime Security
 
-[AI Runtime Security](https://airuntimesecurity.io/) is the operational companion. This site defines the controls and the lifecycle. That site covers the day-to-day execution of guardrails, Judge evaluation, human oversight, and incident response in production.
+[AI Runtime Security](https://airuntimesecurity.io/) (AIRS) is the parent framework and the operational companion: it owns the runtime control definitions, the [MASO](https://airuntimesecurity.io/maso/) multi-agent framework, and the day-to-day execution of guardrails, Judge evaluation, human oversight, and incident response. This site is the **design counterpart**, where an architect assembles those controls into a solution. Where the two overlap, airuntimesecurity.io is authoritative.
 
 <div class="runtime-callout" markdown>
-<p class="runtime-callout__label">Continue to</p>
+<p class="runtime-callout__label">Operational companion</p>
 <p class="runtime-callout__title">AI Runtime Security</p>
-<p class="runtime-callout__desc">Once your AI system is deployed, runtime operations take over: guardrails, monitoring, human oversight, and incident response.</p>
+<p class="runtime-callout__desc">Once the system you designed is running, AIRS covers the operations: guardrails, monitoring, the Judge, human oversight, MASO, and incident response.</p>
 
-[Continue to AI Runtime Security](https://airuntimesecurity.io/){ .md-button }
+[Go to AI Runtime Security](https://airuntimesecurity.io/){ .md-button }
 </div>

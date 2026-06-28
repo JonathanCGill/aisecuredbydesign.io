@@ -1,9 +1,10 @@
 site_name: AI Secured by Design
 site_url: https://aisecuredbydesign.io/
 site_description: >-
-  AI Secured by Design, securing AI before it runs. Model selection,
-  platform decisions, DevOps pipelines, MLOps, data security, and governance
-  for trustworthy AI deployments.
+  AI Secured by Design, the security architect's hub for designing AI systems
+  that achieve runtime security. Threat modelling, risk-based control selection,
+  testing, identity, logging, and monitoring, aligned with AI Runtime Security
+  and MASO.
 site_author: Jonathan Gill
 
 edit_uri: ""
@@ -82,24 +83,53 @@ copyright: >-
 nav:
   - Home: README.md
 
-  - Getting Started:
+  - Start Here:
     - getting-started/README.md
     - AI-Aware SDLC: getting-started/ai-sdlc.md
     - Risk Classification: getting-started/risk-classification.md
     - Regulatory Alignment: getting-started/regulatory-alignment.md
-    - Adversarial Testing: getting-started/adversarial-testing.md
-    - Production Readiness: getting-started/production-readiness.md
 
-  - Pre-Runtime Security:
-    - building/README.md
-    - Designing Runtime Controls: building/secure-design-guardrails.md
+  - How To:
+    - how-to/README.md
+    - Should You Use AI?: how-to/should-you-use-ai.md
+    - Worked Example: how-to/worked-example.md
+    - Selecting Guardrails: how-to/selecting-guardrails.md
+    - Scaling and PACE: how-to/scaling-and-pace.md
+
+  - Threats & Risk:
+    - Threat Modelling: threat-modelling.md
+    - Risk Tiers: core/risk-tiers.md
+    - Risk Assessment: core/risk-assessment.md
     - Model Selection:
       - building/model-selection/README.md
+      - Model Threat Landscape: building/model-selection/threat-landscape.md
       - Trust and Evaluation: building/model-selection/trust-and-evaluation.md
-      - Threat Landscape: building/model-selection/threat-landscape.md
       - Provenance and Integrity: building/model-selection/provenance-and-integrity.md
-      - Risk Assessment: building/model-selection/risk-assessment.md
+      - Model Risk Assessment: building/model-selection/risk-assessment.md
       - Vulnerability Scanning: building/model-selection/vulnerability-scanning.md
+
+  - Controls:
+    - core/README.md
+    - Three-Layer Controls: core/controls.md
+    - Designing Runtime Controls: building/secure-design-guardrails.md
+    - Agentic AI Controls: core/agentic.md
+    - IAM Governance: core/iam-governance.md
+    - Judge Assurance: core/judge-assurance.md
+    - Implementation Checklist: core/checklist.md
+    - Specialised Controls:
+      - Multimodal: core/multimodal-controls.md
+      - Reasoning Models: core/reasoning-model-controls.md
+      - Streaming: core/streaming-controls.md
+      - Memory and Context: core/memory-and-context.md
+      - Multi-Agent: core/multi-agent-controls.md
+      - Emerging Controls: core/emerging-controls.md
+    - PACE Resilience:
+      - Control Layers: core/pace-controls-section.md
+      - Agentic: core/pace-agentic-section.md
+      - Checklist: core/pace-checklist-section.md
+
+  - Build & Deploy:
+    - building/README.md
     - Platform Selection:
       - building/platform-selection/README.md
       - Cloud AI Services: building/platform-selection/cloud-ai-services.md
@@ -121,33 +151,11 @@ nav:
       - Foundation Model Access: building/mlops/foundation-model-access.md
       - Experiment Tracking: building/mlops/experiment-tracking.md
 
-  - Runtime Controls:
-    - core/README.md
-    - Risk Tiers: core/risk-tiers.md
-    - Risk Assessment: core/risk-assessment.md
-    - Controls: core/controls.md
-    - Agentic: core/agentic.md
-    - IAM Governance: core/iam-governance.md
-    - Judge Assurance: core/judge-assurance.md
-    - Checklist: core/checklist.md
-    - Specialised Controls:
-      - Multimodal: core/multimodal-controls.md
-      - Reasoning Models: core/reasoning-model-controls.md
-      - Streaming: core/streaming-controls.md
-      - Memory and Context: core/memory-and-context.md
-      - Multi-Agent: core/multi-agent-controls.md
-      - Emerging Controls: core/emerging-controls.md
-    - PACE Resilience:
-      - Control Layers: core/pace-controls-section.md
-      - Agentic: core/pace-agentic-section.md
-      - Checklist: core/pace-checklist-section.md
-    - Analysis:
-      - Oversight Readiness: core/oversight-readiness-problem.md
-      - When the Judge Can Be Fooled: core/when-the-judge-can-be-fooled.md
-      - Open-Weight Models: core/open-weight-models-shift-the-burden.md
-      - Future Considerations: core/future-considerations.md
+  - Test & Validate:
+    - Adversarial Testing: getting-started/adversarial-testing.md
+    - Production Readiness: getting-started/production-readiness.md
 
-  - Infrastructure:
+  - Infrastructure & Operations:
     - infrastructure/README.md
     - Controls:
       - Identity and Access: infrastructure/controls/identity-and-access.md
@@ -173,15 +181,3 @@ nav:
       - AWS Bedrock: infrastructure/reference/platform-patterns/aws-bedrock.md
       - Microsoft Foundry: infrastructure/reference/platform-patterns/microsoft-foundry.md
       - Databricks: infrastructure/reference/platform-patterns/databricks.md
-
-  - Stakeholders:
-    - stakeholders/README.md
-    - Security Leaders: stakeholders/security-leaders.md
-    - Risk and Governance: stakeholders/risk-and-governance.md
-    - Enterprise Architects: stakeholders/enterprise-architects.md
-    - Chief Information Officers: stakeholders/chief-information-officers.md
-    - Business Owners: stakeholders/business-owners.md
-    - Product Owners: stakeholders/product-owners.md
-    - AI Engineers: stakeholders/ai-engineers.md
-    - Compliance and Legal: stakeholders/compliance-and-legal.md
-    - Insider Threat Teams: stakeholders/insider-threat-teams.md

@@ -6,7 +6,7 @@ description: Infrastructure controls that enforce AI behavioral security across 
 
 **The infrastructure layer that makes behavioral AI security enforceable.**
 
-Companion to [AI Runtime Security](https://airuntimesecurity.io/), which defines the three-layer behavioral security pattern (Guardrails, Model-as-Judge, Human Oversight). This section defines 80 technical infrastructure controls that underpin that pattern. Each control specifies which risk tiers it applies to, so you can quickly identify what you need and deselect what you do not.
+Companion to [AI Runtime Security](https://airuntimesecurity.io/infrastructure/), which is the canonical home for these controls and defines the three-layer behavioral security pattern (Guardrails, Model-as-Judge, Human Oversight). This section mirrors the 80 technical infrastructure controls that underpin that pattern, so the pre-runtime lifecycle on this site connects directly into the infrastructure a deployed system needs. Where the two differ, airuntimesecurity.io is authoritative. Each control specifies which risk tiers it applies to, so you can quickly identify what you need and deselect what you do not.
 
 ## The Problem
 
@@ -227,10 +227,6 @@ Fourteen SVG diagrams covering IAM architecture, logging pipelines, network zone
 5. **Agentic-aware.** Agent-specific controls are treated as first-class concerns, not afterthoughts.
 6. **Infrastructure beats instructions.** Security controls are enforced via deterministic infrastructure (gateways, network policy, vaults), never via prompt instructions that can be overridden.
 7. **AI controls add to your existing security, they don't replace it.** These 80 controls address AI-specific risks. Your organisation's existing DLP (inbound and outbound), API gateways, database access controls, IAM, SIEM, network segmentation, secure coding practices, and incident response capabilities all still apply - and all still catch failures that AI-specific controls miss. Defence in depth includes everything outside this framework.
-
-## Repo Structure
-
-See [REPO-STRUCTURE.md](REPO-STRUCTURE.md) for the full layout and rationale.
 
 ## Contributing
 

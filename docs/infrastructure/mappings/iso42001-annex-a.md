@@ -77,7 +77,7 @@ ISO 42001 Annex A sections A.2 through A.10 are mapped below. Each section lists
 
 | Annex A Control | Description | Infrastructure Controls | Notes |
 |----------------|-------------|------------------------|-------|
-| A.8.2 | AI system documentation | SUP-07, TOOL-01, REPO-STRUCTURE | AI-BOM, tool manifests, and the structured control documentation support system documentation. Document content is organisational. |
+| A.8.2 | AI system documentation | SUP-07, TOOL-01 | AI-BOM, tool manifests, and the structured control documentation support system documentation. Document content is organisational. |
 | A.8.3 | AI system explainability | LOG-01, LOG-04, DEL-02, TOOL-06 | Model I/O logs, agent chain reconstruction, delegation audit trails, and tool invocation logs provide the data needed for explainability. Explainability methods are organisational. |
 | A.8.4 | Information about AI system interaction | LOG-01, LOG-02, DAT-07 | I/O logging, guardrail decision logging, and conversation history management support interaction transparency. User-facing disclosures are organisational. |
 

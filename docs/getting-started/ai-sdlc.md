@@ -274,7 +274,7 @@ For HIGH and CRITICAL tiers, conduct a formal handoff meeting. See [production r
 
 ## Phase 7: Run
 
-Once deployed, the [three-layer control pattern](../core/controls.md) takes over: guardrails prevent known-bad inputs and outputs in real-time, the [Judge](../core/judge-assurance.md) evaluates interactions asynchronously for unknown-bad patterns, and [human oversight](../core/oversight-readiness-problem.md) handles high-consequence decisions.
+Once deployed, the [three-layer control pattern](../core/controls.md) takes over: guardrails prevent known-bad inputs and outputs in real-time, the [Judge](../core/judge-assurance.md) evaluates interactions asynchronously for unknown-bad patterns, and [human oversight](https://airuntimesecurity.io/core/oversight-readiness-problem/) handles high-consequence decisions.
 
 The [quantitative risk assessment](../core/risk-assessment.md) methodology lets you measure how effectively each layer reduces residual risk, using the same NIST AI RMF alignment that structures the rest of the framework.
 
@@ -327,18 +327,18 @@ The key additions to a standard SDLC:
 
 ### Roles and responsibilities
 
-Each role has a [stakeholder view](../stakeholders/README.md) that provides role-specific guidance, reading paths, and concrete first actions.
+Each role has a [stakeholder view](https://airuntimesecurity.io/stakeholders/) that provides role-specific guidance, reading paths, and concrete first actions.
 
 | Role | Primary SDLC responsibilities | Stakeholder view |
 |------|------------------------------|-----------------|
-| **Product owner** | Use case definition, risk classification approval, tier change decisions | [Product owners](../stakeholders/product-owners.md) |
-| **AI/ML engineer** | Model selection, pipeline build, guardrail configuration, model lifecycle | [AI engineers](../stakeholders/ai-engineers.md) |
-| **Security leader** | Security strategy, control framework, adversarial testing oversight | [Security leaders](../stakeholders/security-leaders.md) |
-| **Enterprise architect** | Platform selection, infrastructure controls, integration patterns | [Enterprise architects](../stakeholders/enterprise-architects.md) |
-| **Governance/compliance** | Regulatory alignment, audit trail, classification review, policy enforcement | [Compliance and legal](../stakeholders/compliance-and-legal.md) |
-| **Risk management** | Risk quantification, board reporting, control effectiveness measurement | [Risk and governance](../stakeholders/risk-and-governance.md) |
-| **CIO/CTO** | AI portfolio governance, platform strategy, technology standards | [Chief information officers](../stakeholders/chief-information-officers.md) |
-| **Business owner** | Business case, cost/benefit, operational risk across product lines | [Business owners](../stakeholders/business-owners.md) |
+| **Product owner** | Use case definition, risk classification approval, tier change decisions | [Product owners](https://airuntimesecurity.io/stakeholders/product-owners/) |
+| **AI/ML engineer** | Model selection, pipeline build, guardrail configuration, model lifecycle | [AI engineers](https://airuntimesecurity.io/stakeholders/ai-engineers/) |
+| **Security leader** | Security strategy, control framework, adversarial testing oversight | [Security leaders](https://airuntimesecurity.io/stakeholders/security-leaders/) |
+| **Enterprise architect** | Platform selection, infrastructure controls, integration patterns | [Enterprise architects](https://airuntimesecurity.io/stakeholders/enterprise-architects/) |
+| **Governance/compliance** | Regulatory alignment, audit trail, classification review, policy enforcement | [Compliance and legal](https://airuntimesecurity.io/stakeholders/compliance-and-legal/) |
+| **Risk management** | Risk quantification, board reporting, control effectiveness measurement | [Risk and governance](https://airuntimesecurity.io/stakeholders/risk-and-governance/) |
+| **CIO/CTO** | AI portfolio governance, platform strategy, technology standards | [Chief information officers](https://airuntimesecurity.io/stakeholders/chief-information-officers/) |
+| **Business owner** | Business case, cost/benefit, operational risk across product lines | [Business owners](https://airuntimesecurity.io/stakeholders/business-owners/) |
 
 ### Low-risk fast lane
 

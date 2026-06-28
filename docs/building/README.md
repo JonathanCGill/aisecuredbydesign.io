@@ -2,11 +2,13 @@
 description: Why AI systems need different security practices, what makes them distinct from traditional software, and practical guidance for securing every decision from model selection through deployment.
 ---
 
-# Pre-Runtime Security
+# Build & Deploy
 
-AI pre-runtime security is the discipline of securing AI systems before they reach production. It covers every decision and process from initial model selection through to the deployment gate: choosing models, selecting platforms, building pipelines, securing data, and validating that what you are about to deploy is trustworthy.
+Once you have threat modelled the system and chosen controls, you have to build and deploy it without undoing that work. This section covers the platform, pipeline, and data decisions that turn a control design into a running system: where you host it, how the pipeline moves it to production, and how you keep integrity from training through deployment.
 
-## Why pre-runtime matters
+Two related design decisions live in their own sections: choosing and verifying the model sits under [Threats & Risk](model-selection/README.md), and designing the runtime control set sits under [Controls](secure-design-guardrails.md). This section is everything between those choices and a deployed system.
+
+## Why the build pipeline matters
 
 Runtime security gets most of the attention. Guardrails, output filtering, anomaly detection, human oversight. These are important. But they work best when the system being monitored is fundamentally sound.
 
@@ -44,29 +46,29 @@ These differences mean that traditional security practices (code review, static 
 
 | Phase | Focus | Covered by |
 |-------|-------|------------|
-| **Model selection** | Choosing and verifying models | This section |
+| **Threat modelling** | Mapping the attack surface | [Threat Modelling](../threat-modelling.md) |
+| **Model selection** | Choosing and verifying models | [Threats & Risk](model-selection/README.md) |
+| **Control design** | Selecting the runtime control set | [Controls](secure-design-guardrails.md) |
 | **Platform selection** | Infrastructure and hosting decisions | This section |
-| **Development** | Secure AI-aware SDLC | [Getting Started](../getting-started/ai-sdlc.md) |
+| **Development** | Secure AI-aware SDLC | [Start Here](../getting-started/ai-sdlc.md) |
 | **Pipeline security** | DevOps and MLOps for AI | This section |
 | **Data security** | Training data, RAG pipelines, embeddings | This section |
-| **Validation** | Pre-deployment testing and gates | [Getting Started](../getting-started/adversarial-testing.md) |
+| **Validation** | Pre-deployment testing and gates | [Test & Validate](../getting-started/adversarial-testing.md) |
 | **Deployment** | The handoff point | [Production Readiness](../getting-started/production-readiness.md) |
-| **Runtime monitoring** | Guardrails, oversight, incident response | [Runtime Controls](../core/README.md) |
+| **Operations** | Identity, logging, monitoring, incident response | [Infrastructure & Operations](../infrastructure/README.md) |
 
 ## Building securely
 
-Each choice, which model, which platform, which pipeline, which data, constrains what is possible downstream and determines the security posture of the deployed system. This section covers four areas where those decisions are made:
+Each choice, which platform, which pipeline, which data, constrains what is possible downstream and determines the security posture of the deployed system. This section covers three areas where those build-and-deploy decisions are made:
 
-- **[Designing Runtime Controls](secure-design-guardrails.md)** covers guardrail selection, judge selection, behavioural expectations, threat-to-control mapping, and active monitoring design
-- **[Model Selection](model-selection/README.md)** covers choosing and verifying the models your system depends on
 - **[Platform Selection](platform-selection/README.md)** covers where and how you host AI workloads
 - **[AI DevOps](devops/README.md)** covers the pipelines that build, test, and deploy AI systems
 - **[MLOps Security](mlops/README.md)** covers the ML-specific lifecycle from training through production
 
-These areas are not independent. A model choice constrains platform options. A platform choice constrains pipeline design. A pipeline design constrains what validation is possible. Security decisions compound.
+These areas are not independent. A platform choice constrains pipeline design. A pipeline design constrains what validation is possible. Security decisions compound, which is why they follow the model choice ([Threats & Risk](model-selection/README.md)) and the control design ([Controls](secure-design-guardrails.md)) rather than preceding them.
 
 !!! tip "Start with risk classification"
-    If you have not yet classified the risk tier of your AI system, do that first. The [Getting Started](../getting-started/README.md) section walks through risk classification, regulatory alignment, and testing requirements. The tier you assign drives the level of rigour required across everything in this section. Once you have a tier, start with [Model Selection](model-selection/README.md), then work through platform, DevOps, and MLOps in order.
+    If you have not yet classified the risk tier of your AI system, do that first. The [Start Here](../getting-started/README.md) section walks through risk classification, regulatory alignment, and the lifecycle. The tier you assign drives the level of rigour required across everything in this section. Then work through platform, DevOps, and MLOps in order.
 
 !!! info "References"
     - [OWASP Machine Learning Security Top 10](https://owasp.org/www-project-machine-learning-security-top-10/)

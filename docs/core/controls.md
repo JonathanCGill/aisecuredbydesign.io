@@ -154,7 +154,7 @@ Humans review findings, make decisions, remain accountable.
 | Topic | Document |
 |-------|----------|
 | What these controls cost in production | Cost & Latency - latency budgets, sampling strategies, tiered evaluation cascade |
-| Judge accuracy, drift, and adversarial failure | [Judge Assurance](judge-assurance.md) · [When the Judge Can Be Fooled](when-the-judge-can-be-fooled.md) |
+| Judge accuracy, drift, and adversarial failure | [Judge Assurance](judge-assurance.md) · [When the Judge Can Be Fooled](https://airuntimesecurity.io/core/when-the-judge-can-be-fooled/) |
 | Practical guardrail configurations | Practical Guardrails - what to turn on first, encoding detection, international PII |
 | When HITL doesn't scale | Humans in the Business Process - using existing business process checkpoints as a detection layer |
 | Controls for multi-agent systems | MASO Framework - 128 controls across 7 domains for agent orchestration |
