@@ -1,19 +1,37 @@
 /* ── Colour scheme: dark navy primary, indigo accent ── */
 :root {
-  --md-default-bg-color: #f8f8f8;
+  --md-default-bg-color: #f7f9fb;
   --md-primary-fg-color: #1a1a2e;
   --md-primary-fg-color--light: #2d2d4a;
   --md-primary-fg-color--dark: #0f0f1e;
   --md-accent-fg-color: #4051b5;
   --md-accent-fg-color--transparent: rgba(64, 81, 181, 0.1);
+  /* Reference-library ink palette, applied site-wide */
+  --md-typeset-color: #0d1b2a;
+  --md-typeset-a-color: var(--md-accent-fg-color);
+  --sbd-ink: #0d1b2a;
+  --sbd-muted: #41566a;
+  --sbd-muted-2: #6a7c8d;
+  --sbd-surface: #ffffff;
+  --sbd-border: #e4e9f0;
+  --sbd-border-subtle: #eef2f6;
+  --sbd-row: #f3f7fb;
 }
 
 [data-md-color-scheme="slate"] {
   --md-primary-fg-color: #1a1a2e;
   --md-primary-fg-color--light: #2d2d4a;
   --md-primary-fg-color--dark: #0f0f1e;
-  --md-accent-fg-color: #4051b5;
-  --md-accent-fg-color--transparent: rgba(64, 81, 181, 0.1);
+  --md-accent-fg-color: #6074e6;
+  --md-accent-fg-color--transparent: rgba(96, 116, 230, 0.12);
+  --md-typeset-a-color: var(--md-accent-fg-color);
+  --sbd-ink: var(--md-default-fg-color);
+  --sbd-muted: var(--md-default-fg-color--light);
+  --sbd-muted-2: var(--md-default-fg-color--light);
+  --sbd-surface: var(--md-code-bg-color);
+  --sbd-border: var(--md-default-fg-color--lightest);
+  --sbd-border-subtle: var(--md-default-fg-color--lightest);
+  --sbd-row: rgba(255, 255, 255, 0.04);
 }
 
 /* ── Typography: 18px body, 720px max width ── */
@@ -23,8 +41,8 @@
 }
 
 .md-typeset {
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.65;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -35,7 +53,14 @@ h1, h2, h3, h4, h5, h6,
 .md-typeset h5,
 .md-typeset h6 {
   font-family: "Inter", sans-serif;
+  color: var(--sbd-ink);
 }
+
+/* Refined heading scale (reference library) */
+.md-typeset h1 { font-size: 2.1rem; font-weight: 600; letter-spacing: -0.025em; line-height: 1.12; }
+.md-typeset h2 { font-size: 1.55rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; margin-top: 2.2rem; }
+.md-typeset h3 { font-size: 1.2rem; font-weight: 600; letter-spacing: -0.01em; }
+.md-typeset h4 { font-size: 1.02rem; font-weight: 600; }
 
 /* Max content width: 720px */
 .md-content__inner {
@@ -307,7 +332,7 @@ img[src$=".svg"] {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 0.25rem;
+  gap: 0.05rem;
   flex: 1;
   justify-content: center;
   align-items: center;
@@ -316,12 +341,13 @@ img[src$=".svg"] {
 .md-header-tabs__link {
   color: var(--md-default-fg-color);
   font-family: var(--md-text-font);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  padding: 0.4rem 0.6rem;
+  letter-spacing: -0.005em;
+  padding: 0.35rem 0.5rem;
   text-decoration: none;
   white-space: nowrap;
-  border-radius: 0.25rem;
+  border-radius: 0.3rem;
   transition: color 0.15s, background-color 0.15s;
 }
 
@@ -353,10 +379,10 @@ img[src$=".svg"] {
 .md-header-tabs__link::before {
   content: "";
   display: inline-block;
-  width: 1em;
-  height: 1em;
-  margin-right: 0.4em;
-  vertical-align: -0.15em;
+  width: 0.95em;
+  height: 0.95em;
+  margin-right: 0.28em;
+  vertical-align: -0.13em;
   background-color: currentColor;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
@@ -417,21 +443,21 @@ img[src$=".svg"] {
 [data-md-color-scheme="slate"] .tier-high     { background: #3d200a; color: #fbbf85; border-color: #5a2f11; }
 [data-md-color-scheme="slate"] .tier-critical { background: #3b0f0f; color: #f7a8a8; border-color: #5a1616; }
 
-/* Mobile drawer: remove accent colour, use black throughout */
-.md-nav--primary {
-  --md-accent-fg-color: var(--md-default-fg-color);
-  --md-accent-fg-color--transparent: transparent;
-}
-
+/* Active page (sidebar) and current section (TOC) use the indigo accent */
 .md-nav__link--active,
-.md-nav__link:focus,
-.md-nav__link:hover,
 .md-nav__item--active > .md-nav__link,
 .md-nav--primary .md-nav__link--active,
 .md-nav--primary .md-nav__item--active > .md-nav__link,
 [data-md-level] .md-nav__link--active,
 .md-nav__link[data-md-state="current"] {
-  color: var(--md-default-fg-color) !important;
+  color: var(--md-accent-fg-color) !important;
+  font-weight: 600;
+}
+
+/* Hover/focus across nav also picks up the accent */
+.md-nav__link:focus,
+.md-nav__link:hover {
+  color: var(--md-accent-fg-color) !important;
 }
 
 /* Footer */
@@ -974,4 +1000,107 @@ img[src$=".svg"] {
   .md-typeset .hub-q,
   .md-typeset .hub-related__card,
   .hub-search__bar { transition: none; }
+}
+
+/* ============================================================
+   Site-wide reference-library styling (applies to all pages)
+   Bordered, rounded surfaces; indigo links; refined tables,
+   admonitions, code blocks and buttons. Fonts stay Inter + Roboto Mono.
+   ============================================================ */
+
+/* Links use the accent across content */
+.md-typeset a { text-decoration: none; }
+.md-typeset a:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+/* ── Content tables: rounded, bordered, header row tint ── */
+.md-typeset table:not([class]) {
+  border: 1px solid var(--sbd-border);
+  border-radius: 12px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  background: var(--sbd-surface);
+  box-shadow: none;
+  font-size: 0.92rem;
+}
+.md-typeset table:not([class]) th {
+  background: var(--sbd-row);
+  color: var(--sbd-ink);
+  font-weight: 600;
+  border-bottom: 1px solid var(--sbd-border);
+}
+.md-typeset table:not([class]) td {
+  border-bottom: 1px solid var(--sbd-border-subtle);
+}
+.md-typeset table:not([class]) tr:last-child td {
+  border-bottom: none;
+}
+.md-typeset table:not([class]) tbody tr:hover {
+  background: var(--sbd-row);
+}
+
+/* ── Admonitions / collapsible details: softer, rounder ── */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 12px;
+  border-width: 1px;
+  border-left-width: 0.2rem;
+  box-shadow: none;
+  background: var(--sbd-surface);
+  font-size: 0.85rem;
+}
+
+/* ── Code: rounded blocks and inline chips ── */
+.md-typeset .highlight > pre > code,
+.md-typeset pre > code {
+  border-radius: 10px;
+}
+.md-typeset code {
+  border-radius: 5px;
+  font-size: 0.85em;
+}
+
+/* ── Buttons: reference accent style ── */
+.md-typeset .md-button {
+  border-radius: 8px;
+  border: 1px solid var(--sbd-border);
+  color: var(--md-accent-fg-color);
+  background: var(--sbd-surface);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  transition: border-color 0.15s, background-color 0.15s, color 0.15s;
+}
+.md-typeset .md-button:hover,
+.md-typeset .md-button:focus {
+  border-color: var(--md-accent-fg-color);
+  background: var(--md-accent-fg-color--transparent);
+  color: var(--md-accent-fg-color);
+}
+.md-typeset .md-button--primary {
+  background: var(--md-accent-fg-color);
+  border-color: var(--md-accent-fg-color);
+  color: #fff;
+}
+.md-typeset .md-button--primary:hover,
+.md-typeset .md-button--primary:focus {
+  background: var(--md-primary-fg-color);
+  border-color: var(--md-primary-fg-color);
+  color: #fff;
+}
+
+/* ── Breadcrumbs / nav path: lighter ── */
+.md-typeset .md-content__inner > nav[aria-label] { color: var(--sbd-muted-2); }
+
+/* ── Focus-visible rings for accessibility ── */
+.md-typeset a:focus-visible,
+.md-header-tabs__link:focus-visible,
+.hub-card:focus-visible,
+.hub-q:focus-visible,
+.hub-chip:focus-visible,
+.hub-related__card:focus-visible,
+.hub-matrix__row:focus-visible {
+  outline: 2px solid var(--md-accent-fg-color);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
