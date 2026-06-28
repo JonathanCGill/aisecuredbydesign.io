@@ -58,7 +58,7 @@ The judge is itself a model, so it is probabilistic and can be fooled. It **info
 | **Model-as-judge** | An LLM or distilled SLM weighing the response against policy, context, and intent | Probabilistic | SLM inline (~50ms); LLM async |
 
 !!! info "On the runtime side"
-    - [Inside the semantic firewall](https://airuntimesecurity.io/core/semantic-firewall/)
+    - [Inside the semantic firewall](https://airuntimesecurity.io/core/controls/semantic-firewall/)
     - [When the judge can be fooled](https://airuntimesecurity.io/core/when-the-judge-can-be-fooled/)
 
 ### Choosing reviewing controls: risk, latency, and PACE
