@@ -10,6 +10,9 @@ This framework covers a lot of ground. Nobody needs all of it. The framework is 
 
 These pages tell you **what matters for your role**, **why you should care**, and **where to start reading**. Each one is a window from your perspective, not a summary of everything, but a filter for what is relevant to your work.
 
+!!! info "Shared with airuntimesecurity.io"
+    These role views span the full AI security lifecycle and are maintained on [AI Runtime Security](https://airuntimesecurity.io/stakeholders/). They appear here so each stakeholder can follow their thread from the pre-runtime decisions on this site into runtime operations. Where the two differ, airuntimesecurity.io is authoritative.
+
 ![Stakeholder Map](../images/stakeholder-map.svg){ .arch-diagram }
 
 ## Pick Your Role

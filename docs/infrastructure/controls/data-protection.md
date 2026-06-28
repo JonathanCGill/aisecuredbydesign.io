@@ -81,7 +81,7 @@ Automated PII detection must be applied to model inputs and outputs as part of t
 
 ### Detection Methods
 
-> For international PII patterns (national identifiers across jurisdictions), detection layering approach, and RAG ingestion filtering, see **[Practical Guardrails](../../insights/practical-guardrails.md)**.
+> For international PII patterns (national identifiers across jurisdictions), detection layering approach, and RAG ingestion filtering, see **[Practical Guardrails](https://airuntimesecurity.io/insights/practical-guardrails/)**.
 
 | Method | Strengths | Limitations |
 |--------|-----------|-------------|

@@ -67,7 +67,7 @@ The pipeline that trains, validates, and deploys models must itself be secure. S
 
 ## Runtime controls and infrastructure
 
-The runtime control definitions and infrastructure controls are here alongside the pre-runtime content, so you can see the full picture in one place: the [three-layer control pattern](core/controls.md) (guardrails, Judge, human oversight), the [80 infrastructure controls](infrastructure/README.md) (IAM, logging, network, data protection, secrets, supply chain, incident response), and [role-specific entry points](stakeholders/README.md) for every stakeholder involved in AI security.
+Once a system is deployed, runtime security takes over. [AI Runtime Security](https://airuntimesecurity.io/) is the canonical home for that material: the three-layer control pattern (guardrails, Judge, human oversight), the infrastructure controls, and role-specific entry points. This site mirrors those sections, [Runtime Controls](core/README.md), [Infrastructure](infrastructure/README.md), and [Stakeholders](stakeholders/README.md), so you can trace the full lifecycle in one place, but they are maintained in depth on airuntimesecurity.io.
 
 ## What comes next: runtime operations
 
