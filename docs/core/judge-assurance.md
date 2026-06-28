@@ -6,9 +6,12 @@ description: "How to validate Model-as-Judge accuracy against human ground truth
 
 > Who judges the judge?
 
+!!! abstract "The judge is one part of the reviewing layer"
+    The model-as-judge sits inside the [reviewing layer](controls.md#2-reviewing-controls) alongside deterministic **scanners** and a **semantic firewall**. It **informs the decision rather than making the final call**, and it never stands in for the deterministic guardrails beneath it. This page is about keeping the judge honest. For its adversarial failure modes, see [When the judge can be fooled](https://airuntimesecurity.io/core/when-the-judge-can-be-fooled/).
+
 ## The Problem
 
-The three-layer pattern depends on the Model-as-Judge to detect "unknown-bad" outputs that guardrails miss. The Judge may be a large LLM running asynchronously, a distilled SLM running inline as a sidecar, or both in a tiered arrangement. Regardless of size, the Judge is itself a model. It hallucinates. It drifts. It can be manipulated.
+Within the reviewing layer, the model-as-judge detects "unknown-bad" outputs that scanners and the semantic firewall do not. The judge may be a large LLM running asynchronously, a distilled SLM running inline as a sidecar, or both in a tiered arrangement. Regardless of size, the judge is itself a model. It is probabilistic. It hallucinates. It drifts. It can be manipulated. That is why it informs rather than decides, and why deterministic controls still hold the line beneath it.
 
 If you deploy a Judge without evaluating its accuracy, you have added cost and latency without knowing whether you have added safety.
 

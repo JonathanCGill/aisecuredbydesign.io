@@ -37,8 +37,8 @@ Order by leverage, not by what is easiest to enable:
 1. **Logging.** You cannot tune what you cannot see. Capture model I/O, guardrail decisions, and tool calls before anything else ([Logging & Observability](../infrastructure/controls/logging-and-observability.md)).
 2. **The few high-value filters.** PII detection on output, injection detection on input, and topic/scope limits catch the largest share of real problems for the least false-positive cost.
 3. **Schema and parameter validation** wherever the model's output drives an action. A write tool should accept only well-formed, in-bounds parameters.
-4. **The Judge in shadow mode.** Let it evaluate without acting, so you can calibrate before you let it hold traffic ([Model-as-Judge](../core/controls.md#2-model-as-judge)).
-5. **Then tune up** based on what the logs and the Judge actually surface.
+4. **The reviewing layer in shadow mode.** Stand up scanners and, where the tier needs it, the semantic firewall and a model-as-judge, and let them evaluate without acting, so you can calibrate before you let them hold traffic ([Reviewing controls](../core/controls.md#2-reviewing-controls)).
+5. **Then tune up** based on what the logs and the reviewing layer actually surface.
 
 ## Matching controls to risk: the method
 
@@ -64,7 +64,7 @@ These are categories, not recommendations. The right choice depends on latency b
 |----------|---------|---------------|
 | **Deterministic filters** (regex, denylists, schema validation) | Fast, explainable, cheap; ideal for structured checks and known patterns | Brittle against paraphrase and novel attacks |
 | **Classifier models** (small, purpose-trained) | Catching fuzzy categories (toxicity, injection) that rules miss | Need calibration; add latency; can drift |
-| **LLM-based evaluators** (the Judge) | Nuanced, context-aware evaluation of open-ended output | Cost and latency; can themselves be fooled ([Judge Assurance](../core/judge-assurance.md)) |
+| **LLM-based evaluators** (the model-as-judge) | Nuanced, context-aware evaluation of open-ended output | Cost and latency; probabilistic and can themselves be fooled, so they inform rather than decide ([Judge Assurance](../core/judge-assurance.md)) |
 | **Policy / authorization engines** | Deterministic decisions about who and what may act | Only as good as the policy; must sit outside the model |
 | **Gateways and brokers** | Enforcing identity, rate limits, and tool permissions at the boundary | A single point that must be hardened and highly available |
 | **Platform-managed guardrails** | Fast to adopt; maintained for you | Less control; verify coverage against *your* threats, not the vendor's list |
@@ -77,11 +77,22 @@ A quick way to decide, without naming products:
 - **Buy a dedicated tool** when you need depth or coverage the platform lacks and the category is mature.
 - **Build** only the thin layer that encodes *your* policy and *your* enforcement points, which no vendor can know. Most teams should build less than they think and integrate more.
 
+## The reviewing layer: a second opinion, sized to risk and latency
+
+Guardrails are deterministic and fast. Behind them sits a **reviewing layer**: a second opinion before the response reaches the user, made of **scanners**, a **semantic firewall**, and a **model-as-judge**. The judge is probabilistic and can be fooled, so it informs the decision rather than making the final call, and it never replaces the deterministic guardrails in front of it. Pick how much of this layer you run, and where you place it, from three inputs: the risk tier, the latency the interaction can spend, and the [PACE](../core/pace-controls-section.md) posture you fall back to when part of the layer is slow or down.
+
+The latency budget decides placement more than anything else:
+
+- **Inline, in the hot path.** Deterministic scanners and the semantic firewall add little latency and can hold traffic. A distilled SLM judge can screen an action in roughly 50ms and sit inline too.
+- **Asynchronous, off the hot path.** A large LLM judge is slower and costlier, so run it over a sample after the response is served, to audit quality and catch drift without holding the user.
+
+A common HIGH-tier shape is scanners and the semantic firewall inline, an SLM judge inline for high-impact actions, and a large LLM judge auditing asynchronously. When the inline judge's latency budget is exceeded, fail to the deterministic layer rather than blocking the whole response. The full risk-to-control mapping lives in [Choosing reviewing controls: risk, latency, and PACE](../core/controls.md#choosing-reviewing-controls-risk-latency-and-pace).
+
 !!! warning "Over-blocking is a security failure too"
     A guardrail tuned so tight that staff route around the system, or customers abandon it, has reduced security, not increased it. Measure false-positive rate alongside catch rate, and tune to the tier: a LOW-tier FAQ bot should err toward letting traffic through; a CRITICAL action should err toward blocking.
 
 !!! info "References"
-    - [Controls: Guardrails, Judge, and Human Oversight](../core/controls.md)
+    - [Controls: Guardrails, Reviewing Controls, and Human Oversight](../core/controls.md)
     - [Risk Tiers: Control Matrix](../core/risk-tiers.md#control-matrix)
     - [Judge Assurance](../core/judge-assurance.md)
     - [Logging & Observability](../infrastructure/controls/logging-and-observability.md)

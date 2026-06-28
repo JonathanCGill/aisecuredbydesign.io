@@ -13,7 +13,7 @@
   
   <!-- Title -->
   <text x="450" y="35" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">AI Security Reference Architecture</text>
-  <text x="450" y="58" font-family="Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">Layered controls: Guardrails prevent, Judge detects, Humans decide</text>
+  <text x="450" y="58" font-family="Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">Layered controls: Guardrails prevent, reviewing controls catch the rest, humans decide</text>
   
   <!-- Layer Labels - Left Side -->
   <text x="25" y="145" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#64748b" transform="rotate(-90, 25, 145)">INLINE</text>
@@ -81,13 +81,13 @@
   
   <!-- LLM Judge -->
   <rect x="180" y="310" width="240" height="140" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
-  <text x="300" y="340" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#b45309" text-anchor="middle">Model-as-Judge</text>
-  <text x="300" y="358" font-family="Arial, sans-serif" font-size="10" fill="#92400e" text-anchor="middle">(Assurance, not control)</text>
+  <text x="300" y="340" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#b45309" text-anchor="middle">Reviewing controls</text>
+  <text x="300" y="358" font-family="Arial, sans-serif" font-size="10" fill="#92400e" text-anchor="middle">(Second opinion · assurance, not a hard gate)</text>
   <line x1="195" y1="368" x2="405" y2="368" stroke="#fcd34d" stroke-width="1"/>
-  <text x="210" y="390" font-family="Arial, sans-serif" font-size="10" fill="#78350f">• Policy compliance check</text>
-  <text x="210" y="408" font-family="Arial, sans-serif" font-size="10" fill="#78350f">• Quality evaluation</text>
-  <text x="210" y="426" font-family="Arial, sans-serif" font-size="10" fill="#78350f">• Anomaly detection</text>
-  <text x="210" y="444" font-family="Arial, sans-serif" font-size="10" fill="#78350f">• Pattern analysis</text>
+  <text x="210" y="390" font-family="Arial, sans-serif" font-size="10" fill="#78350f">• Scanners: PII, secrets, toxicity (inline)</text>
+  <text x="210" y="408" font-family="Arial, sans-serif" font-size="10" fill="#78350f">• Semantic firewall: policy + context (inline)</text>
+  <text x="210" y="426" font-family="Arial, sans-serif" font-size="10" fill="#78350f">• Model-as-judge: probabilistic (async)</text>
+  <text x="210" y="444" font-family="Arial, sans-serif" font-size="10" fill="#78350f">• Informs the decision, never the final call</text>
   
   <!-- Arrow from Logging to Judge -->
   <path d="M 475 255 L 475 290 L 380 290 L 380 305" stroke="#94a3b8" stroke-width="1.5" fill="none" marker-end="url(#arrow-light)"/>
@@ -147,5 +147,5 @@
   
   <!-- Key Message Box -->
   <rect x="200" y="605" width="500" height="35" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
-  <text x="450" y="627" font-family="Arial, sans-serif" font-size="12" fill="#1e40af" text-anchor="middle" font-weight="bold">Guardrails prevent (inline) • Judge detects (async) • Humans decide (accountable)</text>
+  <text x="450" y="627" font-family="Arial, sans-serif" font-size="12" fill="#1e40af" text-anchor="middle" font-weight="bold">Guardrails prevent (inline) • Reviewing controls catch the rest • Humans decide (accountable)</text>
 </svg>

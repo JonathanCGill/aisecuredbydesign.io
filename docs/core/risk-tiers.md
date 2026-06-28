@@ -72,9 +72,11 @@ Minimal impact, non-sensitive context.
 | Grounding check | - | Basic | Required | Required + citation |
 | Confidence threshold | - | - | Required | Required + escalation |
 
-### Judge Evaluation
+### Reviewing controls
 
-| Aspect | LOW | MEDIUM | HIGH | CRITICAL |
+The reviewing layer is a second opinion before the response reaches the user: deterministic **scanners** and a **semantic firewall** run inline, while the **model-as-judge** below is sized to the tier. See [Reviewing controls](controls.md#2-reviewing-controls).
+
+| Model-as-judge | LOW | MEDIUM | HIGH | CRITICAL |
 |--------|-----|--------|------|----------|
 | Coverage | 1-5% (optional) | 5-10% | 20-50% | 100% |
 | Timing | - | Batch (daily) | Near real-time | Real-time |
@@ -82,7 +84,7 @@ Minimal impact, non-sensitive context.
 | Escalation | - | Weekly | Same-day | Immediate |
 
 !!! info "Note"
-    "Real-time" Judge evaluation for CRITICAL tier means near-real-time parallel assessment, where the Judge evaluates alongside or immediately after delivery. It does not mean inline blocking, which is the Guardrail's role. Principle: **Guardrails prevent. Judge detects. Humans decide.**
+    "Real-time" judge evaluation for CRITICAL tier means near-real-time parallel assessment, where the judge evaluates alongside or immediately after delivery. It does not mean inline blocking, which is the deterministic layer's role. The judge informs the decision; it never replaces the guardrails beneath it. Principle: **Guardrails prevent. Reviewing controls catch the rest. Humans decide.**
 
 ### Human Oversight
 

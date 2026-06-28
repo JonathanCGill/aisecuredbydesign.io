@@ -1,5 +1,5 @@
 ---
-description: "Phase-by-phase implementation checklist for AI security controls covering classification, logging, guardrails, Judge evaluation, human oversight, and operations."
+description: "Phase-by-phase implementation checklist for AI security controls covering classification, logging, guardrails, reviewing controls, human oversight, and operations."
 ---
 
 # Implementation Checklist
@@ -56,9 +56,15 @@ description: "Phase-by-phase implementation checklist for AI security controls c
 - [ ] False positive rate acceptable
 - [ ] Latency acceptable
 
-## Phase 4: Judge
+## Phase 4: Reviewing controls
 
-### Setup
+A second opinion before the response reaches the user: scanners and a semantic firewall inline, plus a model-as-judge that informs the decision without replacing the deterministic guardrails. See [Reviewing controls](controls.md#2-reviewing-controls).
+
+### Inline reviewers
+- [ ] Output scanners enabled (PII, secrets, toxicity)
+- [ ] Semantic firewall checks response against policy and context
+
+### Judge setup
 - [ ] Judge prompt developed
 - [ ] Evaluation criteria defined
 - [ ] Scoring rubric documented
