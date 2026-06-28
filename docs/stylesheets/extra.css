@@ -41,8 +41,8 @@
 }
 
 .md-typeset {
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.65;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -443,21 +443,21 @@ img[src$=".svg"] {
 [data-md-color-scheme="slate"] .tier-high     { background: #3d200a; color: #fbbf85; border-color: #5a2f11; }
 [data-md-color-scheme="slate"] .tier-critical { background: #3b0f0f; color: #f7a8a8; border-color: #5a1616; }
 
-/* Mobile drawer: remove accent colour, use black throughout */
-.md-nav--primary {
-  --md-accent-fg-color: var(--md-default-fg-color);
-  --md-accent-fg-color--transparent: transparent;
-}
-
+/* Active page (sidebar) and current section (TOC) use the indigo accent */
 .md-nav__link--active,
-.md-nav__link:focus,
-.md-nav__link:hover,
 .md-nav__item--active > .md-nav__link,
 .md-nav--primary .md-nav__link--active,
 .md-nav--primary .md-nav__item--active > .md-nav__link,
 [data-md-level] .md-nav__link--active,
 .md-nav__link[data-md-state="current"] {
-  color: var(--md-default-fg-color) !important;
+  color: var(--md-accent-fg-color) !important;
+  font-weight: 600;
+}
+
+/* Hover/focus across nav also picks up the accent */
+.md-nav__link:focus,
+.md-nav__link:hover {
+  color: var(--md-accent-fg-color) !important;
 }
 
 /* Footer */
