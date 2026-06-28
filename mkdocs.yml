@@ -89,6 +89,13 @@ nav:
     - Risk Classification: getting-started/risk-classification.md
     - Regulatory Alignment: getting-started/regulatory-alignment.md
 
+  - How To:
+    - how-to/README.md
+    - Should You Use AI?: how-to/should-you-use-ai.md
+    - Worked Example: how-to/worked-example.md
+    - Selecting Guardrails: how-to/selecting-guardrails.md
+    - Scaling and PACE: how-to/scaling-and-pace.md
+
   - Threats & Risk:
     - Threat Modelling: threat-modelling.md
     - Risk Tiers: core/risk-tiers.md
