@@ -92,7 +92,12 @@ nav:
   - How To:
     - how-to/README.md
     - Should You Use AI?: how-to/should-you-use-ai.md
-    - Worked Example: how-to/worked-example.md
+    - Worked Examples:
+      - LOW - Public FAQ Assistant: how-to/example-faq-low.md
+      - MEDIUM - Internal Knowledge Assistant: how-to/example-knowledge-medium.md
+      - HIGH - Customer-Service Assistant: how-to/worked-example.md
+      - HIGH - MCP Engineering Agent: how-to/example-mcp-agent.md
+      - CRITICAL - Credit Decisioning Support: how-to/example-decisioning-critical.md
     - Selecting Guardrails: how-to/selecting-guardrails.md
     - Scaling and PACE: how-to/scaling-and-pace.md
 

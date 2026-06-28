@@ -4,7 +4,7 @@ description: An end-to-end worked example of securing an AI system, taking a ret
 
 # Worked Example: Meridian Bank's Customer-Service Assistant
 
-This is the whole workflow on one system. We pick up where [Should You Use AI?](should-you-use-ai.md) left off: Meridian has decided to build an authenticated assistant that answers questions and performs read-only lookups, with high-impact actions scoped behind extra controls. Now we design it.
+This is the whole workflow on one system, and the most detailed of the [worked examples](README.md#the-worked-examples). It walks the full method end to end; the other examples (from a [LOW public bot](example-faq-low.md) to a [CRITICAL decisioning model](example-decisioning-critical.md)) reuse this method and focus on what differs at their tier. We pick up where [Should You Use AI?](should-you-use-ai.md) left off: Meridian has decided to build an authenticated assistant that answers questions and performs read-only lookups, with high-impact actions scoped behind extra controls. Now we design it.
 
 The system under design:
 
