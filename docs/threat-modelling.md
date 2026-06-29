@@ -60,6 +60,8 @@ Work through the attack surface systematically. The OWASP LLM Top 10 and the OWA
 
     The cross-layer and agent-to-agent seams are exactly the boundaries from Step 2 that flat checklists miss, including the [MASO](https://airuntimesecurity.io/maso/) failures. Use MAESTRO's layers to drive enumeration, then map what you find onto the categories below.
 
+    MAESTRO structures enumeration; it does not rate or prioritise threats, and its value scales with how agentic the system is. Treat it as a lens, not a verdict: pair it with [Step 4](#step-4-rate-against-your-risk-tier) to decide which threats actually warrant a control.
+
 | Threat category | Example | Where it enters |
 |-----------------|---------|-----------------|
 | **Prompt injection** | User or document overrides the system prompt | User and retrieved content boundaries |
