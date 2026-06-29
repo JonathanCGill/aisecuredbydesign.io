@@ -185,6 +185,7 @@ nav:
       - NIST AI RMF: infrastructure/mappings/nist-ai-rmf.md
       - NIST SP 800-218A: infrastructure/mappings/nist-sp800-218a.md
       - OWASP LLM Top 10: infrastructure/mappings/owasp-llm-top10.md
+      - MAESTRO Layers: infrastructure/mappings/maestro.md
     - Platform Patterns:
       - AWS Bedrock: infrastructure/reference/platform-patterns/aws-bedrock.md
       - Microsoft Foundry: infrastructure/reference/platform-patterns/microsoft-foundry.md
