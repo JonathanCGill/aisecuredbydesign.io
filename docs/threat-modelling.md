@@ -47,6 +47,19 @@ Each crossing is where a control will eventually go. The [infrastructure control
 
 Work through the attack surface systematically. The OWASP LLM Top 10 and the OWASP Agentic Top 10 are the most useful checklists; the [OWASP LLM Top 10 mapping](infrastructure/mappings/owasp-llm-top10.md) ties each risk to a control. The recurring categories:
 
+!!! abstract "Use MAESTRO for agentic systems"
+    Flat checklists are good at *what* can go wrong but weak on *where* it enters in a multi-agent system. **MAESTRO** (*Multi-Agent Environment, Security, Threat, Risk, and Outcome*), the Cloud Security Alliance's agentic threat modelling framework, decomposes an agent stack into seven layers and asks you to enumerate threats at each layer and across the seams between them:
+
+    1. **Foundation models** (the LLM itself: poisoning, jailbreaks, alignment failure)
+    2. **Data operations** (ingestion, RAG corpora, memory)
+    3. **Agent frameworks** (planning, tool use, delegation)
+    4. **Deployment infrastructure** (hosting, sandboxing, network)
+    5. **Evaluation and observability** (logging, tracing, evals)
+    6. **Security and compliance** (a cross-layer function over all the others)
+    7. **Agent ecosystem** (other agents, marketplaces, the wider environment)
+
+    The cross-layer and agent-to-agent seams are exactly the boundaries from Step 2 that flat checklists miss, including the [MASO](https://airuntimesecurity.io/maso/) failures. Use MAESTRO's layers to drive enumeration, then map what you find onto the categories below.
+
 | Threat category | Example | Where it enters |
 |-----------------|---------|-----------------|
 | **Prompt injection** | User or document overrides the system prompt | User and retrieved content boundaries |
@@ -78,5 +91,6 @@ The output of a threat model is this control set, sized to the tier. Take it int
 !!! info "References"
     - [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
     - [OWASP Agentic Security Initiative](https://genai.owasp.org/initiatives/#agenticsecurity)
+    - [CSA, Agentic AI Threat Modeling Framework: MAESTRO](https://cloudsecurityalliance.org/blog/2025/02/06/agentic-ai-threat-modeling-framework-maestro)
     - [MITRE ATLAS, Adversarial Threat Landscape for AI Systems](https://atlas.mitre.org/)
     - [AI Runtime Security, MASO multi-agent framework](https://airuntimesecurity.io/maso/)
