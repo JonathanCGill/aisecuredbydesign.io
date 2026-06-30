@@ -18,6 +18,11 @@ This decision is often made early and is expensive to change. Get it right.
 
 There is no universally correct choice. The right platform depends on your data sensitivity, regulatory requirements, operational capability, and threat model.
 
+!!! abstract "Who owns which control: the Shared Responsibility Model"
+    The "you manage / provider manages" split above is the same boundary the CSA AI Controls Matrix formalises as its **Shared Security Responsibility Model**, which divides control ownership across five actors: **Cloud Service Provider**, **Model Provider**, **Orchestrated Service Provider**, **Application Provider**, and **AI Customer**.
+
+    Your platform choice decides how many of those roles you take on. Choose **cloud AI services** and the Cloud and Model Provider controls are inherited and verified, not built. Go **self-hosted** and you own all five. Build agentic systems and you also take on the **Orchestrator** role. Map your controls to these actors with the [CSA AICM mapping](../../infrastructure/mappings/csa-aicm.md) so nothing falls in the gap between "we assumed the provider did it" and "we assumed someone else did."
+
 ## Security considerations across all platforms
 
 Regardless of which approach you choose, assess these:
