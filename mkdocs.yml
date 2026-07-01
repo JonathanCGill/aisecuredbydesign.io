@@ -180,6 +180,7 @@ nav:
       - Supply Chain: infrastructure/agentic/supply-chain.md
     - Standards Mappings:
       - Controls to Three Layers: infrastructure/mappings/controls-to-three-layers.md
+      - CSA AI Controls Matrix: infrastructure/mappings/csa-aicm.md
       - NIST CSF 2.0: infrastructure/mappings/csf-2.0.md
       - ISO 42001: infrastructure/mappings/iso42001-annex-a.md
       - NIST AI RMF: infrastructure/mappings/nist-ai-rmf.md
