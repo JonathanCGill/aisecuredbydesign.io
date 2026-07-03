@@ -166,7 +166,7 @@ The same tier drives runtime control intensity. This is configured and operated 
 | **Depth** | - | Basic quality | Full policy | Full + reasoning |
 | **Escalation** | - | Weekly | Same-day | Immediate |
 
-!!! abstract "Guardrails prevent. Judge detects. Humans decide."
+!!! abstract "Guardrails prevent. Judge detects. Humans decide. Circuit breakers contain."
     "Real-time" Judge evaluation for CRITICAL tier means near-real-time parallel assessment. The Judge evaluates alongside or immediately after delivery. It does not mean inline blocking, which is the Guardrail's role.
 
 ### Human oversight

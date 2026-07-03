@@ -1,5 +1,5 @@
 ---
-description: "The three-layer control model for AI runtime security: deterministic guardrails for known-bad, a reviewing layer (scanners, semantic firewall, model-as-judge) for unknown-bad, and human oversight for high-consequence decisions."
+description: "The three-layer control model for AI runtime security: deterministic guardrails for known-bad, a reviewing layer (scanners, semantic firewall, model-as-judge) for unknown-bad, and human oversight for high-consequence decisions. A circuit breaker sits behind the three as containment, not a behavioural layer, and maps to PACE Emergency."
 ---
 
 # Controls: Guardrails, Reviewing Controls, and Human Oversight
