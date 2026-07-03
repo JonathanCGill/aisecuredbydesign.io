@@ -84,7 +84,7 @@ The reviewing layer is a second opinion before the response reaches the user: de
 | Escalation | - | Weekly | Same-day | Immediate |
 
 !!! info "Note"
-    "Real-time" judge evaluation for CRITICAL tier means near-real-time parallel assessment, where the judge evaluates alongside or immediately after delivery. It does not mean inline blocking, which is the deterministic layer's role. The judge informs the decision; it never replaces the guardrails beneath it. Principle: **Guardrails prevent. Reviewing controls catch the rest. Humans decide.**
+    "Real-time" judge evaluation for CRITICAL tier means near-real-time parallel assessment, where the judge evaluates alongside or immediately after delivery. It does not mean inline blocking, which is the deterministic layer's role. The judge informs the decision; it never replaces the guardrails beneath it. Principle: **Guardrails prevent. Reviewing controls catch the rest. Humans decide. Circuit breakers contain.**
 
 ### Human Oversight
 

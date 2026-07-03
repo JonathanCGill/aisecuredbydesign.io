@@ -210,14 +210,13 @@ Standard threat models focus on confidentiality, integrity, and availability. AI
 
 ### Mapping behavioural threats to security posture
 
-Good security posture for AI systems means having layered controls that address behavioural threats alongside traditional ones:
+Good security posture for AI systems means layering behavioural controls that address behavioural threats on top of the infrastructure they run on. The three behavioural control layers are:
 
 1. **Guardrails** handle known, pattern-matchable behavioural threats (injection, encoding attacks, policy violations with known signatures)
 2. **Judges** handle semantic, context-dependent behavioural threats (subtle policy violations, quality degradation, intent misalignment)
 3. **Human oversight** handles novel, ambiguous, or high-consequence behavioural threats (new attack patterns, edge cases without precedent, decisions with material impact)
-4. **Infrastructure controls** handle systemic behavioural threats (network-level bypass prevention, logging integrity, supply chain verification)
 
-Each layer compensates for the limitations of the others. Designing all four together, rather than adding them sequentially, produces a stronger security posture.
+Beneath them, **infrastructure controls** handle systemic behavioural threats (network-level bypass prevention, logging integrity, supply chain verification): the substrate the three control layers sit on, not a fourth behavioural layer. Each layer compensates for the limitations of the others. Designing them together, rather than adding them sequentially, produces a stronger security posture.
 
 ## Designing for active monitoring
 

@@ -60,7 +60,7 @@ The industry is converging on three layers:
 | **Reviewing controls** | Second opinion on unknown-bad: scanners, semantic firewall, model-as-judge | Inline and async |
 | **Human Oversight** | Decide, act, remain accountable | As needed |
 
-**Guardrails prevent. Reviewing controls catch what they miss. Humans decide.** The judge within the reviewing layer informs the decision; it never replaces the deterministic guardrails beneath it.
+**Guardrails prevent. Reviewing controls catch what they miss. Humans decide. Circuit breakers contain.** The judge within the reviewing layer informs the decision; it never replaces the deterministic guardrails beneath it. The circuit breaker sits behind all three as containment, not a behavioural layer, tripping to a non-AI fallback when they are bypassed or overwhelmed, and maps to PACE Emergency.
 
 ### Where This Pattern Exists
 
