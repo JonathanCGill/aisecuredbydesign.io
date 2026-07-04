@@ -30,7 +30,7 @@ Start with the essentials, then branch into specialised topics based on your dep
 | Reasoning models (chain-of-thought) | [Reasoning Model Controls](reasoning-model-controls.md) |
 | Streaming responses | [Streaming Controls](streaming-controls.md) |
 | Persistent memory or long context | [Memory and Context](memory-and-context.md) |
-| Multi-agent systems | [Multi-Agent Controls](multi-agent-controls.md) then [MASO](https://airuntimesecurity.io/maso/) |
+| Multi-agent systems | [Multi-Agent Controls](multi-agent-controls.md) then [MASO (Multi-Agent Security Operations)](https://airuntimesecurity.io/maso/) |
 | Open-weight / self-hosted models | [Open-Weight Models Shift the Burden](https://airuntimesecurity.io/insights/open-weight-models-shift-the-burden/) |
 
 **PACE resilience (read after controls):**

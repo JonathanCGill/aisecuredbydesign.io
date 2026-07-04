@@ -84,7 +84,7 @@ For agentic systems with tool access, test whether the model can be manipulated 
 
 ### Multi-agent specific testing
 
-For [multi-agent systems (MASO)](risk-classification.md#multi-agent-systems-maso), additional testing is required:
+For [multi-agent systems (MASO, Multi-Agent Security Operations)](risk-classification.md#multi-agent-systems-maso), additional testing is required:
 
 - Agent impersonation (one agent pretending to be another)
 - Delegation boundary violations (an agent requesting actions beyond its scope from another agent)
