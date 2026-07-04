@@ -166,8 +166,8 @@ The same tier drives runtime control intensity. This is configured and operated 
 | **Depth** | - | Basic quality | Full policy | Full + reasoning |
 | **Escalation** | - | Weekly | Same-day | Immediate |
 
-!!! abstract "Guardrails prevent. Judge detects. Humans decide. Circuit breakers contain."
-    "Real-time" Judge evaluation for CRITICAL tier means near-real-time parallel assessment. The Judge evaluates alongside or immediately after delivery. It does not mean inline blocking, which is the Guardrail's role.
+!!! abstract "Guardrails prevent. Reviewing controls catch what they miss. Humans decide. Circuit breakers contain."
+    The Judge is one member of the [reviewing layer](../core/controls.md#2-reviewing-controls), alongside scanners and a **semantic firewall**. These are choices you combine, not a fixed ladder: a semantic firewall reviews inline in the hot path at low latency, while a heavier judge can run async for deeper, post-action review. "Real-time" Judge evaluation for CRITICAL means near-real-time parallel assessment, alongside or immediately after delivery, not inline blocking, which is the guardrail's and firewall's role. Pick which reviewers run inline versus async against the tier and the latency you can spend.
 
 ### Human oversight
 

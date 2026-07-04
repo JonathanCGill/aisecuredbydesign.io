@@ -60,6 +60,12 @@ description: "Phase-by-phase implementation checklist for AI security controls c
 
 A second opinion before the response reaches the user: scanners and a semantic firewall inline, plus a model-as-judge that informs the decision without replacing the deterministic guardrails. See [Reviewing controls](controls.md#2-reviewing-controls).
 
+These are choices, not a mandatory set. Decide which reviewers you run, and where, before ticking the boxes below: which sit inline in the hot path for real-time screening, and which run async for post-action review. Match the selection to the tier and the latency the interaction can spend ([reviewing-controls latency table](controls.md#choosing-reviewing-controls-risk-latency-and-pace)). Lower tiers may run scanners alone; higher tiers combine scanners, a semantic firewall inline, and a judge.
+
+### Select the reviewers for this tier
+- [ ] Decided which reviewing controls apply (scanners, semantic firewall, judge) and why
+- [ ] Placed each inline or async against its latency budget
+
 ### Inline reviewers
 - [ ] Output scanners enabled (PII, secrets, toxicity)
 - [ ] Semantic firewall checks response against policy and context
