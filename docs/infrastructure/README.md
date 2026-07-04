@@ -203,6 +203,7 @@ Every control maps to the three-layer behavioral model and to established standa
 | [ISO 42001 Annex A](mappings/iso42001-annex-a.md) | Full Annex A technical infrastructure mapping |
 | [NIST AI RMF](mappings/nist-ai-rmf.md) | 51 subcategories across Govern, Map, Measure, Manage |
 | [OWASP LLM Top 10](mappings/owasp-llm-top10.md) | All 10 risks + OWASP Agentic Top 10 |
+| [MAESTRO Layers](mappings/maestro.md) | All 7 agentic threat modelling layers |
 
 ## Platform Implementation Patterns
 
