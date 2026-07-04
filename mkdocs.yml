@@ -160,6 +160,7 @@ nav:
       - Experiment Tracking: building/mlops/experiment-tracking.md
 
   - Test & Validate:
+    - Testing Strategy: getting-started/testing-strategy.md
     - Adversarial Testing: getting-started/adversarial-testing.md
     - Production Readiness: getting-started/production-readiness.md
 
