@@ -21,7 +21,7 @@ PACE is a resilience framework originally developed for military communications 
 
 The value of PACE is that it forces teams to think through failure scenarios before they happen and to document concrete, tested fallback options rather than hoping for the best.
 
-[AI Runtime Security](https://airuntimesecurity.io/) uses PACE to structure resilience for runtime controls (guardrails, LLM-as-Judge, human oversight). The same discipline applies to the development and deployment phase. Every critical component of the AI system should have a PACE plan defined before it reaches production.
+[AI Runtime Security](https://airuntimesecurity.io/) uses PACE to structure resilience for runtime controls (guardrails, Model-as-Judge, human oversight). The same discipline applies to the development and deployment phase. Every critical component of the AI system should have a PACE plan defined before it reaches production.
 
 ## Applying PACE to AI components
 
