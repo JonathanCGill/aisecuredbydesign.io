@@ -15,7 +15,7 @@ There are four independent axes of scale, and they stress different controls:
 | **Volume** | Requests per second | Guardrail and Judge cost and latency; logging throughput |
 | **Scope** | Number of use cases the system covers | Threat surface; per-use-case tuning; classification drift |
 | **Autonomy** | How much the system does without a human | Oversight capacity; agentic controls |
-| **Agents** | Number of cooperating agents | Trust between agents; emergent failure ([MASO](https://airuntimesecurity.io/maso/)) |
+| **Agents** | Number of cooperating agents | Trust between agents; emergent failure ([MASO (Multi-Agent Security Operations)](https://airuntimesecurity.io/maso/)) |
 
 Scaling safely means scaling the *controls* along the axis that is actually growing, not uniformly.
 

@@ -61,7 +61,7 @@ If the agent runs diagnostics or generated commands, run them in an isolated san
 
 ## What this example teaches
 
-Tools turn an assistant into an actor, and MCP turns tool sprawl into supply-chain risk. The defining moves are: broker-enforced permissions (not prompt instructions), least delegation with identity propagation, untrusted handling of tool descriptions *and* outputs, and sandboxed execution. When agents start calling other agents, this moves into multi-agent territory, hand off to [Multi-Agent Controls](../core/multi-agent-controls.md) and [MASO](https://airuntimesecurity.io/maso/). For the opposite end of the impact scale, where the model itself is the risk, see the [CRITICAL Credit Decisioning](example-decisioning-critical.md) example.
+Tools turn an assistant into an actor, and MCP turns tool sprawl into supply-chain risk. The defining moves are: broker-enforced permissions (not prompt instructions), least delegation with identity propagation, untrusted handling of tool descriptions *and* outputs, and sandboxed execution. When agents start calling other agents, this moves into multi-agent territory, hand off to [Multi-Agent Controls](../core/multi-agent-controls.md) and [MASO (Multi-Agent Security Operations)](https://airuntimesecurity.io/maso/). For the opposite end of the impact scale, where the model itself is the risk, see the [CRITICAL Credit Decisioning](example-decisioning-critical.md) example.
 
 !!! info "References"
     - [Agentic AI Controls](../core/agentic.md)

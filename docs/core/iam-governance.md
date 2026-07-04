@@ -405,7 +405,7 @@ This governance model draws from internationally recognised standards and emergi
 | **Secrets and credentials** | [Infrastructure - Secrets & Credentials](../infrastructure/controls/secrets-and-credentials.md) | SEC-01 through SEC-08: context window isolation, short-lived tokens, vault management, credential scanning, rotation, agent isolation |
 | **Tool access controls** | [Infrastructure - Tool Access Controls](../infrastructure/agentic/tool-access-controls.md) | TOOL-01 through TOOL-06: allowlisting, gateway enforcement, parameter constraints, reversibility classification, rate limits, logging |
 | **Delegation chains** | [Infrastructure - Delegation Chains](../infrastructure/agentic/delegation-chains.md) | DEL-01 through DEL-05: least delegation, audit trails, depth limits, explicit authorisation, identity propagation |
-| **Multi-agent IAM** | MASO - Identity & Access | Tiered controls for multi-agent systems: NHI lifecycle, mutual authentication, behavioral binding, delegation contracts |
+| **Multi-agent IAM** | MASO (Multi-Agent Security Operations) - Identity & Access | Tiered controls for multi-agent systems: NHI lifecycle, mutual authentication, behavioral binding, delegation contracts |
 | **NHI lifecycle** | Extensions - NHI Lifecycle | Six-phase lifecycle: provisioning, authentication, authorisation, monitoring, review, deprovisioning |
 | **Financial services IAM** | High-Risk Financial Services | Four access control layers, financial services requirements, access control anti-patterns |
 | **IAM architecture diagram** | [IAM Control Layers](../infrastructure/diagrams/iam-control-layers.svg) | Visual: control plane / data plane separation with agent authorisation gateway |

@@ -196,7 +196,7 @@ Some operational contexts use a simplified three-tier system. This is intentiona
 | **Tier 2** (Medium) | HIGH | Customer-facing, sensitive data access, human reviews before delivery |
 | **Tier 3** (High) | CRITICAL | Regulated decisions, autonomous agents with write access, financial/medical/legal |
 
-!!! info "MASO uses Tier 1/2/3 for a different purpose"
+!!! info "MASO (Multi-Agent Security Operations) uses Tier 1/2/3 for a different purpose"
     The [MASO Framework](https://airuntimesecurity.io/core/) (Multi-Agent Security Operations) also uses Tier 1/2/3, but for multi-agent autonomy levels: Supervised, Managed, and Autonomous. This is a separate dimension from risk classification. A CRITICAL-risk system might operate at MASO Tier 1 (Supervised) while building confidence, then progress to Tier 2 (Managed) as controls mature.
 
 ## Single agent vs. multi-agent: choosing the right framework

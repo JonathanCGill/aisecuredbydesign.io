@@ -38,7 +38,7 @@ Map every point where data or control crosses from less-trusted to more-trusted.
 - **User to model** (prompt injection, jailbreaks)
 - **Retrieved content to model** (indirect injection through RAG, the largest attack surface for most systems)
 - **Tool result to model** (poisoned tool output steering the next action)
-- **Agent to agent** (a compromised or confused agent influencing others, the [MASO](https://airuntimesecurity.io/maso/) problem)
+- **Agent to agent** (a compromised or confused agent influencing others, the [MASO (Multi-Agent Security Operations)](https://airuntimesecurity.io/maso/) problem)
 - **Model to tool** (an action the model should not have been able to invoke)
 
 Each crossing is where a control will eventually go. The [infrastructure controls](infrastructure/README.md) are organised around exactly these boundaries: identity at the entry, network segmentation between zones, and tool access controls at the model-to-tool crossing.

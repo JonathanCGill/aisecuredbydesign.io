@@ -48,7 +48,7 @@ Most AI use cases are single-agent: one model, one set of tools, one task. Multi
 - Different parts of the workflow need different permission levels
 - The system needs to decompose complex goals into subtasks autonomously
 
-If multi-agent, the [MASO Framework](https://airuntimesecurity.io/core/) applies, with additional [multi-agent controls](../core/multi-agent-controls.md) and [delegation chain](../infrastructure/agentic/delegation-chains.md) requirements. Each agent needs independent risk classification, and the system starts at MASO Tier 1 (Supervised) regardless of how confident you are in the design.
+If multi-agent, the [MASO (Multi-Agent Security Operations) Framework](https://airuntimesecurity.io/core/) applies, with additional [multi-agent controls](../core/multi-agent-controls.md) and [delegation chain](../infrastructure/agentic/delegation-chains.md) requirements. Each agent needs independent risk classification, and the system starts at MASO Tier 1 (Supervised) regardless of how confident you are in the design.
 
 For single-agent systems, the Foundation Framework applies: [core controls](../core/controls.md) (the three-layer pattern) plus [infrastructure controls](../infrastructure/README.md) (80 technical controls covering IAM, logging, network, data protection, secrets, supply chain, and incident response).
 
