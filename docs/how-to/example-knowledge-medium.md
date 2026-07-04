@@ -42,7 +42,7 @@ The defining control for this system is **identity-aware retrieval**: the assist
 Beyond identity-aware retrieval, MEDIUM tier calls for:
 
 - **Standard input and output guardrails**: injection detection on input, sensitive-data checks on output.
-- **Judge sampling**, not 100% evaluation: at MEDIUM with a human reading every answer, sampling outputs to catch drift and leakage is proportionate. See [Risk Tiers control matrix](../core/risk-tiers.md#control-matrix).
+- **A reviewing layer sized to the tier**: the [reviewing controls](../core/controls.md#2-reviewing-controls) are scanners, a semantic firewall, and a model-as-judge, and you pick how much of that layer to run. At MEDIUM, with a human reading every answer, scanners inline plus a *sampled* async judge is proportionate, not 100% evaluation and not an inline semantic firewall. Those heavier options are available if the risk rises; the choice is yours to make against latency and consequence. See [Risk Tiers control matrix](../core/risk-tiers.md#control-matrix).
 - **Logging** of queries, retrieved sources, and responses, so an over-retrieval incident can be reconstructed ([Logging & Observability](../infrastructure/controls/logging-and-observability.md)).
 - **Corpus governance**: control who can add or edit indexed documents, and review changes, to limit poisoning and indirect injection.
 

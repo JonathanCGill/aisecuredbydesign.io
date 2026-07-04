@@ -56,6 +56,15 @@ Two identity problems sit on top of each other here.
 
 If the agent runs diagnostics or generated commands, run them in an isolated sandbox with restricted file system, network, and resource limits, and scan before execution. See [Sandbox Patterns](../infrastructure/agentic/sandbox-patterns.md).
 
+### Review the actions, and choose how you combine the reviewers
+
+Broker permissions decide what the agent *may* do; the [reviewing layer](../core/controls.md#2-reviewing-controls) judges what it is *about* to do. You have a choice of reviewers here, and they combine:
+
+- **Semantic firewall inline** on a proposed action, screening it against policy in real time before the broker executes it. This keeps up with a fast agent loop where a full judge would cost too much latency per step.
+- **Model-as-judge for post-action review**, auditing action sequences asynchronously to catch the multi-step patterns a single-action check misses, then alerting a human.
+
+At this HIGH tier a destructive action (service restart, config change) still routes to human confirmation regardless. The choice is where the automated review sits: inline in the hot path for real-time blocking, async for deeper review, or both. Match it to the action's latency budget and blast radius; the [reviewing-controls latency table](../core/controls.md#choosing-reviewing-controls-risk-latency-and-pace) gives the baseline.
+
 !!! warning "The 'just add the MCP server' reflex"
     The fastest way to create a HIGH-tier incident is to point the agent at a convenient public MCP server so it can "also do X." Every new server is a new supplier with a path into your systems and a new channel for tool-description injection. Adding one is a re-tiering event, not a configuration tweak.
 

@@ -60,7 +60,7 @@ Now map each threat to a control at the depth the tier demands. The [control mat
 | Prompt injection (direct) | Input guardrails: injection detection, topic and length limits | [Guardrails](../core/controls.md#1-guardrails) | Enhanced |
 | Indirect injection via RAG | Treat retrieved content as untrusted; strip instructions; access-controlled retrieval | [Guardrails](../core/controls.md#1-guardrails) + [Data Protection](../infrastructure/controls/data-protection.md) | Enhanced |
 | Sensitive-data disclosure | Output guardrails: PII checks, cross-customer leakage prevention, response scanning | [Guardrails](../core/controls.md#1-guardrails) + [DAT-06](../infrastructure/controls/data-protection.md) | Enhanced |
-| Unknown-bad behaviour | Model-as-Judge evaluating 100% of outputs async, high-risk first | [Judge](../core/controls.md#the-model-as-judge) | All outputs |
+| Unknown-bad behaviour | Reviewing layer: output scanners and a semantic firewall inline, plus a Model-as-Judge evaluating 100% of outputs async, high-risk first | [Reviewing controls](../core/controls.md#2-reviewing-controls) | Enhanced, combined |
 | Excessive agency | Tool permission broker, parameter bounds, action classification by reversibility | [Agentic](../core/agentic.md#control-categories) + [Tool Access Controls](../infrastructure/agentic/tool-access-controls.md) | Enforced at gateway |
 | High-impact write actions | Step-up auth (contact change) and human confirmation (dispute) | [Human Oversight](../core/controls.md#3-human-oversight-hitl) + [Approval Workflows](../core/agentic.md#4-approval-workflows) | Required |
 | Identity and least privilege | Authenticate every entity; session-scoped, least-privilege tokens | [IAM Governance](../core/iam-governance.md) + [Identity & Access](../infrastructure/controls/identity-and-access.md) | All |
@@ -68,6 +68,8 @@ Now map each threat to a control at the depth the tier demands. The [control mat
 | Supply-chain risk | Verify model and tool provenance; AI-BOM | [Supply Chain](../infrastructure/agentic/supply-chain.md) | All |
 
 The principle running through this table is **infrastructure beats instructions**: the tool broker enforces permissions, not a line in the system prompt asking the model to behave. A prompt can be overridden; a gateway cannot.
+
+Notice that the "unknown-bad" row is not a single control but a chosen combination. Meridian is HIGH, so it runs the [reviewing layer](../core/controls.md#2-reviewing-controls) as a stack: deterministic scanners and a semantic firewall inline in the hot path for real-time screening, with the heavier Model-as-Judge auditing asynchronously off the critical path. That split is a **latency choice**, not a rule: a semantic firewall costs less latency than an inline judge, so it holds the line in real time while the judge does deeper review after the fact. A different system could weight this differently, drop the firewall at a lower tier, or move the judge inline for a smaller set of high-impact actions. The [Selecting Guardrails](selecting-guardrails.md#the-reviewing-layer-a-second-opinion-sized-to-risk-and-latency) page walks through how to make that call.
 
 ## Step 5: Turn controls into an architecture
 
@@ -80,8 +82,9 @@ Controls become real as components. Described in vendor-neutral terms, the desig
 | **Retrieval service** | Access-controlled RAG; returns only documents this customer may see, with retrieved text marked untrusted | DAT-04, indirect-injection defence |
 | **Model runtime** | The LLM; no direct network or credential access | Least privilege |
 | **Tool broker** | Holds the credentials and enforces which tools, with which parameters, the agent may call | Tool access controls, scope enforcement |
-| **Output guardrail service** | Scans responses for PII, leakage, and policy breaches before they reach the customer | Output guardrails |
-| **Judge (async)** | Evaluates outputs and proposed actions out of band; holds or flags below threshold | Model-as-Judge |
+| **Output guardrail service** | Scans responses for PII, leakage, and policy breaches before they reach the customer | Output scanners |
+| **Semantic firewall (inline)** | Weighs each response against policy and context in the hot path; blocks a clearly non-compliant one before it lands | Reviewing layer, real-time |
+| **Judge (async)** | Evaluates outputs and proposed actions out of band; holds or flags below threshold | Reviewing layer, post-action |
 | **Human review queue** | Where flagged outputs and gated actions go for confirmation | Human oversight |
 | **Secrets vault** | Issues short-lived, scoped credentials; never in the prompt | SEC-01, SEC-02 |
 | **Logging pipeline** | Captures I/O, decisions, scores, and tool calls; feeds the SIEM | LOG-01..10 |
@@ -89,7 +92,7 @@ Controls become real as components. Described in vendor-neutral terms, the desig
 These sit in [segmented network zones](../infrastructure/controls/network-and-segmentation.md): the model runtime cannot reach the internet or the account systems directly; it can only ask the tool broker, which is the sole holder of those credentials. If the model is fully compromised through injection, the blast radius is still bounded by what the broker will allow.
 
 !!! abstract "How a single request flows"
-    Customer message → gateway (authn, rate limit) → input guardrails → retrieval (access-controlled, untrusted-marked) → model → proposed response or action → output guardrails → tool broker (if action, check permission and parameters; if high-impact, route to confirmation) → response to customer. The Judge evaluates the exchange asynchronously and can raise an alert or hold future actions. Every hop is logged.
+    Customer message → gateway (authn, rate limit) → input guardrails → retrieval (access-controlled, untrusted-marked) → model → proposed response or action → output guardrails and semantic firewall (inline) → tool broker (if action, check permission and parameters; if high-impact, route to confirmation) → response to customer. The Judge evaluates the exchange asynchronously and can raise an alert or hold future actions. Every hop is logged.
 
 ## Step 6: Test the design
 
