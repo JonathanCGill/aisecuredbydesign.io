@@ -39,9 +39,19 @@ A credit model carries regulatory fairness obligations. Bias introduced through 
 At CRITICAL the [control matrix](../core/risk-tiers.md#control-matrix) calls for the deepest runtime controls, and the design must honour them:
 
 - **Human oversight on every significant decision.** The model *recommends*; a human *decides* for anything material. Automation is confined to a narrow, well-evidenced low-value segment with tight thresholds. See [Human Oversight](../core/controls.md#3-human-oversight-hitl).
-- **Real-time Judge.** Evaluate outputs (and the reasoning behind them) inline, not just on a sample, with conservative thresholds. See [Model-as-Judge](../core/controls.md#the-model-as-judge) and [Judge Assurance](../core/judge-assurance.md).
+- **A layered reviewing line, not one control.** The [reviewing layer](../core/controls.md#2-reviewing-controls) is scanners, a **semantic firewall**, and a **model-as-judge**, and at CRITICAL you run more than one of them. Deterministic scanners catch known-bad in the hot path, a semantic firewall weighs each output against policy and context inline, and a judge evaluates the output and its reasoning. See [Model-as-Judge](../core/controls.md#the-model-as-judge) and [Judge Assurance](../core/judge-assurance.md).
 - **Full audit and explainability.** Every decision is logged with its inputs, the model version, and the rationale, sufficient to answer a regulator and to reconstruct any decision. See [Logging & Observability](../infrastructure/controls/logging-and-observability.md).
 - **Circuit breakers and a non-AI fallback.** A tested, dependency-isolated manual adjudication path the system can fall back to. See [Scaling and PACE](scaling-and-pace.md) and [Circuit Breakers](../core/agentic.md#5-circuit-breakers).
+
+### You choose the controls, and you combine them
+
+The reviewing controls are not a fixed recipe; they are choices you make against risk and latency, and they compose. This matters most in the **automated low-value segment**, where decisions happen fast and a full inline judge may cost more latency than the interaction can spend. A workable split for that segment:
+
+- **Semantic firewall inline, for real time.** It weighs each output against policy and context in the hot path at low to moderate latency, blocking a clearly non-compliant decision before it lands. This is the control that keeps up with fast-paced automated actions.
+- **Model-as-judge for post-action review.** A larger judge audits decisions asynchronously, off the hot path, catching the subtler failures the inline firewall waves through. It does not gate the action; it reviews it after the fact and flags what needs attention.
+- **Humans on the alerts.** When the async judge or the firewall flags something, a person is paged and acts: reverse the decision, pull the segment back to manual, or trip a circuit breaker. Post-action review is only worth running if someone is on the other end of the alert.
+
+The same controls sit differently in other tiers. Because a **semantic firewall is cheaper on latency than a full inline judge**, lower tiers often lean on the firewall (or scanners alone) in the hot path and run the judge on a sample asynchronously, if at all. The [control matrix](../core/risk-tiers.md#control-matrix) and the [reviewing-controls latency table](../core/controls.md#choosing-reviewing-controls-risk-latency-and-pace) give the baseline depth per tier; the point here is that you are picking and combining these controls deliberately, not switching one on in isolation.
 
 !!! warning "You cannot inspect your way out of a poisoned model"
     Runtime monitoring catches anomalous *behaviour*, but a backdoor that only fires on a rare trigger may never show up in monitoring until it is exploited. That is why the integrity work happens before deployment: provenance, scanning, a secure fine-tuning pipeline, and signing. At CRITICAL, pre-runtime model security is not a nicety; it is the load-bearing control.
@@ -51,9 +61,11 @@ At CRITICAL the [control matrix](../core/risk-tiers.md#control-matrix) calls for
 When you own the model, you own its integrity. The centre of gravity moves earlier, into model selection and MLOps, and the runtime controls (real-time Judge, human decision, full audit, circuit breaker) are the maximum the framework defines. Compare this with the [LOW FAQ Assistant](example-faq-low.md): same framework, opposite ends of the dial. The method, [Should You Use AI?](should-you-use-ai.md) → threat model → tier → controls, is identical; only the depth changes.
 
 !!! info "References"
+    - [Runtime Controls: reviewing layer and PACE](../core/controls.md#2-reviewing-controls)
     - [Model Selection](../building/model-selection/README.md)
     - [Provenance and Integrity](../building/model-selection/provenance-and-integrity.md)
     - [Vulnerability Scanning](../building/model-selection/vulnerability-scanning.md)
     - [Secure ML Pipelines](../building/mlops/secure-ml-pipelines.md)
     - [Supply Chain Security Controls](../infrastructure/agentic/supply-chain.md)
+    - [Inside the semantic firewall](https://airuntimesecurity.io/core/controls/semantic-firewall/)
     - [AI Runtime Security: Open-Weight Models Shift the Burden](https://airuntimesecurity.io/insights/open-weight-models-shift-the-burden/)
