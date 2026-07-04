@@ -43,6 +43,8 @@ Each layer in the three-layer pattern operates independently. When one layer mis
 | **Model-as-Judge** | ~95% | Catches 95% of issues in the transactions it evaluates - semantic violations, subtle policy breaches, quality failures | Sampled or full coverage depending on tier |
 | **Human Oversight** | ~98% | Catches 98% of issues surfaced to reviewers - edge cases, nuanced judgement calls, novel threats | Flagged transactions + sampling |
 
+The Model-as-Judge row stands for the whole **reviewing layer**, which in practice is staged. Deterministic **scanners** and a **semantic firewall** run inline: the scanners catch signature-level and classifier-level violations (PII, secrets, toxicity, known-bad patterns), and the semantic firewall catches known-bad *intent* that a fixed rule waves through - a prohibited request reworded or indirected to mean the same thing. The **model-as-judge** then handles the deeper, unknown-bad evaluation, sampled or full depending on tier. The single 95% rate keeps the independence model readable; measure the components separately when you calibrate. See [Reviewing controls](controls.md#2-reviewing-controls).
+
 ### How Layers Compound
 
 When all three layers are active and operating independently on a transaction:
@@ -323,7 +325,7 @@ See the [detailed worked example above](#worked-example-customer-product-chatbot
 **Residual: ~0.01 issues per 1,000 transactions across all threat categories**
 
 **PACE posture:** P + A + C configured and tested.
-- **Alternate:** Judge down → guardrails remain active, all transactions flagged for human review queue, response latency accepted
+- **Alternate:** Judge down → guardrails plus the inline reviewing controls (deterministic scanners and the semantic firewall) remain active, all transactions flagged for the human review queue, response latency accepted
 - **Contingency:** Guardrails degraded → chatbot enters "assisted browse" mode (read-only, no transactions), human reviews every interaction
 - **Emergency:** Multiple layers down → circuit breaker fires, chatbot replaced with static product pages + "contact us" fallback
 
