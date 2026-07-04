@@ -36,7 +36,7 @@ A public bot has no data to leak, but it has a brand to damage and a bill to run
 | Abuse and cost | Rate limiting and spend caps at the [gateway](../infrastructure/controls/network-and-segmentation.md); abuse monitoring | Basic |
 | Everything | Logging of inputs and outputs, so you can see what happened | All tiers |
 
-What you do **not** need at LOW: a full [Model-as-Judge](../core/controls.md#2-model-as-judge) on every response (sampling is plenty), human review queues, network micro-segmentation, or agentic controls, because there are no agents and no actions. Adding them here spends budget and latency on risks the system does not have.
+What you do **not** need at LOW: a full [Model-as-Judge](../core/controls.md#the-model-as-judge) on every response (sampling is plenty), human review queues, network micro-segmentation, or agentic controls, because there are no agents and no actions. Adding them here spends budget and latency on risks the system does not have.
 
 !!! tip "The LOW-tier test"
     If you find yourself designing approval workflows for a bot that cannot do anything, you have mis-tiered it or mis-scoped it. Go back to [Should You Use AI?](should-you-use-ai.md) and confirm the scope, then apply only the controls the real risks justify.

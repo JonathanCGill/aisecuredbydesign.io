@@ -216,7 +216,7 @@ Most AI deployments are single agent: one model, one set of tools, one execution
 
 ### Multi-agent systems (MASO)
 
-When your system involves multiple AI agents coordinating, delegating, or orchestrating, the attack surface expands significantly. The [MASO Framework](https://airuntimesecurity.io/core/) (128 controls) extends the Foundation Framework with controls specific to agent coordination, delegation, and autonomy management.
+When your system involves multiple AI agents coordinating, delegating, or orchestrating, the attack surface expands significantly. The [MASO Framework](https://airuntimesecurity.io/core/) (eleven control domains, up to 212 controls scaled by tier) extends the Foundation Framework with controls specific to agent coordination, delegation, and autonomy management.
 
 **Pre-runtime considerations for multi-agent systems:**
 

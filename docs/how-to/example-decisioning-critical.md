@@ -39,7 +39,7 @@ A credit model carries regulatory fairness obligations. Bias introduced through 
 At CRITICAL the [control matrix](../core/risk-tiers.md#control-matrix) calls for the deepest runtime controls, and the design must honour them:
 
 - **Human oversight on every significant decision.** The model *recommends*; a human *decides* for anything material. Automation is confined to a narrow, well-evidenced low-value segment with tight thresholds. See [Human Oversight](../core/controls.md#3-human-oversight-hitl).
-- **Real-time Judge.** Evaluate outputs (and the reasoning behind them) inline, not just on a sample, with conservative thresholds. See [Model-as-Judge](../core/controls.md#2-model-as-judge) and [Judge Assurance](../core/judge-assurance.md).
+- **Real-time Judge.** Evaluate outputs (and the reasoning behind them) inline, not just on a sample, with conservative thresholds. See [Model-as-Judge](../core/controls.md#the-model-as-judge) and [Judge Assurance](../core/judge-assurance.md).
 - **Full audit and explainability.** Every decision is logged with its inputs, the model version, and the rationale, sufficient to answer a regulator and to reconstruct any decision. See [Logging & Observability](../infrastructure/controls/logging-and-observability.md).
 - **Circuit breakers and a non-AI fallback.** A tested, dependency-isolated manual adjudication path the system can fall back to. See [Scaling and PACE](scaling-and-pace.md) and [Circuit Breakers](../core/agentic.md#5-circuit-breakers).
 

@@ -187,7 +187,7 @@ Humans review findings, make decisions, remain accountable.
 | Judge accuracy, drift, and adversarial failure | [Judge Assurance](judge-assurance.md) · [When the Judge Can Be Fooled](https://airuntimesecurity.io/core/when-the-judge-can-be-fooled/) |
 | Practical guardrail configurations | Practical Guardrails - what to turn on first, encoding detection, international PII |
 | When HITL doesn't scale | Humans in the Business Process - using existing business process checkpoints as a detection layer |
-| Controls for multi-agent systems | MASO Framework - 128 controls across 7 domains for agent orchestration |
+| Controls for multi-agent systems | MASO Framework - eleven control domains, up to 212 controls scaled by tier, for agent orchestration |
 | Controls for reasoning models (o1, etc.) | [Reasoning Model Controls](reasoning-model-controls.md) - trace scanning, instruction adherence, consistency checks |
 | Session-level and pre-action evaluation | Output Evaluator - session-aware, pre-action evaluation architecture for agentic systems |
 

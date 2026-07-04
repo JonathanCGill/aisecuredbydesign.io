@@ -60,7 +60,7 @@ Now map each threat to a control at the depth the tier demands. The [control mat
 | Prompt injection (direct) | Input guardrails: injection detection, topic and length limits | [Guardrails](../core/controls.md#1-guardrails) | Enhanced |
 | Indirect injection via RAG | Treat retrieved content as untrusted; strip instructions; access-controlled retrieval | [Guardrails](../core/controls.md#1-guardrails) + [Data Protection](../infrastructure/controls/data-protection.md) | Enhanced |
 | Sensitive-data disclosure | Output guardrails: PII checks, cross-customer leakage prevention, response scanning | [Guardrails](../core/controls.md#1-guardrails) + [DAT-06](../infrastructure/controls/data-protection.md) | Enhanced |
-| Unknown-bad behaviour | Model-as-Judge evaluating 100% of outputs async, high-risk first | [Judge](../core/controls.md#2-model-as-judge) | All outputs |
+| Unknown-bad behaviour | Model-as-Judge evaluating 100% of outputs async, high-risk first | [Judge](../core/controls.md#the-model-as-judge) | All outputs |
 | Excessive agency | Tool permission broker, parameter bounds, action classification by reversibility | [Agentic](../core/agentic.md#control-categories) + [Tool Access Controls](../infrastructure/agentic/tool-access-controls.md) | Enforced at gateway |
 | High-impact write actions | Step-up auth (contact change) and human confirmation (dispute) | [Human Oversight](../core/controls.md#3-human-oversight-hitl) + [Approval Workflows](../core/agentic.md#4-approval-workflows) | Required |
 | Identity and least privilege | Authenticate every entity; session-scoped, least-privilege tokens | [IAM Governance](../core/iam-governance.md) + [Identity & Access](../infrastructure/controls/identity-and-access.md) | All |
