@@ -2,24 +2,21 @@
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
 
-    {# SbD indigo dot logo #}
-    <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}"
-       class="sbd-dot" aria-label="AI Secured by Design Home">SbD</a>
-
     {# Mobile drawer toggle #}
     <label class="md-header__button md-icon" for="__drawer">
       {% set icon = config.theme.icon.menu or "material/menu" %}
       {% include ".icons/" ~ icon ~ ".svg" %}
     </label>
 
-    {# Logo #}
+    {# Text wordmark: SbD · AI Secured by Design #}
     <a
       href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}"
       title="{{ config.site_name | e }}"
-      class="md-header__button md-logo"
-      aria-label="{{ config.site_name }}"
+      class="sbd-wordmark"
+      aria-label="{{ config.site_name }} Home"
     >
-      {% include "partials/logo.html" %}
+      <span class="sbd-wordmark__mark">SbD</span>
+      <span class="sbd-wordmark__desc">· AI Secured by Design</span>
     </a>
 
     {# Inline nav tabs — visible on desktop only #}

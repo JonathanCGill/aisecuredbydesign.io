@@ -197,13 +197,18 @@ hide:
   </div>
 </section>
 
-<section class="hub-related">
-  <a class="hub-related__card" href="https://airuntimesecurity.io/">
-    <span class="hub-related__tag">RELATED</span>
-    <span class="hub-related__body">
-      <span class="hub-related__title">Securing AI at runtime, not just at design time?</span>
-      <span class="hub-related__desc">airuntimesecurity.io, the runtime security framework this library pairs with.</span>
-    </span>
-    <span class="hub-related__visit">Visit &nearr;</span>
-  </a>
+<section class="hub-lifecycle">
+  <p class="hub-eyebrow">THE LIFECYCLE</p>
+  <div class="hub-lifecycle__row">
+    <div class="hub-lifecycle__here">
+      <span class="hub-lifecycle__title">Before deployment — you are here</span>
+      <span class="hub-lifecycle__desc">AI Secured by Design: architecture, threat models, controls and standards mappings for systems you are still designing.</span>
+    </div>
+    <div class="hub-lifecycle__gap" aria-hidden="true">&rarr;</div>
+    <a class="hub-lifecycle__there" href="https://airuntimesecurity.io/">
+      <span class="hub-lifecycle__title">At runtime</span>
+      <span class="hub-lifecycle__desc">AIRS: ASO for one system, MASO for the fleet.</span>
+      <span class="hub-lifecycle__visit">airuntimesecurity.io &nearr;</span>
+    </a>
+  </div>
 </section>
