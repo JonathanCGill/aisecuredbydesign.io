@@ -21,7 +21,7 @@
   --sbd-border-soft:   #e5e9ee;  /* section dividers */
   --sbd-border-dashed: #c3cbd5;  /* "elsewhere" lifecycle card */
   --sbd-text-body:     #42505e;  /* paragraph text */
-  --sbd-text-muted:    #8a95a1;  /* eyebrows, qualifiers, sub-lines */
+  --sbd-text-muted:    #646e7a;  /* eyebrows, qualifiers, sub-lines (>= 4.5:1 on white and the alt band) */
 
   /* Wordmark descriptor colour (the one place the two sites differ) */
   --sbd-wordmark-desc: #9fb0c2;
@@ -72,6 +72,12 @@
   --md-accent-fg-color:             #7f9dc4;
   --md-accent-fg-color--transparent: rgba(127, 157, 196, 0.14);
   --md-typeset-a-color:  #7f9dc4;
+
+  /* Lift the brand blues so links, eyebrows, arrows, borders and focus
+     rings that reference them directly stay legible on the dark canvas. */
+  --sbd-brand-mid:     #8fabce;
+  --sbd-brand-link:    #9bb8dc;
+  --sbd-brand-link-hv: #b8cee7;
 
   --sbd-surface:       var(--md-code-bg-color);
   --sbd-surface-alt:   rgba(255, 255, 255, 0.03);
@@ -783,6 +789,21 @@ img[src$=".svg"] { max-width: 100%; height: auto; }
   border-color: var(--sbd-brand-dark);
   color: #ffffff;
 }
+/* On the dark canvas the brand fills are light blue, so filled buttons
+   need dark ink instead of white to stay readable. */
+[data-md-color-scheme="slate"] .md-typeset .md-button:hover,
+[data-md-color-scheme="slate"] .md-typeset .md-button:focus,
+[data-md-color-scheme="slate"] .md-typeset .md-button--primary {
+  background: var(--sbd-brand-mid);
+  border-color: var(--sbd-brand-mid);
+  color: var(--sbd-brand-dark);
+}
+[data-md-color-scheme="slate"] .md-typeset .md-button--primary:hover,
+[data-md-color-scheme="slate"] .md-typeset .md-button--primary:focus {
+  background: var(--sbd-brand-link-hv);
+  border-color: var(--sbd-brand-link-hv);
+  color: var(--sbd-brand-dark);
+}
 
 /* ── Breadcrumbs / nav path ── */
 .md-typeset .md-content__inner > nav[aria-label] { color: var(--sbd-text-muted); }
@@ -809,6 +830,64 @@ img[src$=".svg"] { max-width: 100%; height: auto; }
 
 /* ── Architecture diagram helper ── */
 .arch-diagram { display: block; margin: 1.5rem auto; max-width: 38rem; }
+
+/* ── Stacked "where to start" path cards (getting-started/README.md) ── */
+.home-paths {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem 0 1rem;
+}
+.home-path {
+  border: 1px solid var(--sbd-border);
+  border-radius: 5px;
+  padding: 1.25rem 1.5rem;
+  background: var(--sbd-surface);
+}
+.md-typeset .home-path h4 {
+  margin-top: 0 !important;
+  margin-bottom: 0.25rem;
+  font-size: var(--fs-h4);
+  color: var(--sbd-brand-mid);
+}
+.home-path p:last-of-type { margin-bottom: 0.75rem; }
+.home-path .md-button {
+  align-self: flex-start;
+  white-space: nowrap;
+}
+
+/* ── Cross-site handoff callout (testing-strategy, production-readiness) ── */
+.runtime-callout {
+  border: 1.5px solid var(--sbd-brand-mid);
+  border-radius: 5px;
+  padding: 1.5rem 2rem;
+  margin: 2.5rem 0 1.5rem;
+  background: var(--sbd-surface-tint);
+  text-align: center;
+}
+.runtime-callout p { margin: 0; }
+.runtime-callout .runtime-callout__label {
+  display: inline-block;
+  font-family: var(--md-code-font);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sbd-brand-mid);
+  margin-bottom: 0.5rem;
+}
+.runtime-callout .runtime-callout__title {
+  font-size: var(--fs-h4);
+  font-weight: 700;
+  color: var(--sbd-ink);
+  margin-bottom: 0.35rem;
+}
+.runtime-callout .runtime-callout__desc {
+  font-size: var(--fs-body);
+  color: var(--sbd-text-body);
+  margin-bottom: 1rem;
+}
+.runtime-callout .md-button { font-size: var(--fs-sm); }
 
 /* ============================================================
    Responsive
