@@ -63,6 +63,9 @@ markdown_extensions:
   - def_list
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra_css:
   - stylesheets/extra.css
@@ -167,6 +170,9 @@ nav:
 
   - Infrastructure & Operations:
     - infrastructure/README.md
+    - Control Handoff Matrix: infrastructure/handoff-matrix.md
+    - Machine-Readable Catalog: infrastructure/catalog/README.md
+    - Policy as Code (OPA & Kyverno): infrastructure/policy/README.md
     - Controls:
       - Identity and Access: infrastructure/controls/identity-and-access.md
       - Logging and Observability: infrastructure/controls/logging-and-observability.md
@@ -193,3 +199,6 @@ nav:
       - AWS Bedrock: infrastructure/reference/platform-patterns/aws-bedrock.md
       - Microsoft Foundry: infrastructure/reference/platform-patterns/microsoft-foundry.md
       - Databricks: infrastructure/reference/platform-patterns/databricks.md
+
+  - Reference:
+    - Glossary & Unified Taxonomy: glossary.md
