@@ -4,6 +4,10 @@ system:
   name: support-assistant
   tier: HIGH            # LOW, MEDIUM, HIGH or CRITICAL
 
+# Expected telemetry profile the runtime monitor compares against.
+# See getting-started/expected-telemetry.md.
+telemetry_profile: telemetry/support-assistant.yaml
+
 # Each session type and which Rule of Two properties it holds (SESS-06).
 # Tool output, retrieved documents, memory and other agents count as
 # untrusted input unless their provenance is verified.

@@ -69,6 +69,10 @@ Every infrastructure control has a stable ID of the form `PREFIX-NN`:
 
 An isolation pattern where a privileged model holds tools but never reads untrusted content, and a quarantined model reads untrusted content but has no tools. See [Injection-Resistant Design](core/injection-resistant-design.md#design-patterns).
 
+### Expected telemetry profile
+
+The declared posture an AI system should hold at each task stage: each monitored parameter with its target, tolerance band, hard limit, and trusted sources, plus the safest expected action. Designed before deployment from the losses to prevent and the chains that lead to them, and used at runtime by the Comoverlay monitor. See [Designing Expected Telemetry](getting-started/expected-telemetry.md).
+
 ### Design manifest
 
 A short YAML file kept next to a system's code that declares its risk tier, each session type and which Rule of Two properties it holds, its models with pinned versions and retirement dates, and its approved tools with definition hashes. Checked in CI by policy as code. See [Automating Design Assurance](getting-started/design-assurance.md).

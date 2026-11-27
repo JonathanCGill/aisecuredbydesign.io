@@ -40,6 +40,7 @@ No AI system should reach production without passing through a deployment gate a
 - [ ] Human oversight workflow tested end-to-end
 - [ ] Incident response runbook created for AI-specific scenarios
 - [ ] Privacy impact assessment completed (if processing personal data)
+- [ ] Expected telemetry designed and validated for agentic systems: losses, loss chains, profile, trigger points, response classification, and safe state ([expected telemetry](expected-telemetry.md))
 
 #### CRITICAL tier (add to above)
 
@@ -51,6 +52,7 @@ No AI system should reach production without passing through a deployment gate a
 - [ ] Regulatory notifications filed (if required)
 - [ ] Board or risk committee briefed
 - [ ] Canary or staged deployment plan approved
+- [ ] Expected telemetry invariants checked against systems of record, and the chain library independently reviewed
 
 ## Making the system visible
 
@@ -106,6 +108,7 @@ The handoff to [AI Runtime Security](https://airuntimesecurity.io/) is not a cle
 | **Escalation paths** | Who to contact for AI-specific issues, what triggers escalation | Runbook |
 | **Model documentation** | Model card, provenance record, known limitations, failure modes | Model documentation |
 | **Regulatory obligations** | Applicable regulations, compliance requirements, reporting obligations | Compliance mapping |
+| **Expected telemetry** | Losses, control structure, expected telemetry profile, chain library, trigger points, response classification, safe state | Versioned artefacts referenced from the design manifest ([expected telemetry](expected-telemetry.md#hand-off-to-runtime)) |
 
 ### Handoff meeting
 

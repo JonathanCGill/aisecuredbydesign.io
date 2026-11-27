@@ -45,6 +45,8 @@ Each crossing is where a control will eventually go. The [infrastructure control
 
 Once the boundaries are drawn, check each session for the [lethal trifecta](core/injection-resistant-design.md#the-lethal-trifecta): untrusted input, sensitive access, and an outbound channel in the same place. Where all three meet, [Injection-Resistant Design](core/injection-resistant-design.md) gives the patterns that separate them.
 
+The same analysis tells the runtime monitor what to watch. List the losses you must prevent, find the unsafe control actions that lead to them, and give every link a detector. See [Designing Expected Telemetry](getting-started/expected-telemetry.md).
+
 ## Step 3: Enumerate the AI-specific threats
 
 Work through the attack surface systematically. The OWASP LLM Top 10 and the OWASP Agentic Top 10 are the most useful checklists; the [OWASP LLM Top 10 mapping](infrastructure/mappings/owasp-llm-top10.md) ties each risk to a control. The recurring categories:

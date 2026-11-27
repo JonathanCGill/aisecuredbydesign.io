@@ -23,6 +23,7 @@ A **design manifest** is a short YAML file kept next to the system's code that s
 | `sessions` | Each session type and which [Rule of Two](../core/injection-resistant-design.md#the-agents-rule-of-two) properties it holds, plus any approval step and isolation pattern | SESS-06 |
 | `models` | Every model, including guardrail and judge models, with pinned version and retirement date | SUP-10 |
 | `tools` | Approved tools and the hash of each definition | TOOL-07 |
+| `telemetry_profile` | Path to the versioned [expected telemetry profile](expected-telemetry.md) the runtime monitor compares against | OB-2.9 (runtime) |
 
 A [complete example](../infrastructure/policy/examples/design-manifest.example.yaml) and a [tested OPA policy](../infrastructure/policy/opa/design_manifest.rego) that checks it are included with the policy templates.
 

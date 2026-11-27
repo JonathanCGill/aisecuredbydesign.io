@@ -173,6 +173,7 @@ nav:
     - Adversarial Testing: getting-started/adversarial-testing.md
     - Production Readiness: getting-started/production-readiness.md
     - Automating Design Assurance: getting-started/design-assurance.md
+    - Designing Expected Telemetry: getting-started/expected-telemetry.md
 
   - Infrastructure & Operations:
     - infrastructure/README.md
