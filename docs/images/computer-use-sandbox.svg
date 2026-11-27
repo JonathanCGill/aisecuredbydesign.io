@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400" role="img" aria-labelledby="t d">
+  <title id="t">Computer-use agent reference architecture</title>
+  <desc id="d">The model sends actions to a controller outside the sandbox. The controller applies an action policy and pauses for human approval on consequential actions. The browser or desktop runs in an ephemeral sandbox with its own dedicated account. A credential broker fills logins without exposing secrets to the model. All traffic leaves through an egress proxy with a domain allowlist.</desc>
+  <rect width="800" height="400" fill="white"/>
+  <text x="400" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="17" font-weight="bold" fill="#1e293b">Computer-use agent reference architecture</text>
+  <g font-family="Inter, sans-serif" text-anchor="middle">
+    <rect x="20" y="70" width="150" height="70" rx="6" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2"/>
+    <text x="95" y="100" font-size="13" font-weight="bold" fill="#1e293b">Model</text>
+    <text x="95" y="120" font-size="10" fill="#475569">sees screenshots,</text>
+    <text x="95" y="133" font-size="10" fill="#475569">proposes actions</text>
+    <rect x="230" y="70" width="170" height="70" rx="6" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+    <text x="315" y="100" font-size="13" font-weight="bold" fill="#1e293b">Controller</text>
+    <text x="315" y="120" font-size="10" fill="#475569">action policy, step limits,</text>
+    <text x="315" y="133" font-size="10" fill="#475569">full action log</text>
+    <rect x="230" y="190" width="170" height="60" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <text x="315" y="216" font-size="13" font-weight="bold" fill="#1e293b">Human approval</text>
+    <text x="315" y="234" font-size="10" fill="#475569">pay, send, delete, submit</text>
+    <rect x="30" y="190" width="150" height="60" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="105" y="216" font-size="13" font-weight="bold" fill="#1e293b">Credential broker</text>
+    <text x="105" y="234" font-size="10" fill="#475569">fills logins, model never sees</text>
+  </g>
+  <path d="M170,105 L222,105" stroke="#475569" stroke-width="2"/><polygon points="228,105 220,100 220,110" fill="#475569"/>
+  <path d="M315,140 L315,182" stroke="#475569" stroke-width="2"/><polygon points="315,188 310,180 320,180" fill="#475569"/>
+  <rect x="450" y="55" width="180" height="290" rx="8" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="540" y="76" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#1e40af">Ephemeral sandbox</text>
+  <g font-family="Inter, sans-serif" text-anchor="middle">
+    <rect x="470" y="92" width="140" height="56" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="540" y="116" font-size="12" font-weight="bold" fill="#1e293b">Browser or desktop</text>
+    <text x="540" y="133" font-size="10" fill="#475569">no host access</text>
+    <rect x="470" y="168" width="140" height="56" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="540" y="192" font-size="12" font-weight="bold" fill="#1e293b">Dedicated account</text>
+    <text x="540" y="209" font-size="10" fill="#475569">least privilege</text>
+    <rect x="470" y="244" width="140" height="56" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="540" y="268" font-size="12" font-weight="bold" fill="#1e293b">Scratch storage</text>
+    <text x="540" y="285" font-size="10" fill="#475569">wiped after session</text>
+  </g>
+  <path d="M400,105 L462,112" stroke="#475569" stroke-width="2"/><polygon points="468,113 459,107 459,117" fill="#475569"/>
+  <path d="M105,250 L105,320 L430,320 L430,196 L462,196" stroke="#16a34a" stroke-width="1.5" fill="none"/><polygon points="468,196 460,191 460,201" fill="#16a34a"/>
+  <text x="270" y="312" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#15803d">injects login out of band</text>
+  <path d="M630,200 L668,200" stroke="#475569" stroke-width="2"/><polygon points="674,200 666,195 666,205" fill="#475569"/>
+  <rect x="676" y="160" width="110" height="80" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="731" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#1e293b">Egress proxy</text>
+  <text x="731" y="208" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#475569">domain allowlist,</text>
+  <text x="731" y="221" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#475569">upload limits</text>
+  <text x="400" y="375" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">Every page the agent sees is untrusted input. Enforcement sits outside the sandbox, where the model cannot reach it.</text>
+</svg>

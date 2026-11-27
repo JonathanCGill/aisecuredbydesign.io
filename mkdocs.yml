@@ -125,6 +125,7 @@ nav:
     - Three-Layer Controls: core/controls.md
     - Designing Runtime Controls: building/secure-design-guardrails.md
     - Agentic AI Controls: core/agentic.md
+    - Injection-Resistant Design: core/injection-resistant-design.md
     - IAM Governance: core/iam-governance.md
     - Judge Assurance: core/judge-assurance.md
     - Implementation Checklist: core/checklist.md
@@ -134,6 +135,7 @@ nav:
       - Streaming: core/streaming-controls.md
       - Memory and Context: core/memory-and-context.md
       - Multi-Agent: core/multi-agent-controls.md
+      - Computer-Use Agents: core/computer-use-agents.md
       - Emerging Controls: core/emerging-controls.md
     - PACE Resilience:
       - Control Layers: core/pace-controls-section.md
@@ -152,6 +154,8 @@ nav:
       - CI/CD for AI: building/devops/ci-cd-for-ai.md
       - Infrastructure as Code: building/devops/infrastructure-as-code.md
       - Secrets Management: building/devops/secrets-management.md
+      - Prompt and Config Management: building/devops/prompt-and-config-management.md
+      - AI-Assisted Development: building/devops/ai-assisted-development.md
       - Integration Security: building/devops/integration-security.md
       - Resilience: building/devops/resilience.md
     - MLOps Security:

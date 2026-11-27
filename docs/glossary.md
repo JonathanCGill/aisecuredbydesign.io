@@ -62,6 +62,30 @@ Every infrastructure control has a stable ID of the form `PREFIX-NN`:
 
 **AI Bill of Materials.** A maintained inventory of the models, datasets, tools, and dependencies a system uses, so coverage and provenance can be verified systematically (SUP-07). The AI analogue of a software SBOM.
 
+### Lethal trifecta
+
+The combination of **access to private data**, **exposure to untrusted content**, and **a way to communicate externally** in one AI system. With all three present, prompt injection can lead to data exfiltration. Term coined by Simon Willison. See [Injection-Resistant Design](core/injection-resistant-design.md#the-lethal-trifecta).
+
+### Agents Rule of Two
+
+A design rule from Meta: within one session, an agent should hold no more than two of untrusted input, sensitive access, and the ability to change state or communicate externally. Sessions needing all three require human approval. See [Injection-Resistant Design](core/injection-resistant-design.md#the-agents-rule-of-two).
+
+### Dual LLM pattern
+
+An isolation pattern where a privileged model holds tools but never reads untrusted content, and a quarantined model reads untrusted content but has no tools. See [Injection-Resistant Design](core/injection-resistant-design.md#design-patterns).
+
+### Slopsquatting
+
+Registering a package name that AI coding tools tend to hallucinate, so that developers who accept the suggestion install malicious code. See [AI-Assisted Development](building/devops/ai-assisted-development.md).
+
+### Tool poisoning
+
+Hiding instructions in a tool's description or schema, which the model reads but the user usually does not. A **rug pull** is the related attack where an approved tool's description changes after approval. See [Prompt and Configuration Management](building/devops/prompt-and-config-management.md#tool-definitions-poisoning-and-rug-pulls).
+
+### Content provenance
+
+Evidence attached to or embedded in generated content showing that it was AI-generated and by which system, using signed metadata (such as C2PA Content Credentials), watermarks, or fingerprints. Required for synthetic content under EU AI Act Article 50(2). See [Regulatory Alignment](getting-started/regulatory-alignment.md#transparency-obligations-and-content-provenance-article-50).
+
 !!! info "References"
     - [Glossary and Unified Taxonomy (airuntimesecurity.io, canonical)](https://airuntimesecurity.io/glossary/)
     - [Risk Tiers](core/risk-tiers.md)

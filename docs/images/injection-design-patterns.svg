@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="400" viewBox="0 0 780 400" role="img" aria-labelledby="t d">
+  <title id="t">Dual LLM and plan-then-execute patterns</title>
+  <desc id="d">Left: in the dual LLM pattern, a privileged model that holds tools never reads untrusted content. A quarantined model with no tools reads it and returns values by reference. Right: in plan-then-execute, the plan is fixed from the trusted request before any untrusted data is read, so injected text can change values but not add actions.</desc>
+  <rect width="780" height="400" fill="white"/>
+  <text x="390" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="17" font-weight="bold" fill="#1e293b">Two isolation patterns</text>
+  <text x="190" y="62" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#1e293b">Dual LLM</text>
+  <rect x="20" y="80" width="110" height="44" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="75" y="107" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#1e293b">Trusted request</text>
+  <path d="M130,102 L162,102" stroke="#475569" stroke-width="2"/><polygon points="168,102 160,97 160,107" fill="#475569"/>
+  <rect x="170" y="74" width="190" height="56" rx="6" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="265" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#1e293b">Privileged LLM</text>
+  <text x="265" y="116" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">has tools, never sees raw data</text>
+  <path d="M265,130 L265,170" stroke="#475569" stroke-width="2"/><polygon points="265,176 260,168 270,168" fill="#475569"/>
+  <text x="275" y="156" font-family="Inter, sans-serif" font-size="10" fill="#64748b">"summarise doc into $VAR1"</text>
+  <rect x="170" y="178" width="190" height="56" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="265" y="202" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#1e293b">Quarantined LLM</text>
+  <text x="265" y="220" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">reads untrusted data, no tools</text>
+  <rect x="20" y="184" width="110" height="44" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="75" y="211" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#1e293b">Untrusted data</text>
+  <path d="M130,206 L162,206" stroke="#475569" stroke-width="2"/><polygon points="168,206 160,201 160,211" fill="#475569"/>
+  <path d="M265,234 L265,272" stroke="#475569" stroke-width="2"/><polygon points="265,278 260,270 270,270" fill="#475569"/>
+  <rect x="170" y="280" width="190" height="50" rx="6" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+  <text x="265" y="302" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#1e293b">Controller (plain code)</text>
+  <text x="265" y="319" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">stores $VAR1, passes by reference</text>
+  <text x="190" y="362" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">Injected text reaches only a model</text>
+  <text x="190" y="378" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">that cannot act on it.</text>
+  <line x1="390" y1="55" x2="390" y2="385" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <text x="590" y="62" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#1e293b">Plan-then-execute</text>
+  <rect x="420" y="80" width="110" height="44" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="475" y="107" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#1e293b">Trusted request</text>
+  <path d="M530,102 L562,102" stroke="#475569" stroke-width="2"/><polygon points="568,102 560,97 560,107" fill="#475569"/>
+  <rect x="570" y="74" width="190" height="56" rx="6" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="665" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#1e293b">Planner</text>
+  <text x="665" y="116" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">fixes the action list up front</text>
+  <path d="M665,130 L665,170" stroke="#475569" stroke-width="2"/><polygon points="665,176 660,168 670,168" fill="#475569"/>
+  <rect x="570" y="178" width="190" height="56" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="665" y="202" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#1e293b">Frozen plan</text>
+  <text x="665" y="220" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">1. read inbox  2. draft reply</text>
+  <rect x="420" y="184" width="110" height="44" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="475" y="211" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#1e293b">Untrusted data</text>
+  <path d="M665,234 L665,272" stroke="#475569" stroke-width="2"/><polygon points="665,278 660,270 670,270" fill="#475569"/>
+  <path d="M475,228 L475,305 L562,305" stroke="#475569" stroke-width="2" fill="none"/><polygon points="568,305 560,300 560,310" fill="#475569"/>
+  <rect x="570" y="280" width="190" height="50" rx="6" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+  <text x="665" y="302" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#1e293b">Executor</text>
+  <text x="665" y="319" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">runs only planned steps</text>
+  <text x="590" y="362" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">Injected text can change values inside</text>
+  <text x="590" y="378" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">a step, but cannot add a new action.</text>
+</svg>
