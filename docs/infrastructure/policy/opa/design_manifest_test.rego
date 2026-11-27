@@ -26,9 +26,14 @@ good := {
 	"tools": [{"name": "crm_lookup", "definition_sha256": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"}],
 }
 
-denies(inp) := manifest.deny with input as inp
+# `with` is not allowed in a rule head, so bind inside the body.
+denies(inp) := d if {
+	d := manifest.deny with input as inp
+}
 
-warns(inp) := manifest.warn with input as inp
+warns(inp) := w if {
+	w := manifest.warn with input as inp
+}
 
 has_msg(msgs, fragment) if {
 	some m in msgs
