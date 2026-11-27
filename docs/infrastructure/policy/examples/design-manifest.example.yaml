@@ -25,10 +25,10 @@ sessions:
 models:
   - id: primary
     pinned_version: provider-model-2026-06-01
-    retirement_date: "2027-12-31"
+    retirement_date: "2030-12-31"
   - id: judge
     pinned_version: provider-judge-2026-03-15
-    retirement_date: "2027-03-31"
+    retirement_date: "2030-06-30"
 
 # Approved tools with the hash of their name, description and schema (TOOL-07).
 tools:
