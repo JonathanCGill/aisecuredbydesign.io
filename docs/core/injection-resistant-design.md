@@ -39,7 +39,7 @@ The third leg is the one teams miss most often. Rendering a Markdown image is an
 
 ## The Agents Rule of Two
 
-Meta's **Agents Rule of Two** turns the trifecta into a design rule. Within a single session, an agent should satisfy no more than two of:
+Meta's **Agents Rule of Two** ([canonical definition](https://airuntimesecurity.io/glossary/#rule-of-two)) turns the trifecta into a design rule. Within a single session, an agent should satisfy no more than two of:
 
 - **[A]** It processes untrustworthy inputs.
 - **[B]** It has access to sensitive systems or private data.

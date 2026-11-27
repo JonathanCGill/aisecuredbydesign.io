@@ -98,9 +98,11 @@ description: "AWS Bedrock implementation patterns for AI security controls: zone
 
 ### NET-03: Judge Isolation
 
-- Judge model invoked from a **separate VPC** or **separate AWS account**.
+- Model-as-Judge invoked from a **separate VPC** or **separate AWS account**.
 - **Cross-account IAM role** for Judge invocation with minimal permissions.
 - Judge VPC has no inbound routes from runtime VPC - data pushed via **SQS** or **EventBridge**.
+
+See also: a [semantic firewall](https://airuntimesecurity.io/core/controls/semantic-firewall/) typically shares this isolated path, since it runs the same independent-evaluation role at lower cost and latency.
 
 ### NET-04: Agent Egress Controls
 

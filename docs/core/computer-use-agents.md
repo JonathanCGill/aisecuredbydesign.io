@@ -16,7 +16,7 @@ description: Design-time security for computer-use and browser agents that opera
 | **Credentials** | Injected by a gateway | Often held in the browser session the agent controls |
 | **Enforcement point** | Tool gateway | Harder to place. Must sit around the environment, not inside it |
 
-Researchers have repeatedly shown browser agents following instructions hidden in web pages, including Brave's 2025 disclosure of indirect prompt injection in Perplexity's Comet browser, where a hidden instruction on a page could direct the agent to read data from the user's other logged-in sessions. Agent vendors themselves recommend running these tools in an isolated environment with limited privileges and keeping a human in the loop for consequential actions.
+Researchers have repeatedly shown browser agents following instructions hidden in web pages, including Brave's 2025 disclosure of indirect prompt injection in Perplexity's Comet browser, where a hidden instruction on a page could direct the agent to read data from the user's other logged-in sessions. In August 2026 Zenity Labs showed the same class of zero-click attack (*PleaseFix*) working against five agentic browsers from five model providers. The root cause is structural: a browser agent reasons across content from many origins in one session, which breaks the **same-origin principle** the web relies on for isolation. The runtime analysis is in [ET-14 on airuntimesecurity.io](https://airuntimesecurity.io/maso/threat-intelligence/emerging-threats/#et-14-computer-use-and-browser-agents-expand-the-action-surface). Agent vendors themselves recommend running these tools in an isolated environment with limited privileges and keeping a human in the loop for consequential actions.
 
 !!! warning "Treat the screen as untrusted input"
     A computer-use agent holds all three legs of the [lethal trifecta](injection-resistant-design.md#the-lethal-trifecta) by default: it reads untrusted pages, it can reach whatever the logged-in account can reach, and it can submit forms and navigate anywhere. Design must remove at least one leg.
@@ -56,6 +56,7 @@ See [Identity and Access](../infrastructure/controls/identity-and-access.md) and
 
 - All traffic leaves through an **egress proxy with a domain allowlist** for the task. A procurement agent that needs three supplier sites gets those three.
 - Block file upload to destinations outside the allowlist.
+- Scope each task to the origins it needs, and require human confirmation for any action on an origin other than the one the user asked about. This replaces the same-origin isolation a browser agent otherwise loses.
 - Separate sessions that browse the open web from sessions that are logged in to sensitive systems. This applies the [Rule of Two](injection-resistant-design.md#the-agents-rule-of-two): the open-web session has untrusted input but no sensitive access, and the logged-in session has sensitive access but a narrow allowlist.
 
 See [Network and Segmentation](../infrastructure/controls/network-and-segmentation.md).
@@ -98,4 +99,5 @@ Runtime monitoring should watch for navigation outside the expected flow, repeat
     - [Brave: Agentic browser security, indirect prompt injection in Perplexity Comet](https://brave.com/blog/comet-prompt-injection/)
     - [OpenAI: Computer-Using Agent](https://openai.com/index/computer-using-agent/)
     - [Meta AI: Agents Rule of Two](https://ai.meta.com/blog/practical-ai-agent-security/)
+    - [AI Runtime Security: ET-14, Computer-use and browser agents expand the action surface](https://airuntimesecurity.io/maso/threat-intelligence/emerging-threats/)
     - [OWASP LLM06:2025 Excessive Agency](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)

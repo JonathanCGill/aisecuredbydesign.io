@@ -14,6 +14,15 @@ This mirrors the [canonical handoff matrix on airuntimesecurity.io](https://airu
 !!! abstract "The one-line version"
     Pre-runtime **containment and identity** become runtime **Layer 01 guardrails**. Pre-runtime **logging and isolation** become the substrate for **Layer 02 detection**. Pre-runtime **approval workflows** become **Layer 03 human oversight**. Pre-runtime **rollback and resource limits** become the **circuit breaker** that contains what the layers cannot hold.
 
+## How to read a row
+
+| Column | Meaning |
+|--------|---------|
+| **Pre-runtime control** | The infrastructure control built on this site, with its ID |
+| **Established before deploy** | What that control puts in place while the system is still being built |
+| **Runtime layer** | The AIRS layer the control most directly enables once the system is live |
+| **Runtime behaviour** | What actually happens at request time because the pre-runtime control exists |
+
 ## Containment and execution → Layer 01 + Circuit Breaker
 
 | Pre-runtime control | Established before deploy | Runtime layer | Runtime behaviour |

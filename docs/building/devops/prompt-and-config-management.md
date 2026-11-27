@@ -16,7 +16,7 @@ This page treats them as what they are: production artefacts that need version c
 | **Few-shot examples** | Steer behaviour as strongly as instructions do |
 | **Tool and function definitions** | Names, descriptions, and parameter schemas are read by the model and shape which tools it calls and how |
 | **MCP server configuration** | Decides which external tools and data the agent can reach |
-| **Agent skills and instruction files** | Packaged instructions and scripts the agent loads on demand |
+| **Agent skills and instruction files** | Packaged instructions and scripts the agent loads on demand. Each skill should declare the paths, hosts, and credentials it needs, enforced at runtime by a [per-skill permission manifest](https://airuntimesecurity.io/maso/controls/supply-chain/) |
 | **Guardrail and judge configuration** | Thresholds, policies, block lists, and judge prompts |
 | **Model parameters and routing** | Model version, temperature, max tokens, fallback order |
 
@@ -90,5 +90,6 @@ Runtime teams need the current approved version and hash for every artefact, and
     - [OWASP LLM07:2025 System Prompt Leakage](https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/)
     - [Invariant Labs: MCP Security Notification, Tool Poisoning Attacks](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
     - [Model Context Protocol: Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
+    - [OWASP Agentic Skills Top 10](https://owasp.org/www-project-agentic-skills-top-10/)
     - [NIST SP 800-218A: Secure Software Development Practices for Generative AI](https://csrc.nist.gov/pubs/sp/800/218/a/final)
     - [AI Runtime Security: The MCP Problem](https://airuntimesecurity.io/insights/the-mcp-problem/)

@@ -22,6 +22,9 @@ Concepts like **PACE**, **MASO**, and **risk tiers** span both this site and [ai
 | **Human Oversight (Layer 03)** | Human decision on high-consequence actions. → [canonical](https://airuntimesecurity.io/glossary/#human-oversight) |
 | **Circuit breaker** | Containment failsafe, maps to PACE Emergency. → [canonical](https://airuntimesecurity.io/glossary/#circuit-breaker) |
 | **Objective Intent** | An agent's declared, checkable objective. → [canonical](https://airuntimesecurity.io/glossary/#objective-intent) |
+| **Semantic firewall** | Fast intent classification against a declared taxonomy, ahead of the Model-as-Judge. → [canonical](https://airuntimesecurity.io/glossary/#semantic-firewall) |
+| **Lethal trifecta** | Private data access, untrusted content, and an outbound channel in one session. → [canonical](https://airuntimesecurity.io/glossary/#lethal-trifecta) &middot; [design patterns](core/injection-resistant-design.md#the-lethal-trifecta) |
+| **Rule of Two** | At most two of untrusted input, sensitive access, and state change or outbound communication per session. → [canonical](https://airuntimesecurity.io/glossary/#rule-of-two) &middot; [design patterns](core/injection-resistant-design.md#the-agents-rule-of-two) |
 
 ## Pre-runtime taxonomy (canonical here)
 
@@ -61,14 +64,6 @@ Every infrastructure control has a stable ID of the form `PREFIX-NN`:
 ### AI-BOM
 
 **AI Bill of Materials.** A maintained inventory of the models, datasets, tools, and dependencies a system uses, so coverage and provenance can be verified systematically (SUP-07). The AI analogue of a software SBOM.
-
-### Lethal trifecta
-
-The combination of **access to private data**, **exposure to untrusted content**, and **a way to communicate externally** in one AI system. With all three present, prompt injection can lead to data exfiltration. Term coined by Simon Willison. See [Injection-Resistant Design](core/injection-resistant-design.md#the-lethal-trifecta).
-
-### Agents Rule of Two
-
-A design rule from Meta: within one session, an agent should hold no more than two of untrusted input, sensitive access, and the ability to change state or communicate externally. Sessions needing all three require human approval. See [Injection-Resistant Design](core/injection-resistant-design.md#the-agents-rule-of-two).
 
 ### Dual LLM pattern
 
