@@ -121,6 +121,8 @@ For agentic systems, also document:
 - [Tool access controls](../infrastructure/agentic/tool-access-controls.md): what tools are available, what permissions they have, how invocations are constrained
 - [Sandbox patterns](../infrastructure/agentic/sandbox-patterns.md): how generated code is isolated and executed
 - [Agentic controls](../core/agentic.md): plan approval, action constraints, circuit breakers
+- [Injection-resistant design](../core/injection-resistant-design.md): which sessions hold untrusted input, sensitive access, and outbound channels, and which isolation pattern keeps them apart
+- [Computer-use and browser agents](../core/computer-use-agents.md), if the agent operates a screen or browser
 
 For multi-agent systems, additionally document:
 
@@ -161,6 +163,8 @@ Your CI/CD pipeline for AI has requirements that traditional software pipelines 
 | **CI/CD adaptation** | [CI/CD for AI](../building/devops/ci-cd-for-ai.md). Add model validation gates, artefact integrity checks, and AI-specific test stages. |
 | **Infrastructure** | [Infrastructure as code](../building/devops/infrastructure-as-code.md). Define GPU provisioning, inference endpoints, and environment configuration as code. |
 | **Secrets** | [Secrets management](../building/devops/secrets-management.md). AI systems have an expanded credential surface: model endpoints, vector databases, tool APIs, experiment trackers. |
+| **Prompts and configuration** | [Prompt and configuration management](../building/devops/prompt-and-config-management.md). Version, review, evaluate, and sign system prompts, tool definitions, and guardrail settings. |
+| **AI coding tools** | [AI-assisted development](../building/devops/ai-assisted-development.md). Control the coding assistants and agents that write the system, including dependency and instruction file risks. |
 | **Integration** | [Integration security](../building/devops/integration-security.md). The AI component connects to web frontends, databases, APIs, and MCP servers. Secure every integration point. |
 
 ### Data governance

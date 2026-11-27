@@ -43,6 +43,8 @@ Map every point where data or control crosses from less-trusted to more-trusted.
 
 Each crossing is where a control will eventually go. The [infrastructure controls](infrastructure/README.md) are organised around exactly these boundaries: identity at the entry, network segmentation between zones, and tool access controls at the model-to-tool crossing.
 
+Once the boundaries are drawn, check each session for the [lethal trifecta](core/injection-resistant-design.md#the-lethal-trifecta): untrusted input, sensitive access, and an outbound channel in the same place. Where all three meet, [Injection-Resistant Design](core/injection-resistant-design.md) gives the patterns that separate them.
+
 ## Step 3: Enumerate the AI-specific threats
 
 Work through the attack surface systematically. The OWASP LLM Top 10 and the OWASP Agentic Top 10 are the most useful checklists; the [OWASP LLM Top 10 mapping](infrastructure/mappings/owasp-llm-top10.md) ties each risk to a control. The recurring categories:

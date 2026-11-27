@@ -88,6 +88,36 @@ The EU AI Act also imposes obligations on providers of general-purpose AI models
 !!! tip "Provider compliance does not equal deployer compliance"
     Even if your model provider fully complies with GPAI obligations, you still need to assess and manage the risks of your specific deployment. A fully compliant foundation model can be deployed in a non-compliant way.
 
+### Transparency obligations and content provenance (Article 50)
+
+Article 50 applies to many systems that are not high-risk, including ordinary chatbots and content generators. It has applied since **2 August 2026**.
+
+| Obligation | Who | What it requires |
+|------------|-----|------------------|
+| **Art. 50(1)** | Provider | People interacting with an AI system are told so, unless it is obvious from context |
+| **Art. 50(2)** | Provider | Synthetic audio, image, video, and text output is marked in a machine-readable format and detectable as AI-generated |
+| **Art. 50(3)** | Deployer | People exposed to emotion recognition or biometric categorisation are informed |
+| **Art. 50(4)** | Deployer | Deepfakes are disclosed as such. AI-generated text published to inform the public on matters of public interest is disclosed, unless it has had human review and editorial responsibility |
+
+The **Digital Omnibus on AI**, adopted in 2026, gave generative systems already on the market before 2 August 2026 until **2 December 2026** to meet the Article 50(2) marking duty. New systems must comply from launch, and the other Article 50 duties had no extension. Check the published text for your situation. The Commission is also developing a code of practice on marking and labelling AI-generated content, which will set out what counts as an adequate technical solution.
+
+Marking is a design decision, because it has to survive your own pipeline. The main techniques:
+
+| Technique | How it works | Weakness |
+|-----------|--------------|----------|
+| **Provenance metadata** (C2PA Content Credentials) | A signed manifest attached to the file records that it was AI-generated and by what | Stripped by many platforms, screenshots, and re-encoding |
+| **Invisible watermarking** | A signal embedded in the pixels, audio, or token choices | Robustness varies. Text watermarks are weak against paraphrasing |
+| **Fingerprinting and logging** | Store hashes or perceptual fingerprints of everything generated, so it can be identified later | Needs a lookup service, and only identifies your own output |
+
+Most providers that need robust marking combine metadata with a watermark. Pre-deployment steps:
+
+- Find out whether your model provider already marks output, and with which technique.
+- Test that marks survive your own post-processing. Resizing, compression, format conversion, and image editing steps commonly strip metadata.
+- Decide how chatbot disclosure (50(1)) is shown in every interface, including voice and API responses that other products display.
+- Record the marking approach in the system's technical documentation.
+
+The same techniques help outside the EU: they make it easier to prove which content your system did or did not generate when a deepfake or fraud complaint arrives.
+
 ## Privacy regulations and AI
 
 Every AI system that processes personal data must comply with applicable privacy laws. The interaction between privacy regulation and AI risk classification is direct.
@@ -166,6 +196,9 @@ In these jurisdictions:
 
 !!! info "References"
     - [EU AI Act (Regulation 2024/1689)](https://eur-lex.europa.eu/eli/reg/2024/1689)
+    - [EU AI Act Article 50: Transparency obligations](https://artificialintelligenceact.eu/article/50/)
+    - [CSA Research Note: EU AI Act Article 50 watermarking deadline](https://labs.cloudsecurityalliance.org/research/csa-research-note-eu-ai-act-article50-watermarking-deadline/)
+    - [C2PA: Content Credentials technical specification](https://c2pa.org/specifications/specifications/2.1/index.html)
     - [GDPR (Regulation 2016/679)](https://eur-lex.europa.eu/eli/reg/2016/679)
     - [NIS2 Directive (Directive 2022/2555)](https://eur-lex.europa.eu/eli/dir/2022/2555)
     - [DORA (Regulation 2022/2554)](https://eur-lex.europa.eu/eli/reg/2022/2554)

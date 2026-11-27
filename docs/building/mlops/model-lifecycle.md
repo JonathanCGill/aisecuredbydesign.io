@@ -165,7 +165,55 @@ Every production deployment must have a tested rollback plan.
 - A security vulnerability is discovered in the model
 - Downstream systems report integration issues
 
+## Provider model deprecation
+
+If you use a hosted foundation model, the provider decides when it is retired. Providers publish deprecation schedules, and retirement dates can be months rather than years after release. When a model is retired, requests to it fail or are redirected to a successor. Either way, you are now running a model you have not tested.
+
+Treat every provider deprecation as a forced model change that goes through the full lifecycle, on a deadline you do not control.
+
+### Before it happens
+
+- **Pin model versions** in configuration. Avoid aliases such as "latest" that silently move to a new model. See [Foundation Model Access](foundation-model-access.md).
+- **Track deprecation notices** for every model in the AI-BOM, with an owner who reads them. Add retirement dates to the system's risk register.
+- **Keep the evaluation suite runnable on demand.** A migration is only as fast as your ability to re-run regression, safety, and injection evals against a new model.
+- **Name a tested alternate** in the system's [PACE plan](../devops/resilience.md), so a successor is already partly qualified.
+
+### Migration checklist
+
+When a deprecation is announced:
+
+- [ ] Select the successor model and run the [model risk assessment](../model-selection/risk-assessment.md) on it. A successor from the same provider is still a new model.
+- [ ] Re-run regression, safety, and injection evals. Expect some prompts to need rework.
+- [ ] Re-tune guardrail thresholds. Output style and length changes can shift false positive rates.
+- [ ] Re-calibrate any model-as-judge, both where the judge model itself is deprecated and where the judged model changes. See [Judge Assurance](../../core/judge-assurance.md).
+- [ ] Re-check the [risk classification](../../getting-started/risk-classification.md) if the successor has new capabilities, such as tool use, longer context, or multimodal input.
+- [ ] Update technical documentation, the AI-BOM, and the model card reference.
+- [ ] Deploy through the normal staged rollout with the old version still available for rollback until the retirement date.
+
+!!! warning "Start the day the notice arrives"
+    Teams that wait until the final month often ship the successor with reduced testing. Plan the migration as soon as the deprecation is announced, and escalate early if the timeline does not fit your release gates.
+
+## Decommissioning an AI system
+
+Retiring an AI system leaves more behind than retiring a conventional application. Credentials, stored context, derived data, and model artefacts can all outlive the system and become an exposure.
+
+| Area | Decommissioning step |
+|------|---------------------|
+| **Identities and credentials** | Revoke agent identities, service accounts, API keys, OAuth grants, and delegated tokens. Confirm no other system still uses them. See [Identity and Access](../../infrastructure/controls/identity-and-access.md) |
+| **Tool and integration access** | Remove the system's entries from the tool gateway manifest and disconnect MCP servers and webhooks |
+| **Stored context** | Delete vector stores, embeddings, conversation history, and agent memory, or move them under the retention policy that applies to their source data |
+| **Model artefacts** | Archive or delete fine-tuned weights and adapters according to data governance. Fine-tuned models can memorise training data, so deleting the dataset alone is not enough. See [Data Governance](data-governance.md#right-to-erasure-and-model-retention) |
+| **Provider resources** | Delete provisioned throughput, fine-tuning jobs, stored files, and batch outputs held by the model provider |
+| **Logs and evidence** | Keep audit logs for the required retention period. Delete operational logs that hold personal data once they are no longer needed |
+| **Inventory** | Mark the system and its components as retired in the AI-BOM and the AI system inventory, with the date and the owner who signed off |
+| **Users and dependants** | Tell downstream systems and users, and confirm nothing depends on the system's outputs |
+
+Decommissioning follows the same approval pattern as deployment: a named owner signs off that each step is complete. For HIGH and CRITICAL systems, security confirms that credentials were revoked and data deleted. This also supports NIST AI RMF GOVERN 1.7 and MANAGE 4.2, which cover decommissioning.
+
 !!! info "References"
     - [MLflow Model Registry](https://mlflow.org/docs/latest/model-registry.html)
     - [Google: MLOps Continuous Delivery](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)
     - [AI Runtime Security: Risk Tiers](https://airuntimesecurity.io/core/risk-tiers/)
+    - [Anthropic: Model deprecations](https://docs.anthropic.com/en/docs/about-claude/model-deprecations)
+    - [OpenAI: Deprecations](https://platform.openai.com/docs/deprecations)
+    - [NIST AI RMF Playbook (GOVERN 1.7, MANAGE 4.2)](https://airc.nist.gov/airmf-resources/playbook/)

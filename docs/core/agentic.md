@@ -55,6 +55,8 @@ The action the agent takes should match what the user actually wanted.
 
 **Test:** Can you trace from the user's original request to the final action? Is the link intact?
 
+These controls reduce how often integrity fails. To limit what an agent can do when it fails, apply the architectural patterns in [Injection-Resistant Design](injection-resistant-design.md), starting with the Rule of Two. Agents that operate screens and browsers have additional requirements, covered in [Computer-Use and Browser Agents](computer-use-agents.md).
+
 ### Why Both Problems Matter
 
 | Scenario | Access OK? | Integrity OK? | Outcome |

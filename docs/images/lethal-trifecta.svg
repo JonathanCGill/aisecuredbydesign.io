@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460" role="img" aria-labelledby="t d">
+  <title id="t">The lethal trifecta and the Rule of Two</title>
+  <desc id="d">Three overlapping circles: untrusted input, sensitive data or systems, and external communication or state change. Where all three overlap, an injected instruction can cause real harm. Design each session to sit in at most two circles.</desc>
+  <rect width="760" height="460" fill="white"/>
+  <text x="380" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="17" font-weight="bold" fill="#1e293b">The lethal trifecta and the Rule of Two</text>
+  <circle cx="300" cy="185" r="120" fill="#fde68a" fill-opacity="0.55" stroke="#d97706" stroke-width="2"/>
+  <circle cx="460" cy="185" r="120" fill="#bfdbfe" fill-opacity="0.55" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="380" cy="320" r="120" fill="#fecaca" fill-opacity="0.55" stroke="#dc2626" stroke-width="2"/>
+  <text x="245" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="bold" fill="#92400e">A. Untrusted input</text>
+  <text x="245" y="158" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">web pages, email, documents,</text>
+  <text x="245" y="173" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">tool output, RAG content</text>
+  <text x="515" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="bold" fill="#1e40af">B. Sensitive access</text>
+  <text x="515" y="158" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">private data, internal</text>
+  <text x="515" y="173" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">systems, credentials</text>
+  <text x="380" y="385" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="bold" fill="#991b1b">C. Outbound or state change</text>
+  <text x="380" y="403" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">send, post, write, pay,</text>
+  <text x="380" y="418" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#334155">render links or images</text>
+  <rect x="318" y="218" width="124" height="46" rx="6" fill="#1e293b"/>
+  <text x="380" y="237" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="white">All three:</text>
+  <text x="380" y="254" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="white">human approval</text>
+  <rect x="590" y="300" width="160" height="110" rx="6" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+  <text x="670" y="322" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#1e293b">Any two is workable</text>
+  <text x="602" y="344" font-family="Inter, sans-serif" font-size="11" fill="#334155">A+B: read-only analyst</text>
+  <text x="602" y="364" font-family="Inter, sans-serif" font-size="11" fill="#334155">A+C: public web helper</text>
+  <text x="602" y="384" font-family="Inter, sans-serif" font-size="11" fill="#334155">B+C: trusted-input</text>
+  <text x="602" y="398" font-family="Inter, sans-serif" font-size="11" fill="#334155">internal automation</text>
+</svg>

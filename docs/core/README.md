@@ -18,9 +18,10 @@ Start with the essentials, then branch into specialised topics based on your dep
 2. [Risk Assessment](risk-assessment.md) - quantify control effectiveness and residual risk per tier
 3. [Controls](controls.md) - implement the three-layer pattern
 4. [Agentic](agentic.md) - add controls if your agent has tool access
-5. [IAM Governance](iam-governance.md) - identity, lifecycle, delegation
-6. [Judge Assurance](judge-assurance.md) - measure and calibrate the model-as-judge within the reviewing layer
-7. [Checklist](checklist.md) - track implementation progress
+5. [Injection-Resistant Design](injection-resistant-design.md) - limit what prompt injection can do through architecture
+6. [IAM Governance](iam-governance.md) - identity, lifecycle, delegation
+7. [Judge Assurance](judge-assurance.md) - measure and calibrate the model-as-judge within the reviewing layer
+8. [Checklist](checklist.md) - track implementation progress
 
 **Specialised (read based on your deployment type):**
 
@@ -30,6 +31,7 @@ Start with the essentials, then branch into specialised topics based on your dep
 | Reasoning models (chain-of-thought) | [Reasoning Model Controls](reasoning-model-controls.md) |
 | Streaming responses | [Streaming Controls](streaming-controls.md) |
 | Persistent memory or long context | [Memory and Context](memory-and-context.md) |
+| Computer-use or browser agents | [Computer-Use and Browser Agents](computer-use-agents.md) |
 | Multi-agent systems | [Multi-Agent Controls](multi-agent-controls.md) then [MASO (Multi-Agent Security Operations)](https://airuntimesecurity.io/maso/) |
 | Open-weight / self-hosted models | [Open-Weight Models Shift the Burden](https://airuntimesecurity.io/insights/open-weight-models-shift-the-burden/) |
 
