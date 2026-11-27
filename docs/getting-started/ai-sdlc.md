@@ -122,6 +122,7 @@ For agentic systems, also document:
 - [Sandbox patterns](../infrastructure/agentic/sandbox-patterns.md): how generated code is isolated and executed
 - [Agentic controls](../core/agentic.md): plan approval, action constraints, circuit breakers
 - [Injection-resistant design](../core/injection-resistant-design.md): which sessions hold untrusted input, sensitive access, and outbound channels, and which isolation pattern keeps them apart
+- [Expected telemetry](expected-telemetry.md): the losses to prevent, how the system could reach them, and what the runtime monitor should compare against at each task stage
 - [Computer-use and browser agents](../core/computer-use-agents.md), if the agent operates a screen or browser
 
 For multi-agent systems, additionally document:
@@ -242,7 +243,7 @@ Deployment is the gate between pre-runtime and runtime. No system passes through
 
 ### Deployment gate
 
-Much of this gate can be automated with a design manifest checked in CI. See [Automating Design Assurance](design-assurance.md).
+Much of this gate can be automated with a design manifest checked in CI. See [Automating Design Assurance](design-assurance.md). For HIGH and CRITICAL agentic systems, the [expected telemetry](expected-telemetry.md) artefacts must be validated and approved here too.
 
 Follow the [production readiness](production-readiness.md) checklist for your tier. The gate is a hard requirement, not a suggestion.
 

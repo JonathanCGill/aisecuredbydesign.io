@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="400" viewBox="0 0 820 400" role="img" aria-labelledby="t d">
+  <title id="t">Designing expected telemetry</title>
+  <desc id="d">Eight design steps in two rows. Define the losses, draw the control structure, find unsafe control actions, and build loss chains. Then choose a measure for every chain link, set expectations from rules, logic and data, set trigger points, and classify responses with a safe state. Every step feeds a validation run before deployment, and the approved artefacts are handed to the runtime monitor.</desc>
+  <rect width="820" height="400" fill="white"/>
+  <text x="410" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="17" font-weight="bold" fill="#1e293b">Designing expected telemetry</text>
+  <text x="20" y="62" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#7c3aed">How losses happen</text>
+  <text x="124" y="190" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#0284c7">What to watch and what to do</text>
+  <rect x="20" y="74" width="180" height="72" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="110.0" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="bold" fill="#1e293b">1. Losses</text>
+  <text x="110.0" y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#475569">what must not happen</text>
+  <path d="M200,110.0 L214,110.0" stroke="#475569" stroke-width="2"/><polygon points="220,110.0 212,105.0 212,115.0" fill="#475569"/>
+  <rect x="220" y="74" width="180" height="72" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="310.0" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="bold" fill="#1e293b">2. Control structure</text>
+  <text x="310.0" y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#475569">L0 human to L4 environment</text>
+  <path d="M400,110.0 L414,110.0" stroke="#475569" stroke-width="2"/><polygon points="420,110.0 412,105.0 412,115.0" fill="#475569"/>
+  <rect x="420" y="74" width="180" height="72" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="510.0" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="bold" fill="#1e293b">3. Unsafe actions</text>
+  <text x="510.0" y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#475569">four UCA types per action</text>
+  <path d="M600,110.0 L614,110.0" stroke="#475569" stroke-width="2"/><polygon points="620,110.0 612,105.0 612,115.0" fill="#475569"/>
+  <rect x="620" y="74" width="180" height="72" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="710.0" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="bold" fill="#1e293b">4. Loss chains</text>
+  <text x="710.0" y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#475569">links that lead to a loss</text>
+  <rect x="20" y="204" width="180" height="72" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="110.0" y="234" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="bold" fill="#1e293b">5. Measures</text>
+  <text x="110.0" y="254" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#475569">a detector for every link</text>
+  <path d="M200,240.0 L214,240.0" stroke="#475569" stroke-width="2"/><polygon points="220,240.0 212,235.0 212,245.0" fill="#475569"/>
+  <rect x="220" y="204" width="180" height="72" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="310.0" y="234" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="bold" fill="#1e293b">6. Expectations</text>
+  <text x="310.0" y="254" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#475569">rules, logic, data layers</text>
+  <path d="M400,240.0 L414,240.0" stroke="#475569" stroke-width="2"/><polygon points="420,240.0 412,235.0 412,245.0" fill="#475569"/>
+  <rect x="420" y="204" width="180" height="72" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="510.0" y="234" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="bold" fill="#1e293b">7. Trigger points</text>
+  <text x="510.0" y="254" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#475569">margin, time to limit</text>
+  <path d="M600,240.0 L614,240.0" stroke="#475569" stroke-width="2"/><polygon points="620,240.0 612,235.0 612,245.0" fill="#475569"/>
+  <rect x="620" y="204" width="180" height="72" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="710.0" y="234" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="bold" fill="#1e293b">8. Responses</text>
+  <text x="710.0" y="254" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#475569">classified, safe state defined</text>
+  <path d="M710,146 L710,166 L110,166 L110,198" stroke="#475569" stroke-width="2" fill="none"/><polygon points="110,204 105,196 115,196" fill="#475569"/>
+  <path d="M410,276 L410,300" stroke="#475569" stroke-width="2"/><polygon points="410,306 405,298 415,298" fill="#475569"/>
+  <rect x="130" y="306" width="560" height="40" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="410" y="331" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#1e293b">Validate before deployment: replay chains, inject faults, blind sources</text>
+  <path d="M410,346 L410,362" stroke="#475569" stroke-width="2"/><polygon points="410,368 405,360 415,360" fill="#475569"/>
+  <rect x="230" y="368" width="360" height="28" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="410" y="387" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#166534">Approved artefacts handed to the runtime monitor</text>
+</svg>
