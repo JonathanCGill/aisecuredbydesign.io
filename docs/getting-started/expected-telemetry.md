@@ -128,7 +128,14 @@ Write the **expected telemetry profile**: per task stage, each parameter's targe
 |-------|---------------------|----------------------|
 | **Rules** | Policy, contracts, regulation, the agent's mandate and tool manifest | Yes |
 | **Logic** | Invariants and what the value should be given current state | Yes |
-| **Data** | Historical spread per stage and condition | No. Start with wide bands from test runs and shadow mode, and narrow them in operation |
+| **Data** | What the agent actually does, per stage and condition | No. Build it with the process owners, or learn it by observation and experiment, and approve it before it becomes a baseline |
+
+There are two ways to arrive at the data layer, and most teams use both:
+
+- **Build it.** Work through each stage with the people who own the process and write down what the agent should do: which tools, which data, how much, how often, in what order. It takes time, and there is no shortcut.
+- **Let the system learn it.** Run the monitor in observe-only mode alongside the agent, vary the workload, try the edge cases, and watch what the agent does. Keep experimenting until the learned model and the process owners agree on what normal is.
+
+Learning is not accepting. If the agent misbehaves while the system is learning, the system learns that misbehaviour is normal. Keep rules and contract checks enforcing, keep people reviewing the agent's actions, and approve what was learned before it becomes a baseline.
 
 Plan for two kinds of "can't say" at launch. **No baseline** is expected and fixes itself with operation; rules and contract checks still work meanwhile. **Low trust** means the sources themselves are in doubt and needs investigating. The runtime monitor reports them separately.
 
@@ -140,21 +147,24 @@ Also record the **safest expected action** for each stage: what a person should 
 
 The runtime site has a [worked profile for a refund agent](https://airuntimesecurity.io/maso/controls/comoverlay/#example-customer-refund-agent) that you can adapt.
 
-## Step 7: Set the trigger points
+## Step 7: Work out the trigger points
 
-For each parameter, decide when the monitor should report, alert, and escalate. Base this on two things:
+There are no standard thresholds to copy. The runtime monitor ships without them, because the right point to report or alert depends entirely on what the agent is for. You have to work them out, and that needs three things:
 
-- **Margin:** how far the value is from its hard limit.
-- **Time to limit:** how long, at the current rate, until it gets there.
+1. **What the agent is meant to be doing.** Steps 5 and 6, built or learned until the model matches the real world. Trigger points set against a model nobody trusts will either miss real problems or bury people in alerts.
+2. **When a deviation is bad.** For each deviation, trace it to the losses from step 1, and agree its severity with the people who own the outcome: a variation with no path to a loss, something a person should know about, a deviation that contributes to a loss, or the final link before one.
+3. **How many bad deviations need action.** One dangerous deviation may need action at once. A bad one may need a person only when it repeats within a period, or appears alongside another. Use the chains from step 4: one link is logged, two links at different control levels are reported, three links or any final-stage link raise an alert. You decide which deviations count as links.
 
-Two design rules matter more than the exact numbers:
+Record each trigger point with the reason for it: the deviation, why it is bad, when it reports, when it alerts, when it clears, the evidence behind it (observed runs, experiments, incident history, or expert judgement), its owner, and when it will be reviewed. The runtime site has the [full template](https://airuntimesecurity.io/maso/controls/comoverlay/#record-each-trigger-point-and-its-evidence).
 
-- **Timing must fit.** Both escalation windows, plus the time to move to the safe state, must together fit inside the time to limit. If they cannot, either make an immediate automatic pause safe for this workflow, or lower the alert threshold so escalation starts sooner.
+Whatever the numbers, some design rules hold:
+
+- **Timing must fit.** The margin is how far a parameter is from its hard limit, and the time to limit is how long it will take to reach it at the current rate. Both escalation windows, plus the time to move to the safe state, must together fit inside the time to limit. If they cannot, either make an immediate automatic pause safe for this workflow, or alert earlier.
 - **Measure human response time.** An escalation window shorter than the time people actually take to answer is a design fiction.
-- **Set a false-alarm target.** Escalation that fires too often teaches people to ignore it. Declare the false-alarm rate each workflow can tolerate, per tier. The runtime team tracks it as a key metric, and thresholds are tuned against it through approved changes.
+- **Track both kinds of error.** Escalation that fires too often teaches people to ignore it, so set a false-alarm target per tier. Deviations found later that should have alerted are missed detections. The runtime team tracks both, and thresholds change only through approved updates.
 - **Mark the critical parameters.** "Can't say" on a parameter that guards a hard limit is treated as lost protection and triggers the workflow's safest classified response, like flying a known safe attitude on unreliable airspeed. Step 8 decides what that response is.
 
-The runtime site lists [default trigger points](https://airuntimesecurity.io/maso/controls/comoverlay/#5-alert-trigger-points) as a starting point.
+Expect to revise trigger points. The first set is a hypothesis about what matters; operation shows where it was wrong.
 
 ## Step 8: Classify responses and define the safe state
 
@@ -175,7 +185,7 @@ Test the design in a staging environment before it goes to the deployment gate. 
 | Test | Pass condition |
 |------|----------------|
 | Replay each chain from step 4 | Every link is detected, and escalation follows the chain rule: one link logs, two links at different levels report, three links or a final-stage link alert |
-| Push a parameter towards its hard limit at the fastest realistic rate | The alert fires, and escalation plus the safe state complete before the limit |
+| Push a parameter towards its hard limit at the fastest realistic rate | The alert fires at the trigger point you set, and escalation plus the safe state complete before the limit |
 | Make two source groups disagree | The monitor reports bad data rather than passing silently |
 | Remove the trusted sources for a parameter | The monitor reports "can't say", and the runtime team sees it as lost protection |
 | Fake a context change from the agent's output | The expectation does not switch |
@@ -213,6 +223,8 @@ After launch, the runtime team owns tuning the data-layer bands and recording de
 - **Letting baselines drift.** A baseline updated automatically from recent behaviour can be walked, slowly, wherever an attacker wants it.
 - **Treating "can't say" as fine.** Thin data at launch is expected. Hiding it is not.
 - **Escalation windows set by habit.** Five minutes is a common default and often longer than the time to limit.
+- **Copying thresholds from somewhere else.** Numbers that suit another agent, or a vendor's default, say nothing about what your agent is meant to do.
+- **Skipping the work.** If nobody will spend the time to understand what the agent should be doing, the monitor has nothing to compare against.
 - **Automatic kills as the safety net.** A kill in the middle of a payment or a physical process can be the loss.
 
 !!! info "References"
