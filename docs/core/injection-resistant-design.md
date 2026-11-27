@@ -60,7 +60,7 @@ The rule applies to a session, not to the system as a whole. A system can hold a
 | **Make the outbound channel non-attacker-controlled** | The agent can only send to addresses on a fixed allowlist, or only post to an internal ticket queue |
 | **Downgrade data access** | The session that reads untrusted documents gets a read-only, low-sensitivity view rather than the full store |
 
-Enforce these in infrastructure, not in the system prompt. A prompt that says "do not send email after reading a web page" is exactly the kind of instruction an injection overrides. Tool availability belongs in the [tool gateway](../infrastructure/agentic/tool-access-controls.md), and network reach belongs in [network segmentation](../infrastructure/controls/network-and-segmentation.md). See [infrastructure beats instructions](https://airuntimesecurity.io/insights/infrastructure-beats-instructions/).
+This is infrastructure control [SESS-06](../infrastructure/controls/session-and-scope.md#sess-06-rule-of-two-per-session). Enforce it in infrastructure, not in the system prompt. A prompt that says "do not send email after reading a web page" is exactly the kind of instruction an injection overrides. Tool availability belongs in the [tool gateway](../infrastructure/agentic/tool-access-controls.md), and network reach belongs in [network segmentation](../infrastructure/controls/network-and-segmentation.md). See [infrastructure beats instructions](https://airuntimesecurity.io/insights/infrastructure-beats-instructions/).
 
 ## Design patterns
 

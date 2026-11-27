@@ -51,6 +51,8 @@ LC_ALL=C.UTF-8 grep -rnP '[\x{200B}-\x{200F}\x{202A}-\x{202E}\x{2060}-\x{2064}\x
 
 ### Coding agent permissions
 
+These requirements are infrastructure control [SAND-07](../../infrastructure/agentic/sandbox-patterns.md#sand-07-isolate-coding-and-computer-use-agents).
+
 | Control | Requirement |
 |---------|-------------|
 | **Sandboxed execution** | Agents that run commands do so in a container, VM, or cloud sandbox, not directly on a workstation with access to the home directory |

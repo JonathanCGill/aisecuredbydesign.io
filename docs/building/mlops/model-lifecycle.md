@@ -169,7 +169,7 @@ Every production deployment must have a tested rollback plan.
 
 If you use a hosted foundation model, the provider decides when it is retired. Providers publish deprecation schedules, and retirement dates can be months rather than years after release. When a model is retired, requests to it fail or are redirected to a successor. Either way, you are now running a model you have not tested.
 
-Treat every provider deprecation as a forced model change that goes through the full lifecycle, on a deadline you do not control.
+Infrastructure control [SUP-10](../../infrastructure/agentic/supply-chain.md#sup-10-track-model-retirement-and-re-qualify-successors-before-cutover) covers this. Treat every provider deprecation as a forced model change that goes through the full lifecycle, on a deadline you do not control.
 
 ### Before it happens
 

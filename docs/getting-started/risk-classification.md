@@ -205,7 +205,7 @@ Your system's architecture determines which security framework applies.
 
 ### Single agent systems
 
-Most AI deployments are single agent: one model, one set of tools, one execution context. These systems use the Foundation Framework (80+ controls) from [AI Runtime Security](https://airuntimesecurity.io/core/). Pre-runtime security decisions are straightforward. You select one model, configure one set of guardrails, and validate one pipeline.
+Most AI deployments are single agent: one model, one set of tools, one execution context. These systems use the Foundation Framework (85+ controls) from [AI Runtime Security](https://airuntimesecurity.io/core/). Pre-runtime security decisions are straightforward. You select one model, configure one set of guardrails, and validate one pipeline.
 
 **Pre-runtime considerations for single agents:**
 

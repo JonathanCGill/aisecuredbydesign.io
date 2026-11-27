@@ -1,10 +1,10 @@
 ---
-description: "Downloadable YAML and JSON of all 80 infrastructure controls, with a documented schema for ingesting them into GRC platforms, SIEM enrichment, and CI/CD policy gates."
+description: "Downloadable YAML and JSON of all 85 infrastructure controls, with a documented schema for ingesting them into GRC platforms, SIEM enrichment, and CI/CD policy gates."
 ---
 
 # Machine-Readable Control Catalog
 
-The 80 infrastructure controls are published as human-readable pages *and* as structured data, so security teams can ingest them programmatically instead of scraping HTML. The catalog is generated from a single source of truth and is byte-identical to the copy on [airuntimesecurity.io](https://airuntimesecurity.io/infrastructure/catalog/), which is authoritative.
+The 85 infrastructure controls are published as human-readable pages *and* as structured data, so security teams can ingest them programmatically instead of scraping HTML. The catalog is generated from a single source of truth and is byte-identical to the copy on [airuntimesecurity.io](https://airuntimesecurity.io/infrastructure/catalog/), which is authoritative.
 
 <div class="grid cards" markdown>
 
@@ -28,13 +28,13 @@ The 80 infrastructure controls are published as human-readable pages *and* as st
 
 ## What is in it
 
-Every one of the 80 controls, grouped into 11 domains, with the risk tiers it applies to, whether it is agentic, the behavioural layers it supports, and the runtime layer it most directly enables. The top level also carries the risk-tier model and the runtime-layer legend, so a consumer needs no other file to interpret a row.
+Every one of the 85 controls, grouped into 11 domains, with the risk tiers it applies to, whether it is agentic, the behavioural layers it supports, and the runtime layer it most directly enables. The top level also carries the risk-tier model and the runtime-layer legend, so a consumer needs no other file to interpret a row.
 
 ## Schema
 
 ```yaml
 catalog: AI Security Infrastructure Controls
-version: "1.0.0"          # semver; bump on any control change
+version: "1.1.0"          # semver; bump on any control change
 as_at: "2026-08-03"
 authority: airuntimesecurity.io
 license: MIT
@@ -49,7 +49,7 @@ runtime_layers:            # legend for primary_runtime_layer_code
   L2: "Layer 02 - Model-as-Judge / reviewing (detection)"
   L3: "Layer 03 - Human Oversight (decision)"
   CB: "Circuit Breaker (containment, maps to PACE Emergency)"
-total_controls: 80
+total_controls: 85
 domains:
   - slug: identity-and-access
     name: Identity & Access Management

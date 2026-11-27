@@ -34,6 +34,8 @@ Use a computer-use agent only when there is no better interface.
 
 ## Reference architecture
 
+The environment, credential, and egress requirements below are infrastructure control [SAND-07](../infrastructure/agentic/sandbox-patterns.md#sand-07-isolate-coding-and-computer-use-agents).
+
 ![Computer-use agent reference architecture](../images/computer-use-sandbox.svg){ .arch-diagram }
 
 ### Environment

@@ -24,6 +24,8 @@ All of these belong in the [AI-BOM](../../infrastructure/agentic/supply-chain.md
 
 ## The release pipeline
 
+This pipeline implements infrastructure control [SUP-09](../../infrastructure/agentic/supply-chain.md#sup-09-release-prompts-and-configuration-through-a-versioned-evaluation-gate). Pinning tool definitions, covered below, is [TOOL-07](../../infrastructure/agentic/tool-access-controls.md#tool-07-pin-tool-definitions-by-hash-and-reject-unapproved-changes).
+
 ![Prompt and configuration release pipeline](../../images/prompt-config-pipeline.svg){ .arch-diagram }
 
 ### Version control and review

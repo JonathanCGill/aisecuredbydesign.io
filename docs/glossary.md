@@ -44,9 +44,9 @@ Evidence of where a model came from and proof that its weights have not been tam
 
 The structured evaluation of a model's suitability and risk before adoption, feeding the tier decision and the guardrail configuration it will need (SUP-02). See [Model Risk Assessment](building/model-selection/risk-assessment.md).
 
-### Infrastructure controls (the 80)
+### Infrastructure controls (the 85)
 
-The 80 technical controls that make behavioural security enforceable, across identity, logging, network, data, secrets, supply chain, incident response, and four agentic domains. This site mirrors them into the pre-runtime lifecycle; airuntimesecurity.io is authoritative for their definitions. See the [Infrastructure Controls](infrastructure/README.md) and the [machine-readable catalog](infrastructure/catalog/README.md).
+The 85 technical controls that make behavioural security enforceable, across identity, logging, network, data, secrets, supply chain, incident response, and four agentic domains. This site mirrors them into the pre-runtime lifecycle; airuntimesecurity.io is authoritative for their definitions. See the [Infrastructure Controls](infrastructure/README.md) and the [machine-readable catalog](infrastructure/catalog/README.md).
 
 ### Control ID scheme
 
