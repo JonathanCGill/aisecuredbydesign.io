@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="360" viewBox="0 0 800 360" role="img" aria-labelledby="t d">
+  <title id="t">Layered design assurance</title>
+  <desc id="d">A design change passes three stages. First, deterministic checks in CI: policy on the design manifest, catalog coverage, tool and prompt hashes, and model retirement dates. These block on failure. Second, an AI design reviewer that is read-only with no outbound access and returns findings with evidence. Third, human review, with depth set by risk tier. Deterministic checks decide, the AI reviewer advises, and a named person signs off.</desc>
+  <rect width="800" height="360" fill="white"/>
+  <text x="400" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="17" font-weight="bold" fill="#1e293b">Layered design assurance</text>
+  <g font-family="Inter, sans-serif" text-anchor="middle">
+    <rect x="20" y="70" width="130" height="60" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+    <text x="85" y="96" font-size="13" font-weight="bold" fill="#1e293b">Design change</text>
+    <text x="85" y="114" font-size="11" fill="#475569">manifest, docs, IaC</text>
+    <rect x="185" y="55" width="180" height="90" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="275" y="80" font-size="13" font-weight="bold" fill="#1e293b">1. Deterministic checks</text>
+    <text x="275" y="100" font-size="11" fill="#475569">manifest policy, catalog</text>
+    <text x="275" y="115" font-size="11" fill="#475569">coverage, hashes, dates</text>
+    <text x="275" y="134" font-size="11" font-weight="bold" fill="#166534">decides: block on fail</text>
+    <rect x="400" y="55" width="180" height="90" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <text x="490" y="80" font-size="13" font-weight="bold" fill="#1e293b">2. AI design reviewer</text>
+    <text x="490" y="100" font-size="11" fill="#475569">read-only, no outbound,</text>
+    <text x="490" y="115" font-size="11" fill="#475569">findings with evidence</text>
+    <text x="490" y="134" font-size="11" font-weight="bold" fill="#92400e">advises: never approves</text>
+    <rect x="615" y="55" width="165" height="90" rx="6" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2"/>
+    <text x="697" y="80" font-size="13" font-weight="bold" fill="#1e293b">3. Human review</text>
+    <text x="697" y="100" font-size="11" fill="#475569">depth set by risk tier,</text>
+    <text x="697" y="115" font-size="11" fill="#475569">independent of AI output</text>
+    <text x="697" y="134" font-size="11" font-weight="bold" fill="#5b21b6">signs off</text>
+  </g>
+  <g stroke="#475569" stroke-width="2"><path d="M150,100 L178,100"/><path d="M365,100 L393,100"/><path d="M580,100 L608,100"/></g>
+  <g fill="#475569"><polygon points="185,100 177,95 177,105"/><polygon points="400,100 392,95 392,105"/><polygon points="615,100 607,95 607,105"/></g>
+  <text x="400" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="bold" fill="#1e293b">Who signs off, by tier</text>
+  <g font-family="Inter, sans-serif" font-size="12" fill="#1e293b">
+    <rect x="60" y="205" width="680" height="34" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="80" y="227" font-weight="bold">LOW</text><text x="230" y="227">Stages 1 and 2, with human spot checks</text>
+    <rect x="60" y="239" width="680" height="34" fill="white" stroke="#e2e8f0"/>
+    <text x="80" y="261" font-weight="bold">MEDIUM</text><text x="230" y="261">Stages 1 and 2, AI findings triaged by a human</text>
+    <rect x="60" y="273" width="680" height="34" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="80" y="295" font-weight="bold">HIGH, CRITICAL</text><text x="230" y="295">All three, with independent human design review and named sign-off</text>
+  </g>
+  <text x="400" y="336" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#475569">Anything that can be written as a rule belongs in stage 1. The AI reviewer covers what is left.</text>
+</svg>

@@ -215,15 +215,7 @@ Not every action warrants synchronous evaluation, as that would be cost-prohibit
 
 ### Architecture
 
-```
-Agent proposes action
-    ↓
-Action classifier (rule-based, <5ms)
-    ↓ [low-risk]          ↓ [elevated-risk]
-Execute immediately    Pre-action Judge evaluation (500ms–2s)
-    ↓                      ↓ [pass]        ↓ [flag]
-Async Judge eval       Execute          Human approval queue
-```
+![Risk-based routing of agent actions](../images/agentic-action-routing.svg){ .arch-diagram }
 
 ### Cost Implications
 
@@ -324,3 +316,8 @@ Not all actions are reversible. For those that aren't, require human approval.
 10. **Evaluate before acting** - For elevated-risk actions, synchronous pre-action Judge evaluation prevents damage that async detection can only report
 11. **Secure the integration layer** - Tool supply chain is the primary attack surface; treat it as a prerequisite, not an extension
 
+!!! info "References"
+    - [OWASP LLM06:2025 Excessive Agency](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
+    - [OWASP Agentic AI: Threats and Mitigations](https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/)
+    - [CrowdStrike Global Threat Report](https://www.crowdstrike.com/global-threat-report/)
+    - [AI Runtime Security](https://airuntimesecurity.io/core/)

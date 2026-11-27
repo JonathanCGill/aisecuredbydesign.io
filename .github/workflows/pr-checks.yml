@@ -1,0 +1,54 @@
+name: PR checks
+
+# Runs on every pull request: the site must build with no warnings, changed
+# pages must follow the writing rules in CLAUDE.md, and the policy-as-code
+# tests must pass.
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build site (strict)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: mkdocs build --strict
+
+  lint:
+    name: Writing rules on changed pages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Lint pages changed in this pull request
+        run: python3 scripts/lint_docs.py --base "origin/${{ github.base_ref || 'main' }}"
+
+  policy:
+    name: Policy-as-code tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: open-policy-agent/setup-opa@v2
+        with:
+          version: latest
+      - name: Run OPA tests
+        run: opa test docs/infrastructure/policy/opa -v
+      - name: Example design manifest passes
+        run: |
+          opa eval --fail-defined \
+            -d docs/infrastructure/policy/opa/design_manifest.rego \
+            -i docs/infrastructure/policy/examples/design-manifest.example.yaml \
+            'data.design.manifest.deny[_]'

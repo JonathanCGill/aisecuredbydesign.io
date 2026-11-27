@@ -158,3 +158,7 @@ What has been missing: clear guidance on *why* this pattern is necessary and *ho
 6. **Assume bypasses happen** - Design for detection, not just prevention
 7. **Humans remain accountable** - AI assists; humans own outcomes
 
+!!! info "References"
+    - [AI Runtime Security: Core controls (canonical)](https://airuntimesecurity.io/core/)
+    - [OWASP Top 10 for LLM Applications](https://genai.owasp.org/llm-top-10/)
+    - [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)

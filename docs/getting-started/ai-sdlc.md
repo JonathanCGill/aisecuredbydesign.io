@@ -242,6 +242,8 @@ Deployment is the gate between pre-runtime and runtime. No system passes through
 
 ### Deployment gate
 
+Much of this gate can be automated with a design manifest checked in CI. See [Automating Design Assurance](design-assurance.md).
+
 Follow the [production readiness](production-readiness.md) checklist for your tier. The gate is a hard requirement, not a suggestion.
 
 Key gate items:

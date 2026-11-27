@@ -43,6 +43,7 @@ Regardless of which approach you choose, assess these:
 
 - **[Cloud AI Services](cloud-ai-services.md)** covers managed AI platforms from major cloud providers, their security models, and what to evaluate.
 - **[Self-Hosted Infrastructure](self-hosted-infrastructure.md)** covers running AI on your own infrastructure, from GPU clusters to on-premises deployments.
+- **[AI in Third-Party Software](third-party-ai.md)** covers AI you buy rather than build: AI features inside SaaS products and AI apps connected through OAuth, from discovery to contract terms.
 - **[Hybrid Patterns](hybrid-patterns.md)** covers combining cloud and self-hosted approaches to balance security, control, and operational efficiency.
 
 !!! tip "Start with your data classification"

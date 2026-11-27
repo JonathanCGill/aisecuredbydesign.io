@@ -149,6 +149,7 @@ nav:
       - Cloud AI Services: building/platform-selection/cloud-ai-services.md
       - Self-Hosted Infrastructure: building/platform-selection/self-hosted-infrastructure.md
       - Hybrid Patterns: building/platform-selection/hybrid-patterns.md
+      - AI in Third-Party Software: building/platform-selection/third-party-ai.md
     - AI DevOps:
       - building/devops/README.md
       - CI/CD for AI: building/devops/ci-cd-for-ai.md
@@ -171,6 +172,7 @@ nav:
     - Testing Strategy: getting-started/testing-strategy.md
     - Adversarial Testing: getting-started/adversarial-testing.md
     - Production Readiness: getting-started/production-readiness.md
+    - Automating Design Assurance: getting-started/design-assurance.md
 
   - Infrastructure & Operations:
     - infrastructure/README.md
