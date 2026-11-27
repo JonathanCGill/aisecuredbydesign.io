@@ -94,16 +94,30 @@ Every link in every chain needs a detector. There are three kinds:
 | **Invariant** | A relationship the real world must satisfy | Refund does not exceed the original payment. Access matches entitlements |
 | **Event** | Something that must or must not happen within a stage | Approval received before the act stage starts |
 
+### Give each parameter a signal type
+
+Statistical detectors were designed for numeric sensor data, and most agent telemetry is not numeric. Declare a signal type for each parameter so the runtime monitor uses the right detector:
+
+| Signal type | Examples | How it is judged |
+|-------------|----------|------------------|
+| **Numeric** | Cost, rate, latency, counts, amounts | Distance from the expected band, combined across parameters, with slow-drift detection |
+| **Categorical membership** | Tool, destination, data scope | In the contract's allowed set or not. Needs no history, so it carries most of the load at launch |
+| **Categorical mix** | Proportions of tools or destinations used | Distribution distance from the baseline |
+| **Sequence** | Order of tool calls in a task | Transition probabilities from the baseline. A never-seen transition is flagged |
+| **Text** | Outputs, messages, arguments | Deterministic checks first, such as patterns and DLP rules. Similarity scores are supporting evidence only |
+
+Put as much as you can into categorical membership and invariants. They work from day one and are hard to argue with.
+
 A link with no detector is a gap in the design. Either add a detector or record the gap as an accepted risk.
 
 ### Choose sources the agent cannot shape
 
 The runtime monitor treats its inputs as untrusted, because an agent, or an attacker steering one, can shape its own traces. Design for that now:
 
-- **Prefer platform sources:** gateway logs, egress proxy, orchestrator state, credential issuer.
+- **Use platform sources, not the agent:** gateway logs, tool proxy, egress proxy and network layer, orchestrator state, credential issuer. An agent that writes its own traces can lie in them, so the runtime monitor does not use the agent's self-report as evidence. It only compares the self-report with the platform's record, and treats a mismatch as a deviation. If a parameter can only be measured from the agent's own account, redesign until the platform can see it.
 - **Give the monitor read access to systems of record**, such as the payments ledger, the business system, and the identity provider. Invariants checked there are the strongest evidence the monitor will have.
-- **Group sources by failure mode.** Two copies of the agent's trace are one source, not two.
-- **Never rely on the agent's own trace alone** for anything that protects a hard limit.
+- **Group sources by failure mode.** Two copies of the same feed are one source, not two. The runtime monitor only lowers trust in a source on evidence from a different group, so independent groups are what keep it from being argued blind.
+- **Mark systems of record as such.** They get a trust floor at runtime, so they stay usable as evidence when other sources are under attack.
 - **Make context trusted.** The task stage that selects the expectation must come from the orchestrator or a system of record, not from the agent.
 
 ## Step 6: Set the expectations
@@ -115,6 +129,12 @@ Write the **expected telemetry profile**: per task stage, each parameter's targe
 | **Rules** | Policy, contracts, regulation, the agent's mandate and tool manifest | Yes |
 | **Logic** | Invariants and what the value should be given current state | Yes |
 | **Data** | Historical spread per stage and condition | No. Start with wide bands from test runs and shadow mode, and narrow them in operation |
+
+Plan for two kinds of "can't say" at launch. **No baseline** is expected and fixes itself with operation; rules and contract checks still work meanwhile. **Low trust** means the sources themselves are in doubt and needs investigating. The runtime monitor reports them separately.
+
+Baselines are frozen per release. Narrowing a band after launch is a change like any other: it needs approval and a diff against the previous baseline. Otherwise an attacker could shift "normal" a little at a time through the deviation log, which is normalisation of deviance done deliberately.
+
+Decide also **which context changes are legitimate**: the events that should switch the expected profile, such as a refund approved by a supervisor. Name their trusted source, which must be a system of record or a human amendment, never the agent or its inputs. Set a maximum rate of switches per workflow. At runtime, actions after a switch are checked against both the old and new profiles for a short window, and an action that only fits because of a just-arrived event is flagged.
 
 Also record the **safest expected action** for each stage: what a person should do if an alert fires there, such as "hold the refund for review". The runtime monitor puts it in every alert.
 
@@ -131,6 +151,8 @@ Two design rules matter more than the exact numbers:
 
 - **Timing must fit.** Both escalation windows, plus the time to move to the safe state, must together fit inside the time to limit. If they cannot, either make an immediate automatic pause safe for this workflow, or lower the alert threshold so escalation starts sooner.
 - **Measure human response time.** An escalation window shorter than the time people actually take to answer is a design fiction.
+- **Set a false-alarm target.** Escalation that fires too often teaches people to ignore it. Declare the false-alarm rate each workflow can tolerate, per tier. The runtime team tracks it as a key metric, and thresholds are tuned against it through approved changes.
+- **Mark the critical parameters.** "Can't say" on a parameter that guards a hard limit is treated as lost protection and triggers the workflow's safest classified response, like flying a known safe attitude on unreliable airspeed. Step 8 decides what that response is.
 
 The runtime site lists [default trigger points](https://airuntimesecurity.io/maso/controls/comoverlay/#5-alert-trigger-points) as a starting point.
 
@@ -157,6 +179,10 @@ Test the design in a staging environment before it goes to the deployment gate. 
 | Make two source groups disagree | The monitor reports bad data rather than passing silently |
 | Remove the trusted sources for a parameter | The monitor reports "can't say", and the runtime team sees it as lost protection |
 | Fake a context change from the agent's output | The expectation does not switch |
+| Have one trusted independent source confirm a deviation while others disagree | The deviation stands and is reported alongside the disagreement |
+| Inject a legitimate-looking event just before an out-of-profile action | The action is flagged in the dual-expectation window |
+| Drive down trust in several sources quickly | The runtime monitor raises a trust-collapse alert |
+| Make the agent's self-report disagree with the platform's record | Treated as a deviation. The self-report is not used as evidence |
 | Let an alert go unanswered | The workflow enters its safe state, and no agent is killed and no credential revoked without a person |
 
 Include these in the [adversarial testing](adversarial-testing.md) plan for HIGH and CRITICAL systems.
@@ -183,7 +209,8 @@ After launch, the runtime team owns tuning the data-layer bands and recording de
 ## Common pitfalls
 
 - **Starting from available telemetry.** Teams measure what their platform already logs, then find the chains that matter have no detector.
-- **Trusting the agent's account of itself.** If every source for a parameter is the agent's own trace, the monitor can be blinded or misled.
+- **Trusting the agent's account of itself.** If a parameter can only be measured from the agent's own trace, the monitor can be misled. Make the platform see it.
+- **Letting baselines drift.** A baseline updated automatically from recent behaviour can be walked, slowly, wherever an attacker wants it.
 - **Treating "can't say" as fine.** Thin data at launch is expected. Hiding it is not.
 - **Escalation windows set by habit.** Five minutes is a common default and often longer than the time to limit.
 - **Automatic kills as the safety net.** A kill in the middle of a payment or a physical process can be the loss.
