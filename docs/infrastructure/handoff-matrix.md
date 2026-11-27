@@ -14,6 +14,15 @@ This mirrors the [canonical handoff matrix on airuntimesecurity.io](https://airu
 !!! abstract "The one-line version"
     Pre-runtime **containment and identity** become runtime **Layer 01 guardrails**. Pre-runtime **logging and isolation** become the substrate for **Layer 02 detection**. Pre-runtime **approval workflows** become **Layer 03 human oversight**. Pre-runtime **rollback and resource limits** become the **circuit breaker** that contains what the layers cannot hold.
 
+## How to read a row
+
+| Column | Meaning |
+|--------|---------|
+| **Pre-runtime control** | The infrastructure control built on this site, with its ID |
+| **Established before deploy** | What that control puts in place while the system is still being built |
+| **Runtime layer** | The AIRS layer the control most directly enables once the system is live |
+| **Runtime behaviour** | What actually happens at request time because the pre-runtime control exists |
+
 ## Containment and execution → Layer 01 + Circuit Breaker
 
 | Pre-runtime control | Established before deploy | Runtime layer | Runtime behaviour |
@@ -63,9 +72,9 @@ If you start from a runtime layer and want to know what pre-runtime infrastructu
 
 | Runtime layer | Depends on pre-runtime controls |
 |---------------|--------------------------------|
-| [Layer 01 Guardrails](https://airuntimesecurity.io/glossary/#guardrails) | NET-01/02/04/07, IAM-01/02/04, TOOL-01/02/03, SEC-01/02, SAND-01/02/03 |
+| [Layer 01 Guardrails](https://airuntimesecurity.io/glossary/#guardrails) | NET-01/02/04/07, IAM-01/02/04, TOOL-01/02/03/07, SEC-01/02, SAND-01/02/03/07, SESS-06, SUP-09 |
 | [Layer 02 Model-as-Judge](https://airuntimesecurity.io/glossary/#model-as-judge) | LOG-01/03/04/05, NET-03, DAT-08 |
-| [Layer 03 Human Oversight](https://airuntimesecurity.io/glossary/#human-oversight) | IAM-05/08, TOOL-04, LOG-10, IR-01/05/06 |
+| [Layer 03 Human Oversight](https://airuntimesecurity.io/glossary/#human-oversight) | IAM-05/08, TOOL-04, LOG-10, IR-01/05/06, SUP-10 |
 | [Circuit Breaker](https://airuntimesecurity.io/glossary/#circuit-breaker) | IR-03/04, SAND-04/05, SEC-05, SESS-05 |
 
 !!! tip "Use the catalog to generate your own view"

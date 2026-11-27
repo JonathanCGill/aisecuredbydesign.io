@@ -41,7 +41,7 @@ For most teams using this framework, you are the **Application Provider** and th
 
 ## Scope and Limitations
 
-This mapping covers the **technical infrastructure layer** of the AICM. The AICM spans both organisational and technical controls. The 80 infrastructure controls in this framework address the technical objectives; organisational domains (**Human Resources**, **Audit and Assurance** planning, much of **Governance Risk and Compliance**) are addressed by the parent framework's [risk tiers](../../core/risk-tiers.md) and governance model, and by the implementing organisation's management system.
+This mapping covers the **technical infrastructure layer** of the AICM. The AICM spans both organisational and technical controls. The 85 infrastructure controls in this framework address the technical objectives; organisational domains (**Human Resources**, **Audit and Assurance** planning, much of **Governance Risk and Compliance**) are addressed by the parent framework's [risk tiers](../../core/risk-tiers.md) and governance model, and by the implementing organisation's management system.
 
 Three AICM domains are predominantly **provider-owned or out of technical scope** for a pre-runtime application builder: **Datacenter Security (DCS)**, **Human Resources (HRS)**, and **Universal Endpoint Management (UEM)**. They are listed below for completeness with the supporting controls this framework does provide, and a note on the ownership gap.
 

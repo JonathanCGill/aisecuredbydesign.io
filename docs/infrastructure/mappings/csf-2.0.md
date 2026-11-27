@@ -1,10 +1,10 @@
 ---
-description: "Mapping 80 infrastructure controls to NIST Cybersecurity Framework 2.0 Functions, Categories, and Subcategories with three-layer pattern alignment."
+description: "Mapping 85 infrastructure controls to NIST Cybersecurity Framework 2.0 Functions, Categories, and Subcategories with three-layer pattern alignment."
 ---
 
 # NIST Cybersecurity Framework 2.0 Mapping
 
-**How the framework's 80 infrastructure controls map to NIST CSF 2.0 Functions, Categories, and Subcategories.**
+**How the framework's 85 infrastructure controls map to NIST CSF 2.0 Functions, Categories, and Subcategories.**
 
 ## Relationship
 
@@ -118,7 +118,7 @@ The DETECT Function covers continuous monitoring and adverse event analysis. Thi
 | **DE.CM-02** | The physical environment is monitored to find potentially adverse events | - | Out of scope |
 | **DE.CM-03** | Personnel activity and technology usage are monitored to find potentially adverse events | Logging & Observability (LO) | LO controls track user interactions with AI systems: prompt patterns, access frequency, data retrieval behavior |
 | **DE.CM-06** | External service provider activities and services are monitored to find potentially adverse events | Supply Chain (SC), Logging & Observability (LO) | Monitor model provider APIs for: latency changes, behavior drift, unexpected response patterns that may indicate compromise |
-| **DE.CM-09** | Computing hardware and software, runtime environments, and their data are monitored to find potentially adverse events | Logging & Observability (LO), Model-as-Judge layer | **Primary mapping for the Judge layer.** LO provides the telemetry. The Judge evaluates model outputs against policy criteria. Together they detect: harmful outputs, policy violations, behavioral anomalies, prompt injection attempts, data leakage |
+| **DE.CM-09** | Computing hardware and software, runtime environments, and their data are monitored to find potentially adverse events | Logging & Observability (LO), Semantic Firewall, Model-as-Judge layer | **Primary mapping for the reviewing controls.** LO provides the telemetry. A semantic firewall classifies inbound intent against a declared taxonomy, catching prompt injection and scope violations in novel wording at low latency, while the Judge does deeper evaluation of model outputs against policy criteria. Together they detect: harmful outputs, policy violations, behavioral anomalies, prompt injection attempts, data leakage |
 | **DE.AE-02** | Potentially adverse events are analysed to better understand associated activities | Logging & Observability (LO), Model-as-Judge layer | Judge evaluation provides structured analysis of why an output was flagged. LO correlation identifies attack patterns across sessions |
 | **DE.AE-03** | Information is correlated from multiple sources | Logging & Observability (LO) | LO controls correlate: guardrail decisions + Judge evaluations + human override patterns + model telemetry to identify systemic issues |
 | **DE.AE-04** | The estimated impact and scope of adverse events are understood | Logging & Observability (LO), Risk Tiers | Impact assessment informed by risk tier: Tier 3 incident has different blast radius than Tier 1 |
@@ -217,5 +217,5 @@ The following CSF 2.0 subcategory areas have no direct mapping to this framework
 
 **For CSF gap assessments:** This mapping shows where AI deployments introduce new control requirements within existing CSF subcategories. PR.DS-10 (data-in-use), DE.CM-09 (runtime monitoring), and the GV.SC supply chain subcategories are most significantly affected by AI.
 
-**For audit and compliance:** The mapping provides traceability from this framework's 80 infrastructure controls to CSF 2.0 outcomes, supporting compliance evidence for organisations that report against CSF.
+**For audit and compliance:** The mapping provides traceability from this framework's 85 infrastructure controls to CSF 2.0 outcomes, supporting compliance evidence for organisations that report against CSF.
 

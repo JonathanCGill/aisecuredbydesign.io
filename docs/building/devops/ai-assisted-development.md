@@ -31,7 +31,7 @@ Several of these combine all three legs of the [lethal trifecta](../../core/inje
 
 - Route all package installs through an internal **registry proxy or mirror**. Block direct installs from public registries on developer machines and CI.
 - Keep a **dependency allowlist** for production code, or at minimum require review for any new dependency. A new package introduced in an AI-assisted change should get the same scrutiny as one added by hand.
-- Flag packages that are **very new, have few downloads, or have no source repository**. Hallucinated names that have been squatted usually look like this.
+- Flag packages that are **very new, have few downloads, or have no source repository**. Hallucinated names that have been squatted usually look like this. Attackers have also started registering hallucinated names at scale rather than one at a time. See the threat intelligence on [airuntimesecurity.io](https://airuntimesecurity.io/maso/threat-intelligence/emerging-threats/).
 - Commit **lockfiles** and verify them in CI. See [CI/CD for AI](ci-cd-for-ai.md).
 
 ### Instruction and rules files
@@ -50,6 +50,8 @@ LC_ALL=C.UTF-8 grep -rnP '[\x{200B}-\x{200F}\x{202A}-\x{202E}\x{2060}-\x{2064}\x
 - Version and review agent skills and MCP configuration the same way. See [Prompt and Configuration Management](prompt-and-config-management.md).
 
 ### Coding agent permissions
+
+These requirements are infrastructure control [SAND-07](../../infrastructure/agentic/sandbox-patterns.md#sand-07-isolate-coding-and-computer-use-agents).
 
 | Control | Requirement |
 |---------|-------------|
@@ -107,5 +109,7 @@ See the [AI-Aware SDLC](../../getting-started/ai-sdlc.md) for the full lifecycle
     - [AWS Security Bulletin AWS-2025-015: Amazon Q Developer for VS Code](https://aws.amazon.com/security/security-bulletins/AWS-2025-015/)
     - [Nx: s1ngularity security incident postmortem](https://nx.dev/blog/s1ngularity-postmortem)
     - [OWASP Top 10 for LLM Applications: LLM03 Supply Chain](https://genai.owasp.org/llmrisk/llm032025-supply-chain/)
+    - [OWASP Agentic Skills Top 10](https://owasp.org/www-project-agentic-skills-top-10/)
+    - [AI Runtime Security: Emerging threats (slopsquatting and skills)](https://airuntimesecurity.io/maso/threat-intelligence/emerging-threats/)
     - [Trojan Source: Invisible Vulnerabilities (bidirectional Unicode)](https://trojansource.codes/)
     - [AI Runtime Security: The MCP Problem](https://airuntimesecurity.io/insights/the-mcp-problem/)

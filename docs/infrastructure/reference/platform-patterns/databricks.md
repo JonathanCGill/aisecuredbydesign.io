@@ -103,9 +103,11 @@ description: "Databricks implementation patterns for AI security controls: zone-
 
 ### NET-03: Judge Isolation
 
-- Judge model served on a **separate Model Serving endpoint** with separate compute.
+- Model-as-Judge served on a **separate Model Serving endpoint** with separate compute.
 - Evaluation data pushed to Judge via **Delta table** - Judge reads from table, writes evaluations back.
 - No direct network path from Judge to runtime model endpoint.
+
+See also: a [semantic firewall](https://airuntimesecurity.io/core/controls/semantic-firewall/) typically shares this isolated path, since it runs the same independent-evaluation role at lower cost and latency.
 
 ### NET-04: Agent Egress Controls
 

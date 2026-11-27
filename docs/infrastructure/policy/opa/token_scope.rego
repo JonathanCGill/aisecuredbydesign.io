@@ -25,6 +25,50 @@ valid if {
 	count(violations) == 0
 }
 
+# The same undefined-is-not-false problem applies one level up, to the token
+# object itself. If `input.token` is absent (or is not an object), every rule
+# below that reads through it is undefined, the violation set comes back empty,
+# and `valid` is true. Reading the claim set through `token_claims` means a
+# request with no token is checked against `{}`, so every required claim is
+# reported missing instead of silently skipped.
+default token_claims := {}
+
+token_claims := input.token if is_object(input.token)
+
+violations contains "policy input is missing the token object to validate" if {
+	not "token" in object.keys(input)
+}
+
+violations contains "token claim set is not an object" if {
+	"token" in object.keys(input)
+	not is_object(input.token)
+}
+
+# Every check below tests a claim's *value*. In Rego a body that references an
+# absent field is undefined rather than false, so without these presence rules a
+# token that simply omits `exp`, `iat`, `scopes`, `sid`, or `sub` produces an
+# empty violation set and is accepted. Absence is a violation, not a pass.
+required_claims := {"sub", "exp", "iat", "scopes", "sid"}
+
+violations contains sprintf("token missing required claim: %s", [claim]) if {
+	some claim in required_claims
+	not claim in object.keys(token_claims)
+}
+
+violations contains "token missing the act (delegation actor) claim" if {
+	not "act" in object.keys(token_claims)
+}
+
+violations contains "token scopes claim is not a set of strings" if {
+	"scopes" in object.keys(token_claims)
+	not is_array(input.token.scopes)
+	not is_set(input.token.scopes)
+}
+
+violations contains "policy input is missing session_id to bind against" if {
+	not "session_id" in object.keys(input)
+}
+
 violations contains "token expired" if {
 	input.token.exp <= input.now
 }
@@ -43,6 +87,7 @@ violations contains "token missing a required scope" if {
 }
 
 violations contains "token does not propagate an originating principal" if {
+	"act" in object.keys(token_claims)
 	not input.token.act.sub # RFC 8693 actor / delegation claim
 }
 
@@ -50,8 +95,13 @@ violations contains "token not bound to the current session" if {
 	input.token.sid != input.session_id
 }
 
+# `subject` is looked up defensively. Reading input.token.sub directly makes the
+# whole decision undefined for a token that omits it, so a malformed token would
+# yield no decision at all rather than an explicit deny with its reasons.
+subject := object.get(input, ["token", "sub"], "<absent>")
+
 decision := {
 	"valid": valid,
-	"subject": input.token.sub,
+	"subject": subject,
 	"violations": violations,
 }

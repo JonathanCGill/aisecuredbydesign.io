@@ -16,13 +16,15 @@ This page treats them as what they are: production artefacts that need version c
 | **Few-shot examples** | Steer behaviour as strongly as instructions do |
 | **Tool and function definitions** | Names, descriptions, and parameter schemas are read by the model and shape which tools it calls and how |
 | **MCP server configuration** | Decides which external tools and data the agent can reach |
-| **Agent skills and instruction files** | Packaged instructions and scripts the agent loads on demand |
+| **Agent skills and instruction files** | Packaged instructions and scripts the agent loads on demand. Each skill should declare the paths, hosts, and credentials it needs, enforced at runtime by a [per-skill permission manifest](https://airuntimesecurity.io/maso/controls/supply-chain/) |
 | **Guardrail and judge configuration** | Thresholds, policies, block lists, and judge prompts |
 | **Model parameters and routing** | Model version, temperature, max tokens, fallback order |
 
 All of these belong in the [AI-BOM](../../infrastructure/agentic/supply-chain.md#sup-07-maintain-ai-component-inventory-ai-bom) and go through the same lifecycle gates as a model change. As the [Model Lifecycle](../mlops/model-lifecycle.md#what-constitutes-a-new-version) page says, prompt changes are model changes.
 
 ## The release pipeline
+
+This pipeline implements infrastructure control [SUP-09](../../infrastructure/agentic/supply-chain.md#sup-09-release-prompts-and-configuration-through-a-versioned-evaluation-gate). Pinning tool definitions, covered below, is [TOOL-07](../../infrastructure/agentic/tool-access-controls.md#tool-07-pin-tool-definitions-by-hash-and-reject-unapproved-changes).
 
 ![Prompt and configuration release pipeline](../../images/prompt-config-pipeline.svg){ .arch-diagram }
 
@@ -90,5 +92,6 @@ Runtime teams need the current approved version and hash for every artefact, and
     - [OWASP LLM07:2025 System Prompt Leakage](https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/)
     - [Invariant Labs: MCP Security Notification, Tool Poisoning Attacks](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
     - [Model Context Protocol: Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
+    - [OWASP Agentic Skills Top 10](https://owasp.org/www-project-agentic-skills-top-10/)
     - [NIST SP 800-218A: Secure Software Development Practices for Generative AI](https://csrc.nist.gov/pubs/sp/800/218/a/final)
     - [AI Runtime Security: The MCP Problem](https://airuntimesecurity.io/insights/the-mcp-problem/)

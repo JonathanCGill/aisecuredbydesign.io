@@ -11,9 +11,9 @@ description: "Tool access controls for agentic AI: declaring, mediating, constra
 
 When AI agents invoke external tools - APIs, databases, file systems, code interpreters, or third-party services - the tool invocation boundary is one of the highest-risk points in the system. The agent decides *what* to call and *why*, but it must never decide *whether* it is allowed to call it or *how* to authenticate. That enforcement belongs to deterministic infrastructure: the authorisation gateway.
 
-These six controls establish the principle that tool access is declared, mediated, constrained, classified, rate-limited, and fully logged.
+These seven controls establish the principle that tool access is declared, mediated, constrained, classified, rate-limited, fully logged, and pinned to the definitions that were approved.
 
-## TOOL-01 - Declare Tool Permissions Explicitly Before Deployment
+## TOOL-01: Declare Tool Permissions Explicitly Before Deployment
 
 **Risk Tiers:** Tier 2+ (agentic)
 
@@ -39,7 +39,7 @@ Every tool available to an agent must be declared in a machine-readable manifest
 | **Judge** | Judge can evaluate whether the agent's tool invocation patterns align with the manifest's intended scope, detecting misuse within technically permitted bounds. |
 | **Human Oversight** | The manifest is a human-readable, auditable declaration of agent capability. Reviewers can assess whether declared permissions are appropriate for the task. |
 
-## TOOL-02 - Enforce Permissions at the Gateway, Not at the Agent
+## TOOL-02: Enforce Permissions at the Gateway, Not at the Agent
 
 **Risk Tiers:** Tier 2+ (agentic)
 
@@ -65,7 +65,7 @@ Tool invocation permissions are enforced by a gateway that sits between the agen
 | **Judge** | Gateway logs provide the Judge with a ground-truth record of what the agent actually did (attempted and succeeded), independent of the agent's self-reported reasoning. |
 | **Human Oversight** | Gateway enforcement means humans can trust that the permissions they approved are actually being enforced, not merely suggested to the agent. |
 
-## TOOL-03 - Constrain Tool Parameters to Declared Bounds
+## TOOL-03: Constrain Tool Parameters to Declared Bounds
 
 **Risk Tiers:** Tier 2+ (agentic)
 
@@ -91,7 +91,7 @@ Even when a tool invocation is permitted, the parameters passed to the tool must
 | **Judge** | Judge can evaluate whether parameter values, while technically within bounds, represent unusual or suspicious patterns (e.g., reading an unusually large number of files from a permitted directory). |
 | **Human Oversight** | Parameter schemas give human reviewers visibility into the granular scope of agent actions, not just which tools are available but exactly how they can be used. |
 
-## TOOL-04 - Classify Tool Actions by Reversibility and Impact
+## TOOL-04: Classify Tool Actions by Reversibility and Impact
 
 **Risk Tiers:** Tier 2+ (agentic)
 
@@ -117,7 +117,7 @@ Not all tool actions carry the same risk. Reading a file is different from delet
 | **Judge** | Judge evaluation can be calibrated by action class - irreversible-write and privileged actions warrant more thorough post-hoc evaluation than read-only actions. |
 | **Human Oversight** | Classification directly drives when humans are brought into the loop. It ensures human attention is directed at the highest-impact decisions. |
 
-## TOOL-05 - Rate-Limit Tool Invocations per Agent and per Tool
+## TOOL-05: Rate-Limit Tool Invocations per Agent and per Tool
 
 **Risk Tiers:** Tier 2+ (agentic)
 
@@ -144,7 +144,7 @@ Prevent runaway agent behavior, resource exhaustion, and data exfiltration by en
 | **Judge** | Rate limit proximity and burst patterns feed Judge evaluation as signals of potential anomalous behavior. |
 | **Human Oversight** | Rate limit alerts surface agent sessions that may require human review, directing attention to potentially problematic behavior. |
 
-## TOOL-06 - Log Every Tool Invocation with Full Context
+## TOOL-06: Log Every Tool Invocation with Full Context
 
 **Risk Tiers:** Tier 2+ (agentic)
 
@@ -171,3 +171,30 @@ Every tool invocation - whether permitted or denied - must be logged with suffic
 | **Judge** | Complete invocation logs are a primary input for Judge evaluation of agent behavior - the Judge can assess whether the sequence and pattern of tool use was appropriate. |
 | **Human Oversight** | Full invocation logs give human reviewers the ability to understand exactly what an agent did, why it was allowed, and what it received in response. |
 
+## TOOL-07: Pin Tool Definitions by Hash and Reject Unapproved Changes
+
+**Risk Tiers:** Agentic (Tier 2+)
+
+### Objective
+
+Tool names, descriptions, and parameter schemas are read by the model and steer its behaviour, so they are an injection surface. Ensure that the definitions an agent sees at runtime are exactly the ones that were reviewed and approved, and that a tool server cannot change them afterwards.
+
+### Requirements
+
+| Requirement | Description |
+|-------------|-------------|
+| **Hash at approval** | When a tool or MCP server is approved, record a hash of each tool's name, description, and parameter schema in the tool manifest (TOOL-01) and the AI-BOM (SUP-07). |
+| **Verify at load** | The client or gateway recomputes the hash whenever tool definitions are fetched and refuses to expose any tool whose definition does not match. |
+| **Alert on change** | A mismatch raises a security alert. A changed description on an approved server is treated as a possible rug pull, not a routine update. |
+| **Review like prompts** | Definitions are reviewed for embedded instructions, references to files or credentials, and hidden Unicode before approval, using the same process as system prompts (SUP-09). |
+| **Re-approval for updates** | Legitimate changes go through the same review and evaluation gate as the original approval before the new hash is accepted. |
+
+### Relationship to Three Layers
+
+| Layer | How TOOL-07 Supports It |
+|-------|------------------------|
+| **Guardrails** | Guardrails and the gateway operate on a known, reviewed tool surface. Poisoned or silently changed descriptions never reach the model. |
+| **Judge** | Judge evaluation of tool use assumes the tool descriptions are the approved ones. Pinning keeps that assumption true. |
+| **Human Oversight** | A definition change becomes an explicit human approval decision rather than an invisible runtime event. |
+
+See [Prompt and Configuration Management](../../building/devops/prompt-and-config-management.md#tool-definitions-poisoning-and-rug-pulls) for the pre-deployment process.
