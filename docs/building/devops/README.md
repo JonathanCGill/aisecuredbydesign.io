@@ -31,3 +31,8 @@ Teams that apply standard DevOps practices without adaptation leave gaps that be
 
 !!! abstract "DevOps secures the pipeline. MLOps secures the ML lifecycle."
     DevOps and [MLOps](../mlops/README.md) overlap but are not the same. DevOps focuses on the infrastructure and delivery pipeline. MLOps focuses on the ML-specific lifecycle (training, evaluation, registry, deployment). Both must be secured. This section covers the DevOps side.
+
+!!! info "References"
+    - [NIST SP 800-218A: Secure Software Development Practices for Generative AI](https://csrc.nist.gov/pubs/sp/800/218/a/final)
+    - [OWASP Top 10 for LLM Applications](https://genai.owasp.org/llm-top-10/)
+    - [MLOps Security](../mlops/README.md)

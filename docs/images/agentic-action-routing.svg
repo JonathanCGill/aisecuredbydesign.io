@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="400" viewBox="0 0 780 400" role="img" aria-labelledby="t d">
+  <title id="t">Risk-based routing of agent actions</title>
+  <desc id="d">An agent proposes an action. A rule-based classifier, taking under 5 milliseconds, routes low-risk actions to immediate execution followed by asynchronous judge evaluation. Elevated-risk actions go to a pre-action judge evaluation taking 500 milliseconds to 2 seconds. If it passes, the action executes. If it is flagged, the action goes to the human approval queue.</desc>
+  <rect width="780" height="400" fill="white"/>
+  <text x="390" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="17" font-weight="bold" fill="#1e293b">Risk-based routing of agent actions</text>
+  <g font-family="Inter, sans-serif" text-anchor="middle">
+    <rect x="300" y="50" width="180" height="44" rx="6" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2"/>
+    <text x="390" y="77" font-size="13" font-weight="bold" fill="#1e293b">Agent proposes action</text>
+    <rect x="270" y="122" width="240" height="50" rx="6" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+    <text x="390" y="144" font-size="13" font-weight="bold" fill="#1e293b">Action classifier</text>
+    <text x="390" y="162" font-size="11" fill="#475569">rule-based, under 5 ms</text>
+    <rect x="60" y="214" width="200" height="44" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="160" y="241" font-size="13" font-weight="bold" fill="#1e293b">Execute immediately</text>
+    <rect x="60" y="300" width="200" height="44" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+    <text x="160" y="327" font-size="13" font-weight="bold" fill="#1e293b">Async judge evaluation</text>
+    <rect x="460" y="208" width="260" height="56" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <text x="590" y="232" font-size="13" font-weight="bold" fill="#1e293b">Pre-action judge evaluation</text>
+    <text x="590" y="250" font-size="11" fill="#475569">500 ms to 2 s</text>
+    <rect x="420" y="300" width="140" height="44" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="490" y="327" font-size="13" font-weight="bold" fill="#1e293b">Execute</text>
+    <rect x="590" y="300" width="170" height="44" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+    <text x="675" y="327" font-size="13" font-weight="bold" fill="#1e293b">Human approval queue</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" fill="none">
+    <path d="M390,94 L390,116"/>
+    <path d="M330,172 L330,190 L160,190 L160,208"/>
+    <path d="M450,172 L450,190 L590,190 L590,202"/>
+    <path d="M160,258 L160,294"/>
+    <path d="M550,264 L550,280 L490,280 L490,294"/>
+    <path d="M630,264 L630,280 L675,280 L675,294"/>
+  </g>
+  <g fill="#475569">
+    <polygon points="390,122 385,114 395,114"/><polygon points="160,214 155,206 165,206"/><polygon points="590,208 585,200 595,200"/>
+    <polygon points="160,300 155,292 165,292"/><polygon points="490,300 485,292 495,292"/><polygon points="675,300 670,292 680,292"/>
+  </g>
+  <g font-family="Inter, sans-serif" font-size="11" fill="#475569">
+    <text x="190" y="184">low risk</text><text x="520" y="184">elevated risk</text>
+    <text x="470" y="276" text-anchor="end">pass</text><text x="690" y="276">flag</text>
+  </g>
+</svg>

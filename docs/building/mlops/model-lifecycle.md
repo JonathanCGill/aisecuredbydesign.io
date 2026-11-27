@@ -8,12 +8,7 @@ A model's lifecycle runs from its creation through production use to eventual re
 
 ## Lifecycle stages
 
-```
-Training → Evaluation → Registration → Staging → Production → Retirement
-              ↑                           ↑          ↑
-          Validation                  Approval    Monitoring
-            gate                       gate       (runtime)
-```
+![Model lifecycle stages and gates](../../images/model-lifecycle-stages.svg){ .arch-diagram }
 
 ### Training output
 

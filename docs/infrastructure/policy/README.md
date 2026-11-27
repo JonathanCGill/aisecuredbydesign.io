@@ -39,6 +39,14 @@ The framework says *what* to enforce. These templates are a running start on *ho
 
     [:octicons-download-24: Download](opa/token_scope.rego)
 
+-   **design_manifest.rego** &middot; SESS-06, TOOL-07, SUP-10
+
+    ---
+
+    Design-time gate for CI: fail the build when a declared session holds all three Rule of Two properties without approval, a model is unpinned or retired, or a tool definition is not pinned.
+
+    [:octicons-download-24: Download](opa/design_manifest.rego) &middot; [Tests](opa/design_manifest_test.rego) &middot; [Example manifest](examples/design-manifest.example.yaml)
+
 </div>
 
 ### Example: agent egress
@@ -73,6 +81,31 @@ The `decision` object returns `allow` plus a `reason`, so the gateway can write 
 ### Example: tool permission boundary
 
 `tool_permission_boundary.rego` permits a tool call only when the tool is in the agent's manifest, every parameter is within its declared bound (`enum`, `number` range, or `string` pattern), and, for a delegated call, the tool is also present in the delegating agent's grant. That last check is how DEL-01 (no privilege escalation through delegation) becomes executable.
+
+### Example: design manifest
+
+The other policies run at request or admission time. `design_manifest.rego` runs earlier, in CI, against a short **design manifest** kept next to the system's code. The manifest declares each session type and which [Rule of Two](../../core/injection-resistant-design.md#the-agents-rule-of-two) properties it holds, the models in use with their pinned versions and retirement dates, and the approved tools with the hash of their definitions.
+
+```yaml
+sessions:
+  - id: reply
+    untrusted_input: true
+    sensitive_access: true
+    outbound_or_state_change: true
+    approval_step: agent-reply-review
+    isolation_pattern: plan-then-execute
+```
+
+A session holding all three properties with no `approval_step` fails the build. At HIGH and CRITICAL, a session that mixes untrusted input with sensitive access must also name an isolation pattern. Missing fields count as violations, so a manifest cannot pass by leaving a property out.
+
+```bash
+opa test docs/infrastructure/policy/opa -v
+opa eval -d docs/infrastructure/policy/opa/design_manifest.rego \
+  -i docs/infrastructure/policy/examples/design-manifest.example.yaml \
+  'data.design.manifest.decision'
+```
+
+The manifest is only as good as its match to what is deployed. Generate the tool hashes from the approved tool manifest and the model list from the AI-BOM rather than typing them by hand. [Automating Design Assurance](../../getting-started/design-assurance.md) covers the wider approach.
 
 ## Kyverno
 
@@ -119,6 +152,7 @@ metadata:
 | `agent_egress.rego` | NET-04, NET-01 | [Layer 01](../handoff-matrix.md) |
 | `tool_permission_boundary.rego` | TOOL-01, TOOL-02, TOOL-03, DEL-01 | [Layer 01](../handoff-matrix.md) |
 | `token_scope.rego` | SEC-02, IAM-06, DEL-05 | [Layer 01](../handoff-matrix.md) |
+| `design_manifest.rego` | SESS-06, TOOL-07, SUP-10 | Design-time gate (CI), before [Layer 01](../handoff-matrix.md) |
 | `require-agent-sandbox-isolation.yaml` | SAND-01, SAND-04, SAND-05, SESS-02 | [Layer 01](../handoff-matrix.md) + Circuit Breaker |
 | `restrict-agent-egress.yaml` | NET-01, NET-02, NET-04 | [Layer 01](../handoff-matrix.md) |
 

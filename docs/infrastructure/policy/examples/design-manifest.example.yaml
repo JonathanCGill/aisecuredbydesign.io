@@ -1,0 +1,38 @@
+# Design manifest for one AI system. Keep it next to the code and review it
+# like code. Checked in CI by opa/design_manifest.rego.
+system:
+  name: support-assistant
+  tier: HIGH            # LOW, MEDIUM, HIGH or CRITICAL
+
+# Each session type and which Rule of Two properties it holds (SESS-06).
+# Tool output, retrieved documents, memory and other agents count as
+# untrusted input unless their provenance is verified.
+sessions:
+  - id: triage
+    description: Reads inbound customer email and classifies it
+    untrusted_input: true
+    sensitive_access: false
+    outbound_or_state_change: false
+  - id: reply
+    description: Drafts and sends a reply using the customer record
+    untrusted_input: true
+    sensitive_access: true
+    outbound_or_state_change: true
+    approval_step: agent-reply-review       # human approves each send
+    isolation_pattern: plan-then-execute    # see Injection-Resistant Design
+
+# Every model, including guardrail and judge models (SUP-10).
+models:
+  - id: primary
+    pinned_version: provider-model-2026-06-01
+    retirement_date: "2027-12-31"
+  - id: judge
+    pinned_version: provider-judge-2026-03-15
+    retirement_date: "2027-03-31"
+
+# Approved tools with the hash of their name, description and schema (TOOL-07).
+tools:
+  - name: crm_lookup
+    definition_sha256: 9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08
+  - name: send_email
+    definition_sha256: 60303ae22b998861bce3b28f33eec1be758a213c86c93c076dbe9f558c11c752
